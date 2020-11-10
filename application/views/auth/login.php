@@ -19,7 +19,7 @@
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="email" name="email">
+                            <input type="email" id="email" name="email" value="<?= set_value('email'); ?>">
                             <i class="ti-email"></i>
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
