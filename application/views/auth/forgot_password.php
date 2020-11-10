@@ -11,24 +11,25 @@
     <div class="login-area login-s2">
         <div class="container">
             <div class="login-box ptb--100">
-                <form>
+                <form class="user" method="post" action="<?= base_url('auth/forgot_password'); ?>">
                     <div class="login-form-head">
-                        <h4>Forgot Password</h4>
+                        <h4>Forgot Your Password ?</h4>
                     </div>
+                    <?= $this->session->flashdata('message');  ?>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="exampleInputEmail1">
+                            <input type="text" id="email" name="email" value="<?= set_value('email'); ?>">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6 text-left">
-                                <a href="<?= base_url(); ?>">Back to Login</a>
+                                <a class="small" href="<?= base_url(); ?>">Back to Login</a>
                             </div>
                         </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Send Password</button>
+                            <button type="submit" id="form_submit">Reset Password</button>
                         </div>
                     </div>
                 </form>
