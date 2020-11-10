@@ -47,10 +47,10 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li class="active">
-                                <a href="<?= base_url('welcome'); ?>" aria-expanded="true"><i class="ti-dashboard"></i><span>Dashboard</span></a>
+                                <a href="<?= base_url('Welcome'); ?>" aria-expanded="true"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url(''); ?>" aria-expanded="true"><i class="ti-dashboard"></i><span>Tambah User</span></a>
+                                <a href="<?= base_url('User'); ?>" aria-expanded="true"><i class="ti-dashboard"></i><span>User</span></a>
                             </li>
                         </ul>
                     </nav>
