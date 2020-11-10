@@ -15,18 +15,19 @@
                     <div class="login-form-head">
                         <h4>Sign In</h4>
                     </div>
+                    <?= $this->session->flashdata('message'); ?>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" id="email" name="email">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" id="password" name="password">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
