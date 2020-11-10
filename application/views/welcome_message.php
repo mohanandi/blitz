@@ -1,89 +1,287 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+<div class="main-content-inner">
+	<!-- sales report area start -->
+	<div class="sales-report-area sales-style-two">
+		<div class="row">
+			<div class="col-md-12 mt-5 mb-3">
+				<div class="card">
+					<div class="seo-fact sbg1">
+						<div class="p-4 d-flex justify-content-between align-items-center">
+							<div class="seofct-icon"><i class="ti-thumb-up"></i> Likes</div>
+							<h2>2,315</h2>
+						</div>
+						<canvas id="seolinechart1" height="50"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-ml-3 col-md-6 mt-5">
+				<div class="single-report">
+					<div class="s-sale-inner pt--30 mb-3">
+						<div class="s-report-title d-flex justify-content-between">
+							<h4 class="header-title mb-0">Gross Profit</h4>
+							<select class="custome-select border-0 pr-3">
+								<option selected="">Last 7 Days</option>
+								<option value="0">Last 7 Days</option>
+							</select>
+						</div>
+					</div>
+					<canvas id="coin_sales5" height="100"></canvas>
+				</div>
+			</div>
+			<div class="col-xl-3 col-ml-3 col-md-6  mt-5">
+				<div class="single-report">
+					<div class="s-sale-inner pt--30 mb-3">
+						<div class="s-report-title d-flex justify-content-between">
+							<h4 class="header-title mb-0">Orders</h4>
+							<select class="custome-select border-0 pr-3">
+								<option selected="">Last 7 Days</option>
+								<option value="0">Last 7 Days</option>
+							</select>
+						</div>
+					</div>
+					<canvas id="coin_sales6" height="100"></canvas>
+				</div>
+			</div>
+			<div class="col-xl-3 col-ml-3 col-md-6 mt-5">
+				<div class="single-report">
+					<div class="s-sale-inner pt--30 mb-3">
+						<div class="s-report-title d-flex justify-content-between">
+							<h4 class="header-title mb-0">New Coustomers</h4>
+							<select class="custome-select border-0 pr-3">
+								<option selected="">Last 7 Days</option>
+								<option value="0">Last 7 Days</option>
+							</select>
+						</div>
+					</div>
+					<canvas id="coin_sales7" height="100"></canvas>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<!-- sales report area end -->
+	<!-- visitor graph area start -->
+	<div class="card mt-5">
+		<div class="card-body">
+			<div class="d-flex justify-content-between mb-5">
+				<h4 class="header-title mb-0">Visitor Graph</h4>
+				<select class="custome-select border-0 pr-3">
+					<option selected="">Last 7 Days</option>
+					<option value="0">Last 7 Days</option>
+				</select>
+			</div>
+			<div id="visitor_graph"></div>
+		</div>
+	</div>
+	<!-- visitor graph area end -->
+	<!-- order list area start -->
+	<div class="card mt-5">
+		<div class="card-body">
+			<h4 class="header-title">Todays Order List</h4>
+			<div class="table-responsive">
+				<table class="dbkit-table">
+					<tbody>
+						<tr class="heading-td">
+							<td>Product Name</td>
+							<td>Product Code</td>
+							<td>Order Status</td>
+							<td>Client Number</td>
+							<td>Zip Code</td>
+							<td>View Order</td>
+						</tr>
+						<tr>
+							<td>Ladis Sunglass</td>
+							<td>#894750374</td>
+							<td><span class="pending_dot">Pending</span></td>
+							<td>01976 74 92 00</td>
+							<td>9241</td>
+							<td>View Order</td>
+						</tr>
+						<tr>
+							<td>Ladis Sunglass</td>
+							<td>#894750374</td>
+							<td><span class="shipment_dot">Shipment</span></td>
+							<td>01976 74 92 00</td>
+							<td>9241</td>
+							<td>View Order</td>
+						</tr>
+						<tr>
+							<td>Ladis Sunglass</td>
+							<td>#894750374</td>
+							<td><span class="pending_dot">Pending</span></td>
+							<td>01976 74 92 00</td>
+							<td>9241</td>
+							<td>View Order</td>
+						</tr>
+						<tr>
+							<td>Ladis Sunglass</td>
+							<td>#894750374</td>
+							<td><span class="confirmed _dot">Confirmed </span></td>
+							<td>01976 74 92 00</td>
+							<td>9241</td>
+							<td>View Order</td>
+						</tr>
+						<tr>
+							<td>Ladis Sunglass</td>
+							<td>#894750374</td>
+							<td><span class="pending_dot">Pending</span></td>
+							<td>01976 74 92 00</td>
+							<td>9241</td>
+							<td>View Order</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="pagination_area pull-right mt-5">
+				<ul>
+					<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- order list area end -->
+	<div class="row">
+		<!-- product sold area start -->
+		<div class="col-xl-8 col-lg-7 col-md-12 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex justify-content-between mb-4">
+						<h4 class="header-title mb-0">Product Slod</h4>
+						<select class="custome-select border-0 pr-3">
+							<option selected="">Today</option>
+							<option value="0">Last 7 Days</option>
+						</select>
+					</div>
+					<div class="table-responsive">
+						<table class="dbkit-table">
+							<tbody>
+								<tr class="heading-td">
+									<td>Product Name</td>
+									<td>Revenue</td>
+									<td>Sold</td>
+									<td>Discount</td>
+								</tr>
+								<tr>
+									<td>Ladis Sunglass</td>
+									<td>$56</td>
+									<td>$160</td>
+									<td>$20</td>
+								</tr>
+								<tr>
+									<td>Ladis Sunglass</td>
+									<td>$26</td>
+									<td>$500</td>
+									<td>$20</td>
+								</tr>
+								<tr>
+									<td>Ladis Sunglass</td>
+									<td>$26</td>
+									<td>$500</td>
+									<td>$20</td>
+								</tr>
+								<tr>
+									<td>Ladis Sunglass</td>
+									<td>$56</td>
+									<td>$250</td>
+									<td>$10</td>
+								</tr>
+								<tr>
+									<td>Ladis Sunglass</td>
+									<td>$56</td>
+									<td>$125</td>
+									<td>$50</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pagination_area pull-right mt-5">
+						<ul>
+							<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- product sold area end -->
+		<!-- team member area start -->
+		<div class="col-xl-4 col-lg-5 col-md-12 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<div class="d-sm-flex flex-wrap justify-content-between mb-4 align-items-center">
+						<h4 class="header-title mb-0">Team Member</h4>
+						<form class="team-search">
+							<input type="text" name="search" placeholder="Search Here">
+						</form>
+					</div>
+					<div class="member-box">
+						<div class="s-member">
+							<div class="media align-items-center">
+								<img src="assets/images/team/team-author1.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+								<div class="media-body ml-5">
+									<p>Amir Hamza</p><span>Manager</span>
+								</div>
+								<div class="tm-social">
+									<a href="#"><i class="fa fa-phone"></i></a>
+									<a href="#"><i class="fa fa-envelope"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="s-member">
+							<div class="media align-items-center">
+								<img src="assets/images/team/team-author2.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+								<div class="media-body ml-5">
+									<p>Anamul Kabir</p><span>UI design</span>
+								</div>
+								<div class="tm-social">
+									<a href="#"><i class="fa fa-phone"></i></a>
+									<a href="#"><i class="fa fa-envelope"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="s-member">
+							<div class="media align-items-center">
+								<img src="assets/images/team/team-author3.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+								<div class="media-body ml-5">
+									<p>Animesh Mondol</p><span>UI design</span>
+								</div>
+								<div class="tm-social">
+									<a href="#"><i class="fa fa-phone"></i></a>
+									<a href="#"><i class="fa fa-envelope"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="s-member">
+							<div class="media align-items-center">
+								<img src="assets/images/team/team-author4.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+								<div class="media-body ml-5">
+									<p>Faruk Hasan</p><span>UI design</span>
+								</div>
+								<div class="tm-social">
+									<a href="#"><i class="fa fa-phone"></i></a>
+									<a href="#"><i class="fa fa-envelope"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="s-member">
+							<div class="media align-items-center">
+								<img src="assets/images/team/team-author5.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+								<div class="media-body ml-5">
+									<p>Sagor Chandra</p><span>Motion Designer</span>
+								</div>
+								<div class="tm-social">
+									<a href="#"><i class="fa fa-phone"></i></a>
+									<a href="#"><i class="fa fa-envelope"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- team member area end -->
+	</div>
 </div>
-
-</body>
-</html>
