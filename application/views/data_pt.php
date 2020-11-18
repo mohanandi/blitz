@@ -1,5 +1,79 @@
 <div class="app-main">
-
+    <div class="app-sidebar sidebar-shadow">
+        <div class="app-header__logo">
+            <div class="logo-src"></div>
+            <div class="header__pane ml-auto">
+                <div>
+                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="app-header__mobile-menu">
+            <div>
+                <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="app-header__menu">
+            <span>
+                <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                    <span class="btn-icon-wrapper">
+                        <i class="fa fa-ellipsis-v fa-w-6"></i>
+                    </span>
+                </button>
+            </span>
+        </div>
+        <div class="scrollbar-sidebar">
+            <div class="app-sidebar__inner">
+                <ul class="vertical-nav-menu">
+                    <li class="app-sidebar__heading">Dashboards</li>
+                    <li>
+                        <a href="<?= base_url('Sementara/home') ?>">
+                            <i class="metismenu-icon pe-7s-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url('Sementara/Data_TKA') ?>">
+                            <i class="metismenu-icon pe-7s-users"></i>
+                            Data TKA
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Data PT.html" class="mm-active">
+                            <i class="metismenu-icon pe-7s-portfolio"></i>
+                            Data PT
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="metismenu-icon pe-7s-ticket"></i>
+                            Data Voucher
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="metismenu-icon pe-7s-share"></i>
+                            Data RPTKA
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Data Visa-Dashboard.html">
+                            <i class="metismenu-icon pe-7s-photo-gallery"></i>
+                            Data VISA
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="app-main__outer">
         <div class="app-main__inner">
             <div class="app-page-title">
@@ -402,46 +476,47 @@
 
     </div>
 
-</div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Menu Export</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="">
-                    <div class="position-relative form-group"><label for="exampleSelect" class="">Jenis Proses</label><select name="select" id="exampleSelect" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select></div>
-                    <div class="position-relative form-group"><label for="exampleSelect" class="">Tanggal Proses</label><select name="select" id="exampleSelect" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select></div>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="position-relative form-group"><label for="exampleEmail11" class="">Tanggal Awal</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="date" class="form-control"></div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Menu Export</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="">
+                        <div class="position-relative form-group"><label for="exampleSelect" class="">Jenis Proses</label><select name="select" id="exampleSelect" class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select></div>
+                        <div class="position-relative form-group"><label for="exampleSelect" class="">Tanggal Proses</label><select name="select" id="exampleSelect" class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select></div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="exampleEmail11" class="">Tanggal Awal</label><input name="email" id="exampleEmail11" placeholder="with a placeholder" type="date" class="form-control"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="examplePassword11" class="">Tanggal Akhir</label><input name="password" id="examplePassword11" placeholder="password placeholder" type="date" class="form-control"></div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group"><label for="examplePassword11" class="">Tanggal Akhir</label><input name="password" id="examplePassword11" placeholder="password placeholder" type="date" class="form-control"></div>
-                        </div>
-                    </div>
-                    <button class="mt-1 btn btn-primary">Submit</button>
-                </form>
+                        <button class="mt-1 btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>

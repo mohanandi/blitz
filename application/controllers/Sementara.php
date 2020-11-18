@@ -7,7 +7,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data PT';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('data_pt');
         $this->load->view('templates/footer');
     }
@@ -15,7 +14,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data PT | Dashboard';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data PT-Dashboard');
         $this->load->view('templates/footer');
     }
@@ -23,7 +21,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data PT | Notif';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data PT-Dashboard');
         $this->load->view('templates/footer');
     }
@@ -31,7 +28,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data TKA | Detail';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data TKA-Detail');
         $this->load->view('templates/footer');
     }
@@ -39,7 +35,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data TKA | Edit';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data TKA-Edit');
         $this->load->view('templates/footer');
     }
@@ -47,7 +42,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data TKA | Notif';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data TKA-Notif');
         $this->load->view('templates/footer');
     }
@@ -55,7 +49,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data TKA | Tambah';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data TKA-Tambah');
         $this->load->view('templates/footer');
     }
@@ -63,7 +56,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data TKA';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data TKA');
         $this->load->view('templates/footer');
     }
@@ -71,7 +63,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data Visa | Dashboard';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data Visa-Dashboard');
         $this->load->view('templates/footer');
     }
@@ -79,7 +70,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Data Visa | Tambah';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Data Visa-tambah');
         $this->load->view('templates/footer');
     }
@@ -87,7 +77,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'Dashboard';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('Home');
         $this->load->view('templates/footer');
     }
@@ -95,7 +84,6 @@ class Sementara extends CI_Controller
     {
         $data['judul'] = 'User Profile';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
         $this->load->view('User Profile');
         $this->load->view('templates/footer');
     }
