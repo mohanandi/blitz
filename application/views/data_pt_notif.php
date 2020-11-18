@@ -22,17 +22,18 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-success fade show" role="alert">Export Berhasil !</div>
+        <div class="alert alert-danger fade show" role="alert">Export gagal !</div>
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Data PT Shanghai Shenhua
+                    <div class="card-header">Data PT
                         <button type="button" class="btn mr-2 mb-2 btn-primary btn-actions-pane-right" data-toggle="modal" data-target="#exampleModal">
                             Export
                         </button>
                         <form action="Data TKA-Tambah.html">
                             <input class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" value="Tambah TKA" />
                         </form>
-
                     </div>
                     <div class="table-responsive" style="padding: 10px;">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
@@ -57,297 +58,8 @@
                                     <td class="text-center">-</td>
                                     <td class="text-center">
                                         <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
-                                                <option>Tambah</option>
-                                                <option>Hapus</option>
-                                            </select>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
                                                 <option>Tambah</option>
                                                 <option>Hapus</option>
                                             </select>
@@ -380,9 +92,280 @@
                                     <td class="text-center">-</td>
                                     <td class="text-center">
                                         <form>
-                                            <select class="form-control-sm form-control" onchange="location = this.value;">
-                                                <option>Pilih ... </option>
-                                                <option value="Data PT-Dashboard.html">Detail</option>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
+                                                <option>Tambah</option>
+                                                <option>Hapus</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">Luo Yi</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">440088KJL66</td>
+                                    <td class="text-center">27 - 02 - 2021</td>
+                                    <td class="text-center">15 - 04 - 1987</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">
+                                        <form>
+                                            <select class="form-control-sm form-control">
+                                                <option>Detail</option>
                                                 <option>Tambah</option>
                                                 <option>Hapus</option>
                                             </select>
@@ -395,7 +378,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
