@@ -154,7 +154,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= base_url('Data_Rptka'); ?>">
+                                <a href="<?= base_url('Data_RPTKA'); ?>">
                                     <i class="metismenu-icon pe-7s-share"></i>
                                     Data RPTKA
                                 </a>
@@ -166,6 +166,19 @@
                                 </a>
                             </li>
                         </ul>
+						<ul class="vertical-nav-menu">
+                            <li class="app-sidebar__heading">Manajemen User</li>
+                            <li>
+                                <a href="<?= base_url('#'); ?>">
+                                    <i class="metismenu-icon pe-7s-user"></i>
+                                    Tambah User
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
+
+
             </div>
+
