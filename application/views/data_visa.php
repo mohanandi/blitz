@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">Data Visa 211
-                        <button class="btn-actions-pane-right mb-2 mr-2 btn btn-primary">Tambah Visa</button>
+                        <a type="button" href="<?= base_url('Data_Visa/tambah'); ?>" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary">Tambah Visa</a>
                     </div>
                     <div class="table-responsive" style="padding: 10px;">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
