@@ -60,9 +60,9 @@ class Auth extends CI_Controller
     {
         $config = [
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_user' => 'iqbaladhis@gmail.com',
-            'smtp_pass' => 'tukangsomay',
+            'smtp_host' => 'ssl://srv64.niagahoster.com',
+            'smtp_user' => 'system@blitzindoutama.com',
+            'smtp_pass' => 'blitzindoutama',
             'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
@@ -71,7 +71,7 @@ class Auth extends CI_Controller
 
         $this->load->library('email', $config);
 
-        $this->email->from('iqbaladhis@gmail.com', 'Iqbal Adhi');
+        $this->email->from('system@blitzindoutama.com', 'Blitzindo Utama');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'forgot') {
