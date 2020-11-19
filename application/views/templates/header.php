@@ -147,6 +147,45 @@
                                     Data PT
                                 </a>
                             </li>
+							<li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-ticket"></i>
+                                        Data Voucher
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="elements-buttons-standard.html">
+                                                <i class="metismenu-icon"></i>
+                                                Input Voucher VISA
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="elements-dropdowns.html">
+                                                <i class="metismenu-icon">
+                                                </i>Input Voucher Other
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="elements-icons.html">
+                                                <i class="metismenu-icon">
+                                                </i>Riwayat Voucher Visa
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="elements-badges-labels.html">
+                                                <i class="metismenu-icon">
+                                                </i>Riwayat Voucher Other
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="elements-cards.html">
+                                                <i class="metismenu-icon">
+                                                </i>Report Voucher
+                                            </a>
+                                        </li>
+                                    </ul>
+							</li>
                             <li>
                                 <a href="<?= base_url('Data_Voucher'); ?>">
                                     <i class="metismenu-icon pe-7s-ticket"></i>
@@ -169,7 +208,7 @@
 						<ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Manajemen User</li>
                             <li>
-                                <a href="<?= base_url('#'); ?>">
+                                <a href="<?= base_url('Tambah_User'); ?>">
                                     <i class="metismenu-icon pe-7s-user"></i>
                                     Tambah User
                                 </a>

@@ -68,179 +68,179 @@
                             <tbody>
                                 <tr>
                                     <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
                                <tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">2</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">3</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">4</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">5</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-danger">Non-Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">6</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">7</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-warning">Pending</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">8</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">9</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">10</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
 								<tr>
-                                    <td class="text-center text-muted">1</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">PT. Shanghai Shenhua</td>
-                                    <td class="text-center">40</td>
-                                    <td class="text-center">37</td>
-                                    <td class="text-center">3</td>
-									<td class="text-center">Perubahan RPTKA Dinamis</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
-									<td class="text-center">40</td>
+                                    <td class="text-center text-muted">11</td>
+                                    <td class="text-center"><div class="mb-2 mr-2 badge badge-success">Aktif</div></td>
+                                    <td class="text-center">诸葛亮</td>
+                                    <td class="text-center">Zhuge Liang</td>
+                                    <td class="text-center">RRC</td>
+                                    <td class="text-center">3333PL99JK</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">Visa 211</td>
+									<td class="text-center">Civil Engineer</td>
+									<td class="text-center">6 Bulan</td>
+									<td class="text-center">40110</td>
+									<td class="text-center">21-10-2022</td>
+									<td class="text-center">10032</td>
+									<td class="text-center">-</td>
                                 </tr>
                           
                                 
