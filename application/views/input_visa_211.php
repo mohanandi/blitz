@@ -31,6 +31,7 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">PT. Guangzhou Industrial Steel
+								
 						
                     </div>
                     <div class="table-responsive" style="padding: 10px;">

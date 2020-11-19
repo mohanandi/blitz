@@ -16,4 +16,11 @@ class Data_Voucher extends CI_Controller
         $this->load->view('input_visa_211');
         $this->load->view('templates/footer');
     }
+
+	public function other()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('input_visa_other');
+        $this->load->view('templates/footer');
+    }
 }

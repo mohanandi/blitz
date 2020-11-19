@@ -154,6 +154,12 @@
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
+										<li>
+                                            <a href="<?= base_url('Data_Voucher'); ?>">
+                                                <i class="metismenu-icon"></i>
+                                                Data Voucher Dashboard
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="<?= base_url('Data_Voucher'); ?>">
                                                 <i class="metismenu-icon"></i>
@@ -161,7 +167,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="elements-dropdowns.html">
+                                            <a href="<?= base_url('Data_Voucher/other'); ?>">
                                                 <i class="metismenu-icon">
                                                 </i>Input Voucher Other
                                             </a>
