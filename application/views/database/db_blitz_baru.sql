@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2020 pada 14.58
+-- Waktu pembuatan: 19 Nov 2020 pada 07.37
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -24,6 +24,62 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `pt`
+--
+
+CREATE TABLE `pt` (
+  `id` int(11) NOT NULL,
+  `nama_pt` varchar(255) NOT NULL,
+  `pic` varchar(255) NOT NULL,
+  `nama_client` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `input_by_id` varchar(255) NOT NULL,
+  `tgl_input` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(2) NOT NULL,
+  `role_id` int(2) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `role`
+--
+
+INSERT INTO `role` (`id`, `role_id`, `role`) VALUES
+(1, 1, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tka`
+--
+
+CREATE TABLE `tka` (
+  `id` int(255) NOT NULL,
+  `id_pt` int(255) NOT NULL,
+  `nama_mandarin` varchar(255) NOT NULL,
+  `nama_latin` varchar(255) NOT NULL,
+  `kewarganegaraan` varchar(255) NOT NULL,
+  `passport` varchar(255) NOT NULL,
+  `expired_passport` int(11) NOT NULL,
+  `tgl_lahir` int(11) NOT NULL,
+  `ket` varchar(255) NOT NULL,
+  `input_by_id` int(255) NOT NULL,
+  `tgl_input` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
@@ -34,16 +90,91 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `role_id` varchar(2) NOT NULL,
-  `is_active` int(2) NOT NULL
+  `is_active` int(2) NOT NULL,
+  `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `email`, `password`, `image`, `role_id`, `is_active`) VALUES
-(1, 'Andi Rahmadi', 'andimohan2601@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', '1', 1),
-(2, 'adhi', 'iqbaladhis31@gmail.com', '$2y$10$juxSD8aStJipVCuAXDlOge.Te0bbbSky29.dhw.VoPwp2ahAHEjAO', '', '1', 1);
+INSERT INTO `user` (`id`, `nama`, `email`, `password`, `image`, `role_id`, `is_active`, `date_created`) VALUES
+(1, 'Andi Rahmadi', 'andimohan2601@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', '1', 1, 0),
+(2, 'Iqbal Adhis', 'iqbaladhis@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', '1', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_access_menu`
+--
+
+CREATE TABLE `user_access_menu` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user_access_menu`
+--
+
+INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_menu`
+--
+
+CREATE TABLE `user_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user_menu`
+--
+
+INSERT INTO `user_menu` (`id`, `menu`) VALUES
+(1, 'Home'),
+(2, 'Data_Pt'),
+(3, 'Data_Tka');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `role`) VALUES
+(1, 'Admin'),
+(2, 'Operator');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_sub_menu`
+--
+
+CREATE TABLE `user_sub_menu` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `url` varchar(128) NOT NULL,
+  `icon` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -63,27 +194,63 @@ CREATE TABLE `user_token` (
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
-(1, 'andimohan2601@gmail.com', 'IAMZ5dEd9ntbyi4jELTfN73GRKwr5/fqKO9BceU+ztU=', 1605009647),
-(2, 'andimohan2601@gmail.com', '5MOThsYWyuZ5VyhNx02Z+pVm72W2DlwtC5Rt+RCoOQE=', 1605009935),
-(3, 'andimohan2601@gmail.com', 'zcwfPm3F4OAQIB94DApfRhQTcMnv3QYUvmYlNdofKs0=', 1605011438),
-(4, 'andimohan2601@gmail.com', '5pwnhrS7OuwRxnRqDhhUDbd6l8P31wcQeoxV7R4FE6I=', 1605011471),
-(5, 'andimohan2601@gmail.com', 'w9GT0L93SOctTxZ0gByylhFHabZqVGcrDfoEGLPlNIs=', 1605011624),
-(6, 'andimohan2601@gmail.com', 'OU4xRJSH7EVZ+IBxlY0igjPKmE0ljNiY46dGFs7X7tE=', 1605011749),
-(7, 'andimohan2601@gmail.com', '5dPsqKClqoJCVZffAYRWAb9Lnt8botLAYz/Gl8y+8NE=', 1605011934),
-(8, 'andimohan2601@gmail.com', 'oVxNpGnSjvOzQdc81tJMuHGkmf6SiTbtQv+TbW1TX2w=', 1605012574),
-(9, 'iqbaladhis31@gmail.com', '3JqfqttSCqbrvP2Ba0REp6DIn3xhNjmFwkXVCPDuOIk=', 1605012751),
-(10, 'iqbaladhis31@gmail.com', 'C+XqbAlopK8nsjCPYEde1co8NOGJjnkuXPlKr7R1i5w=', 1605013106),
-(11, 'andimohan2601@gmail.com', 'MlW03Yw7jhWQ7wqGLrWn9rqXPllnAxlTDpMBdgispP8=', 1605015861);
+(12, 'andimohan2601@gmail.com', 'tIbewhD8F2XtG27n3ACC7dc/DP/gyMuJ7Pcfnlq9K8g=', 1605080916),
+(13, 'andimohan2601@gmail.com', 'TP75epqmGTsnO4dmUIE1zNJPktD1hFLlXdN8DMnygVw=', 1605437547);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indeks untuk tabel `pt`
+--
+ALTER TABLE `pt`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nama_pt` (`nama_pt`);
+
+--
+-- Indeks untuk tabel `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tka`
+--
+ALTER TABLE `tka`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `passport` (`passport`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indeks untuk tabel `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_menu`
+--
+ALTER TABLE `user_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `user_token`
@@ -96,10 +263,58 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `pt`
+--
+ALTER TABLE `pt`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tka`
+--
+ALTER TABLE `tka`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_access_menu`
+--
+ALTER TABLE `user_access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_menu`
+--
+ALTER TABLE `user_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_role`
+--
+ALTER TABLE `user_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
