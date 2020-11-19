@@ -6,7 +6,7 @@
 
             <div class="table-responsive" style="padding: 20px;">
 
-                <form class="" action="" method="post">
+                <form class="" action="<?= base_url('Data_Pt/tambah'); ?>" method="post">
                     <div class="position-relative row form-group"><label for="namapt" class="col-sm-2 col-form-label">Nama PT</label>
                         <div class="col-sm-10">
                             <input name="namapt" id="namapt" type="text" class="form-control" autofocus>
