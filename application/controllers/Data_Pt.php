@@ -12,7 +12,8 @@ class Data_Pt extends CI_Controller
 
     public function index()
     {
-        $this->load->view('templates/header');
+        $data['judul'] = 'Data PT';
+        $this->load->view('templates/header', $data);
         $this->load->view('data_pt');
         $this->load->view('templates/footer');
     }
@@ -26,6 +27,12 @@ class Data_Pt extends CI_Controller
     {
         $this->load->view('templates/header');
         $this->load->view('data_pt_notif');
+        $this->load->view('templates/footer');
+    }
+    public function tambah()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('data_pt_tambah');
         $this->load->view('templates/footer');
     }
 }

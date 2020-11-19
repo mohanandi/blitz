@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Nov 2020 pada 07.37
+-- Waktu pembuatan: 19 Nov 2020 pada 12.03
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -20,6 +20,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_blitz_baru`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `access_menu`
+--
+
+CREATE TABLE `access_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `access_menu`
+--
+
+INSERT INTO `access_menu` (`id`, `menu`) VALUES
+(1, 'Home'),
+(2, 'Data_Pt'),
+(3, 'Data_Tka'),
+(4, 'Data_Voucher'),
+(5, 'Data_Rptka'),
+(6, 'Data_Visa');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jabatan_rptka`
+--
+
+CREATE TABLE `jabatan_rptka` (
+  `id` int(255) NOT NULL,
+  `rptka_id` int(255) NOT NULL,
+  `jabatan` varchar(255) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `terpakai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -56,6 +93,44 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `role_id`, `role`) VALUES
 (1, 1, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rptka`
+--
+
+CREATE TABLE `rptka` (
+  `id` int(11) NOT NULL,
+  `id_pt` int(11) NOT NULL,
+  `no_rptka` int(11) NOT NULL,
+  `tgl_terbit` int(11) NOT NULL,
+  `jumlah_rptka` int(11) NOT NULL,
+  `ket` int(11) NOT NULL,
+  `input_by_id` int(11) NOT NULL,
+  `tgl_input` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sidebar_access_menu`
+--
+
+CREATE TABLE `sidebar_access_menu` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `sidebar_access_menu`
+--
+
+INSERT INTO `sidebar_access_menu` (`id`, `role_id`, `menu_id`) VALUES
+(3, 1, 1),
+(4, 1, 2),
+(5, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -111,17 +186,22 @@ INSERT INTO `user` (`id`, `nama`, `email`, `password`, `image`, `role_id`, `is_a
 CREATE TABLE `user_access_menu` (
   `id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL
+  `menu_id` int(11) NOT NULL,
+  `access_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user_access_menu`
 --
 
-INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3);
+INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`, `access_id`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 2),
+(3, 1, 2, 3),
+(4, 1, 2, 4),
+(5, 1, 2, 5),
+(6, 1, 2, 6),
+(7, 1, 3, 7);
 
 -- --------------------------------------------------------
 
@@ -139,9 +219,9 @@ CREATE TABLE `user_menu` (
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
-(1, 'Home'),
-(2, 'Data_Pt'),
-(3, 'Data_Tka');
+(1, 'Dashboard'),
+(2, 'Manajemen Data'),
+(3, 'Manajemen User');
 
 -- --------------------------------------------------------
 
@@ -171,10 +251,23 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 CREATE TABLE `user_sub_menu` (
   `id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
-  `title` varchar(128) NOT NULL,
+  `judul` varchar(128) NOT NULL,
   `url` varchar(128) NOT NULL,
   `icon` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user_sub_menu`
+--
+
+INSERT INTO `user_sub_menu` (`id`, `menu_id`, `judul`, `url`, `icon`) VALUES
+(1, 1, 'Home', 'Home', 'metismenu-icon pe-7s-home'),
+(2, 2, 'Data PT', 'Data_Pt', 'metismenu-icon pe-7s-portfolio'),
+(3, 2, 'Data TKA', 'Data_Tka', 'metismenu-icon pe-7s-users'),
+(4, 2, 'Data Voucher', 'Data_Voucher', 'metismenu-icon pe-7s-ticket'),
+(5, 2, 'Data Visa', 'Data_Visa', 'metismenu-icon pe-7s-photo-gallery'),
+(6, 2, 'Data RPTKA', 'Data_Rptka', 'metismenu-icon pe-7s-share'),
+(7, 3, 'User', 'User_list', 'metismenu-icon pe-7s-user');
 
 -- --------------------------------------------------------
 
@@ -202,6 +295,18 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 --
 
 --
+-- Indeks untuk tabel `access_menu`
+--
+ALTER TABLE `access_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jabatan_rptka`
+--
+ALTER TABLE `jabatan_rptka`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pt`
 --
 ALTER TABLE `pt`
@@ -212,6 +317,19 @@ ALTER TABLE `pt`
 -- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rptka`
+--
+ALTER TABLE `rptka`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_rptka` (`no_rptka`);
+
+--
+-- Indeks untuk tabel `sidebar_access_menu`
+--
+ALTER TABLE `sidebar_access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -263,6 +381,18 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `access_menu`
+--
+ALTER TABLE `access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `jabatan_rptka`
+--
+ALTER TABLE `jabatan_rptka`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `pt`
 --
 ALTER TABLE `pt`
@@ -273,6 +403,18 @@ ALTER TABLE `pt`
 --
 ALTER TABLE `role`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `rptka`
+--
+ALTER TABLE `rptka`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `sidebar_access_menu`
+--
+ALTER TABLE `sidebar_access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tka`
@@ -290,7 +432,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
@@ -308,7 +450,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`

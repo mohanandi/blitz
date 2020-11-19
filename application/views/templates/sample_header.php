@@ -128,49 +128,99 @@
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
-                            <!-- QUERY MENU -->
-                            <?php
-                            $role_id = $this->session->userdata('role_id');
-                            $queryMenu = "SELECT `user_menu`.`id`, `menu`
-                            FROM `user_menu` JOIN `sidebar_access_menu`
-                              ON `user_menu`.`id` = `sidebar_access_menu`.`menu_id`
-                           WHERE `sidebar_access_menu`.`role_id` = $role_id
-                        ORDER BY `sidebar_access_menu`.`menu_id` ASC";
-                            $menu = $this->db->query($queryMenu)->result_array();
-                            ?>
-
-                            <!-- LOOPING MENU -->
-                            <?php foreach ($menu as $m) : ?>
-                                <li class="app-sidebar__heading"><?= $m['menu']; ?></li>
-
-                                <!-- SUB-MENU SESUAI MENU -->
-                                <?php
-                                $menuId = $m['id'];
-                                $querySubMenu = "SELECT *
-                               FROM `user_sub_menu` JOIN `user_menu` 
-                                 ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
-                              WHERE `user_sub_menu`.`menu_id` = $menuId";
-                                $subMenu = $this->db->query($querySubMenu)->result_array();
-                                foreach ($subMenu as $sm) : ?>
-                                    <?php if ($judul == $sm['judul']) :
-                                        $class = 'class="mm-active"';
-                                    else :
-                                        $class = '';
-                                    endif;
-                                    ?>
-
+                            <li class="app-sidebar__heading">Dashboards</li>
+                            <li>
+                                <a href="<?= base_url('Home'); ?>">
+                                    <i class="metismenu-icon pe-7s-home"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('Data_Tka'); ?>">
+                                    <i class="metismenu-icon pe-7s-users"></i>
+                                    Data TKA
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('Data_Pt'); ?>" class="mm-active">
+                                    <i class="metismenu-icon pe-7s-portfolio"></i>
+                                    Data PT
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('Data_Voucher'); ?>">
+                                    <i class="metismenu-icon pe-7s-ticket"></i>
+                                    Data Voucher
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('Data_RPTKA'); ?>">
+                                    <i class="metismenu-icon pe-7s-share"></i>
+                                    Data RPTKA
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('Data_Visa'); ?>">
+                                    <i class="metismenu-icon pe-7s-photo-gallery"></i>
+                                    Data VISA
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-ticket"></i>
+                                    Data Voucher
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
                                     <li>
-                                        <a href="<?= base_url($sm['url']); ?>" <?= $class; ?>>
-                                            <i class="metismenu-icon <?= $sm['icon']; ?>"></i>
-                                            <?= $sm['judul']; ?>
+                                        <a href="<?= base_url('Data_Voucher'); ?>">
+                                            <i class="metismenu-icon"></i>
+                                            Data Voucher Dashboard
                                         </a>
                                     </li>
-                                <?php endforeach; ?>
-
-                                <hr class="sidebar-divider mt-3">
-
-                            <?php endforeach; ?>
+                                    <li>
+                                        <a href="<?= base_url('Data_Voucher'); ?>">
+                                            <i class="metismenu-icon"></i>
+                                            Input Voucher VISA
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('Data_Voucher/other'); ?>">
+                                            <i class="metismenu-icon">
+                                            </i>Input Voucher Other
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="elements-icons.html">
+                                            <i class="metismenu-icon">
+                                            </i>Riwayat Voucher Visa
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="elements-badges-labels.html">
+                                            <i class="metismenu-icon">
+                                            </i>Riwayat Voucher Other
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="elements-cards.html">
+                                            <i class="metismenu-icon">
+                                            </i>Report Voucher
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
+                        <ul class="vertical-nav-menu">
+                            <li class="app-sidebar__heading">Manajemen User</li>
+                            <li>
+                                <a href="<?= base_url('Tambah_User'); ?>">
+                                    <i class="metismenu-icon pe-7s-user"></i>
+                                    Tambah User
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </div>

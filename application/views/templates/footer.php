@@ -1,5 +1,7 @@
 </div>
 </div>
+</div>
+</div>
 <div class="app-wrapper-footer">
     <div class="app-footer">
         <div class="app-footer__inner">
@@ -67,9 +69,9 @@
             </div>
             <div class="modal-body">
                 <form class="">
-                   <div class="col-md-12">
-                            <div class="position-relative form-group"><label for="examplePassword11" class="">Tanggal Akhir</label><input name="password" id="examplePassword11" placeholder="password placeholder" type="date" class="form-control"></div>
-                   </div>
+                    <div class="col-md-12">
+                        <div class="position-relative form-group"><label for="examplePassword11" class="">Tanggal Akhir</label><input name="password" id="examplePassword11" placeholder="password placeholder" type="date" class="form-control"></div>
+                    </div>
                     <button class="mt-1 btn btn-primary btn-actions-pane-right">Submit</button>
                 </form>
             </div>
@@ -115,26 +117,26 @@
 </script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-    var t = $('#example').DataTable();
-    var counter = 1;
- 
-    $('#addRow').on( 'click', function () {
-        t.row.add( [
-            counter,
-            '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-            '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-            '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-            '<form> <select class="form-control-sm form-control" onchange="location = this.value;"><option>Pilih ... </option><option>Apply Visa Singapore</option><option>Apply Visa Malaysia</option><option>Apply Telex 211 A</option><option>Apply Telex 211 B</option><option>Apply Telex 212</option><option>Apply Telex 312</option><option>Apply Telex 313</option><option>Apply Telex 314</option><option>Apply Telex 317</option><option>Visa Other</option><option>Acc Penurunan Kitas 12 Bulan</option><option>Acc Penurunan Kitas 6 Bulan</option><option>ERP Tidak Kembali</option><option>EPO</option><option>BAP</option></select></form>',
-			'<input name="jumlah" id="jum" type="number" class="form-control-sm form-control">'
-        ] ).draw( false );
- 
-        counter++;
-    } );
- 
-    // Automatically add a first row of data
-    $('#addRow').click();
-} );
+    $(document).ready(function() {
+        var t = $('#example').DataTable();
+        var counter = 1;
+
+        $('#addRow').on('click', function() {
+            t.row.add([
+                counter,
+                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
+                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
+                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
+                '<form> <select class="form-control-sm form-control" onchange="location = this.value;"><option>Pilih ... </option><option>Apply Visa Singapore</option><option>Apply Visa Malaysia</option><option>Apply Telex 211 A</option><option>Apply Telex 211 B</option><option>Apply Telex 212</option><option>Apply Telex 312</option><option>Apply Telex 313</option><option>Apply Telex 314</option><option>Apply Telex 317</option><option>Visa Other</option><option>Acc Penurunan Kitas 12 Bulan</option><option>Acc Penurunan Kitas 6 Bulan</option><option>ERP Tidak Kembali</option><option>EPO</option><option>BAP</option></select></form>',
+                '<input name="jumlah" id="jum" type="number" class="form-control-sm form-control">'
+            ]).draw(false);
+
+            counter++;
+        });
+
+        // Automatically add a first row of data
+        $('#addRow').click();
+    });
 </script>
 
 
