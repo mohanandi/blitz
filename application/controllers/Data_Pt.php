@@ -52,4 +52,11 @@ class Data_Pt extends CI_Controller
             redirect('Data_Pt');
         }
     }
+
+    public function hapus($id)
+    {
+        $this->DataPt_Model->hapusDataPt($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('Data_Pt');
+    }
 }

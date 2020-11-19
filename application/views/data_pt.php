@@ -37,14 +37,17 @@
                                 <td class="text-center"><?= $pt['alamat']; ?></td>
                                 <td class="text-center"><?= $pt['keterangan']; ?></td>
                                 <td class="text-center">
-                                    <form>
-                                        <select class="form-control-sm form-control" onchange="location = this.value;">
-                                            <option>Pilih ... </option>
-                                            <option value="Data PT-Dashboard.html">Detail</option>
-                                            <option>Tambah</option>
-                                            <option>Hapus</option>
-                                        </select>
+                                    <form action="<?= base_url(); ?>Data_Pt/hapus/<?= $pt['id']; ?>" method="post" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin ?');">Delete</button>
                                     </form>
+                                    <!-- belom -->
+                                    <form action="<?= base_url(); ?>Data_Pt/hapus/<?= $pt['id']; ?>" method="post" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('apakah anda yakin ?');">Edit</button>
+                                    </form>
+                                    <!-- belom -->
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
