@@ -16,286 +16,247 @@
                     </div>
                 </div>
                 <div class="page-title-actions">
-                    <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
-                        <i class="fa fa-star"></i>
-                    </button>
-					<div class="d-inline-block dropdown">
-                                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                                            <span class="btn-icon-wrapper pr-2 opacity-7">
-                                                <i class="fa fa-folder-open fa-w-20"></i>
-                                            </span>
-                                            Buttons
-                                        </button>
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-inbox"></i>
-                                                        <span>
-                                                            Inbox
-                                                        </span>
-                                                        <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-book"></i>
-                                                        <span>
-                                                            Book
-                                                        </span>
-                                                        <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-picture"></i>
-                                                        <span>
-                                                            Picture
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                                        <i class="nav-link-icon lnr-file-empty"></i>
-                                                        <span>
-                                                            File Disabled
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                    </div>
-                </div>
+				<div class="d-inline-block" >
+					</div>
+						<div class="input-group">
+										<form>
+                                            <select class="form-control form-control" onchange="location = this.value;">
+                                                <option>Pilih Nama Perushaan</option>
+                                                <option value="Data PT-Dashboard.html">PT. Shanghai Shenhua</option>
+                                                <option>PT. Guangzhou Industrial Steel LTD</option>
+                                                <option>PT. Shandong Luneng</option>
+                                            </select>
+                                        </form>
+							  <div class="input-group-append">
+							     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-primary">Button Dropdown</button>
+								    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"><h6 tabindex="-1" class="dropdown-header">Pilih Jenis Visa</h6>
+									    <button type="button" tabindex="0" class="dropdown-item">Visa Kerja</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa 211</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa 211 - 1</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa 211 - 2</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa 211 - 3</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa 211 - 4</button>
+										<button type="button" tabindex="0" class="dropdown-item">VOA</button>
+										<button type="button" tabindex="0" class="dropdown-item">Visa Lain</button>
+									</div>
+
+						</div>
+					</div>
+				</div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">Data TKA
-                        
+						<button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-link btn-actions-pane-right" style="color:white;">link
+                        </button>
+						<form action="#">
+								<input class="btn-actions-pane-right mb-2 mr-2 btn btn-success" type="submit" value="Masukan" />
+						</form>
                     </div>
                     <div class="table-responsive" style="padding: 10px;">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Nama TKA</th>
-                                    <th class="text-center">Kewarganegaraan</th>
-                                    <th class="text-center">Passport</th>
-                                    <th class="text-center">Expired Passport</th>
-                                    <th class="text-center">Tanggal Lahir</th>
-                                    <th class="text-center">Keterangan</th>
-                                    <th class="text-center">Detail</th>
+                                    <th class="text-center">Pilih</th>
+                                    <th class="text-center">Nama Latin</th>
+                                    <th class="text-center">No Paspor</th>
+                                    <th class="text-center">Nama Mandarin</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
+								<tr>
+                                    <td class="text-center text-muted">
+										<div class="position-relative form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input">
+											</label>
+										</div>
+									</td>
+                                    <td class="text-center">Cao Ren</td>
                                     <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center text-muted">Luo Yi</td>
-                                    <td class="text-center">RRC</td>
-                                    <td class="text-center">440088KJL66</td>
-                                    <td class="text-center">27 - 02 - 2021</td>
-                                    <td class="text-center">15 - 04 - 1987</td>
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success">Detail</div>
-                                    </td>
+                                    <td class="text-center">曹仁</td>
                                 </tr>
                             </tbody>
                         </table>

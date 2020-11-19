@@ -155,7 +155,7 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="elements-buttons-standard.html">
+                                            <a href="<?= base_url('Data_Voucher'); ?>">
                                                 <i class="metismenu-icon"></i>
                                                 Input Voucher VISA
                                             </a>
