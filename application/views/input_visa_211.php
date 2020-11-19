@@ -273,7 +273,7 @@
 										</form>
 						
 										</div>
-                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover text-center">
+                                        <table class="align-middle mb-0 table table-borderless table-hover table-striped text-left">
                                             <tbody>
                                             <tr>
                                                 <th>Nama Client</th>
