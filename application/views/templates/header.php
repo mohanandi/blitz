@@ -72,9 +72,9 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button href="User Profile.html" type="button" tabindex="0" class="dropdown-item"><a href="User Profile.html">Profil</a></button>
+                                            <a href="<?= base_url('Profile'); ?>" type="button" tabindex="0" class="dropdown-item">Profil</a>
                                             <div tabindex="-1" class="dropdown-divider"></div>
-                                            <button type="button" tabindex="0" class="dropdown-item" style="color:red;">Logout</button>
+                                            <a type="button" href="<?= base_url('Auth/logout'); ?>" tabindex="0" class="dropdown-item" style="color:red;">Logout</a>
                                         </div>
                                     </div>
                                 </div>

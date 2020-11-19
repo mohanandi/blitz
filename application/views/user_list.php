@@ -14,7 +14,7 @@
                             <th class="text-center">Expired Passport</th>
                             <th class="text-center">Tanggal Lahir</th>
                             <th class="text-center">Keterangan</th>
-                            <th class="text-center"><a href="<?= base_url('Data_Tka/detail'); ?>">Detail</a></th>
+                            <th class="text-center">Detail</th>
                         </tr>
                     </thead>
                     <tbody>

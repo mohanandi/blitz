@@ -17,7 +17,8 @@ class Data_Tka extends CI_Controller
     }
     public function detail()
     {
-        $this->load->view('templates/header');
+        $data['judul'] = 'Data TKA';
+        $this->load->view('templates/header', $data);
         $this->load->view('data_tka_detail');
         $this->load->view('templates/footer');
     }
