@@ -41,7 +41,7 @@
 
                     <div class="position-relative row form-check">
                         <div class="right">
-                            <button class="btn btn-success">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
                 </form>

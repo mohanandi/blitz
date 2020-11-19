@@ -42,9 +42,9 @@
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin ?');">Delete</button>
                                     </form>
                                     <!-- belom -->
-                                    <form action="<?= base_url(); ?>Data_Pt/hapus/<?= $pt['id']; ?>" method="post" class="d-inline">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-success" onclick="return confirm('apakah anda yakin ?');">Edit</button>
+                                    <form action="<?= base_url(); ?>Data_Pt/ubah/<?= $pt['id']; ?>" method="post" class="d-inline">
+                                        <input type="hidden" name="_method" value="EDIT">
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('apakah anda yakin edit data ?');">Edit</button>
                                     </form>
                                     <!-- belom -->
 
