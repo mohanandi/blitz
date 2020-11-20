@@ -37,7 +37,7 @@ class Data_Pt extends CI_Controller
     public function tambah()
     {
         $data['judul'] = 'Data PT | Tambah';
-        $this->form_validation->set_rules('namapt', 'Nama PT', 'required');
+        $this->form_validation->set_rules('namapt', 'Nama PT', 'trim|required|is_unique[pt.nama_pt]');
         $this->form_validation->set_rules('pic', 'PIC', 'required');
         $this->form_validation->set_rules('client', 'Client', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
@@ -66,7 +66,7 @@ class Data_Pt extends CI_Controller
         $data['pt'] = $this->db->get_where('pt', ['nama_client' => $this->session->userdata('nama_client')])->row_array();
         $data['pt'] = $this->DataPt_Model->getPtById($id);
 
-        $this->form_validation->set_rules('namapt', 'Nama PT', 'required');
+        $this->form_validation->set_rules('namapt', 'Nama PT', 'trim|required|is_unique[pt.nama_pt]');
         $this->form_validation->set_rules('pic', 'PIC', 'required');
         $this->form_validation->set_rules('client', 'Client', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
