@@ -5,22 +5,28 @@
                 <h5 class="card-title">Edit Profil</h5>
                 <table class="mb-0 table">
                     <tbody>
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <td> <img src="<?= $user['image']; ?>" class="card-img" alt="Foto"> </td>
+
+                            </div>
+                        </div>
+
                         <tr>
                             <th>Nama User</th>
-                            <td> Andi Rahmadi </td>
+                            <td><input name="nama" id="nama" type="text" class="form-control" value="<?= $user['nama'] ?>" readonly> </td>
                         </tr>
                         <tr>
-                            <th>Username</th>
-                            <td> Andi96 </td>
+                            <th>Email</th>
+                            <td><input name="email" id="email" type="email" class="form-control" value="<?= $user['email'] ?>" readonly> </td>
                         </tr>
                         <tr>
                             <th>Password</th>
-                            <td> ******** </td>
+                            <td><input name="password" id="password" type="password" class="form-control" value="<?= $user['password'] ?>" readonly> </td>
                         </tr>
-                        <tr>
-                            <th>Keterangan</th>
-                            <td> Pekerja </td>
-                        </tr>
+
+
                     </tbody>
                 </table>
                 <button type="button" class="btn mr-2 mb-2 btn-warning" data-toggle="modal" data-target="#exampleModal" style="float: right; color: white;">

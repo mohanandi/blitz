@@ -72,7 +72,7 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <a href="<?= base_url('Profile'); ?>" type="button" tabindex="0" class="dropdown-item">Profil</a>
+                                            <a href="<?= base_url('Profile'); ?>" type="button" tabindex="0" class="dropdown-item">Profile</a>
                                             <div tabindex="-1" class="dropdown-divider"></div>
                                             <a type="button" href="<?= base_url('Auth/logout'); ?>" tabindex="0" class="dropdown-item" style="color:red;">Logout</a>
                                         </div>
