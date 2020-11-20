@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <main class="d-flex align-items-center min-vh-100 py-2 py-md-0">
     <div class="container">
       <div class="card login-card">
         <div class="row no-gutters">
