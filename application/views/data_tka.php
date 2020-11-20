@@ -8,225 +8,37 @@
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                     <thead>
                         <tr>
-                            <th class="text-center">Nama TKA</th>
-                            <th class="text-center">Kewarganegaraan</th>
-                            <th class="text-center">Passport</th>
-                            <th class="text-center">Expired Passport</th>
-                            <th class="text-center">Tanggal Lahir</th>
-                            <th class="text-center">Keterangan</th>
+                            <th class="text-center">NO</th>
+                            <th class="text-center">NAMA MANDARIN</th>
+                            <th class="text-center">NAMA LATIN</th>
+                            <th class="text-center">NAMA PT</th>
+                            <th class="text-center">KEWARGANEGARAAN</th>
+                            <th class="text-center">PASSPORT</th>
+                            <th class="text-center">EXPIRED PASSPORT</th>
+                            <th class="text-center">TANGGAL LAHIR</th>
+                            <th class="text-center">KETERANGAN</th>
                             <th class="text-center"><a href="<?= base_url('Data_Tka/detail'); ?>">Detail</a></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($tka as $data_tka) : ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $no; ?></td>
+                                <td class="text-center"><?= $data_tka['nama_mandarin']; ?></td>
+                                <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
+                                <td class="text-center"><?= $data_tka['id_pt']; ?></td>
+                                <td class="text-center"><?= $data_tka['kewarganegaraan']; ?></td>
+                                <td class="text-center"><?= $data_tka['passport']; ?></td>
+                                <td class="text-center"><?= date('d F Y', $data_tka['expired_passport']); ?></td>
+                                <td class="text-center"><?= date('d-m-Y', $data_tka['tgl_lahir']); ?></td>
+                                <td class="text-center"><?= $data_tka['ket']; ?></td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Detail</div>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>

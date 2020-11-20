@@ -6,13 +6,15 @@ class Data_Tka extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Tka_Model');
         is_logged_in();
     }
     public function index()
     {
+        $data['tka'] = $this->Tka_Model->getAllTka();
         $data['judul'] = 'Data TKA';
         $this->load->view('templates/header', $data);
-        $this->load->view('data_tka');
+        $this->load->view('data_tka', $data);
         $this->load->view('templates/footer');
     }
     public function detail()

@@ -17,7 +17,10 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('login');
+            $data['judul'] = "Forgot Password";
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/login');
+            $this->load->view('templates/auth_footer');
         } else {
             $this->_login();
         }
@@ -143,6 +146,7 @@ class Auth extends CI_Controller
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'id' => $user['id'],
+                        'nama' => $user['nama'],
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
