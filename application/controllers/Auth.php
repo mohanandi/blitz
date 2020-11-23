@@ -7,7 +7,7 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
+        $this->load->model('User_Model');
     }
 
     public function index()
@@ -17,7 +17,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
-            $data['judul'] = "Forgot Password";
+            $data['judul'] = "Login";
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/login');
             $this->load->view('templates/auth_footer');
@@ -141,7 +141,7 @@ class Auth extends CI_Controller
         // jika usernya ada
         if ($user) {
             // jika usernya aktif
-            if ($user['is_active'] == 1) {
+            if ($user['is_active'] == "Aktif") {
                 // cek password
                 if (password_verify($password, $user['password'])) {
                     $data = [
@@ -150,6 +150,7 @@ class Auth extends CI_Controller
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
+                    $this->User_Model->lastLogin($user['id']);
                     $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
                         redirect('Home');

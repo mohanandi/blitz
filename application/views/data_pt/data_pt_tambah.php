@@ -16,7 +16,12 @@
                     </div>
                     <div class="position-relative row form-group"><label for="pic" class="col-sm-2 col-form-label">PIC</label>
                         <div class="col-sm-10">
-                            <input name="pic" id="pic" type="text" class="form-control">
+                            <select class="form-control" id="pic" name="pic">
+                                <option value="">Select PIC</option>
+                                <?php foreach ($pic as $pj) : ?>
+                                    <option value="<?= $pj['id']; ?>"><?= $pj['nama']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                             <?= form_error('pic', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
