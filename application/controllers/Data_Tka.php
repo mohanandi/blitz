@@ -52,6 +52,7 @@ class Data_Tka extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['pt'] = $this->DataPt_Model->getAllDataPt();
             $data['judul'] = $this->judul;
+            $data['subjudul'] = "Edit TKA";
             $data['button'] = "Simpan Edit";
             $this->load->view('templates/header', $data);
             $this->load->view('data_tka/data_tka_form', $data);
@@ -79,6 +80,7 @@ class Data_Tka extends CI_Controller
             $data['pt'] = $this->DataPt_Model->getAllDataPt();
             $data['tka'] = null;
             $data['button'] = "Tambahkan";
+            $data['subjudul'] = "Tambah TKA";
             $data['judul'] = $this->judul;
             $this->load->view('templates/header', $data);
             $this->load->view('data_tka/data_tka_form', $data);

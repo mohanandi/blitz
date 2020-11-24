@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
+            <div class="card-header"><?= $subjudul; ?>
+            </div>
             <div class="table-responsive" style="padding: 20px;">
                 <form class="" action="" method="POST">
                     <div class="form-row">
