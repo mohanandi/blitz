@@ -4,19 +4,31 @@ class Tka_Model extends CI_model
 {
     public function getAllTka()
     {
-        return $this->db->get('tka')->result_array();
+        $this->db->select('*');
+        $this->db->from('tka');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getTkaById($id)
+    {
+        return $this->db->get_where('tka', ['id' => $id])->row_array();
     }
 
-    public function tambahDataMahasiswa()
+    public function tambahTka()
     {
         $data = [
-            "nama" => $this->input->post('nama', true),
-            "nrp" => $this->input->post('nrp', true),
-            "email" => $this->input->post('email', true),
-            "jurusan" => $this->input->post('jurusan', true)
+            "id_pt" => $this->input->post('nama_pt', true),
+            "nama_mandarin" => $this->input->post('nama_mandarin', true),
+            "nama_latin" => $this->input->post('nama_latin', true),
+            "kewarganegaraan" => $this->input->post('kewarganegaraan', true),
+            "passport" => $this->input->post('passport', true),
+            "expired_passport" => strtotime($this->input->post('exp_passport', true)),
+            "tgl_lahir" => strtotime($this->input->post('tgl_lahir', true)),
+            "ket" => $this->input->post('ket', true),
+            "input_by_id" => $this->session->userdata('id'),
+            "tgl_input" => time()
         ];
-
-        $this->db->insert('mahasiswa', $data);
+        $this->db->insert('tka', $data);
     }
 
     public function hapusDataMahasiswa($id)
@@ -30,17 +42,21 @@ class Tka_Model extends CI_model
         return $this->db->get_where('mahasiswa', ['id' => $id])->row_array();
     }
 
-    public function ubahDataMahasiswa()
+    public function EditTka()
     {
         $data = [
-            "nama" => $this->input->post('nama', true),
-            "nrp" => $this->input->post('nrp', true),
-            "email" => $this->input->post('email', true),
-            "jurusan" => $this->input->post('jurusan', true)
+            "id_pt" => $this->input->post('nama_pt', true),
+            "nama_mandarin" => $this->input->post('nama_mandarin', true),
+            "nama_latin" => $this->input->post('nama_latin', true),
+            "kewarganegaraan" => $this->input->post('kewarganegaraan', true),
+            "passport" => $this->input->post('passport', true),
+            "expired_passport" => strtotime($this->input->post('exp_passport', true)),
+            "tgl_lahir" => strtotime($this->input->post('tgl_lahir', true)),
+            "ket" => $this->input->post('ket', true)
         ];
 
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('mahasiswa', $data);
+        $this->db->where('id', $this->input->post('id_tka'));
+        $this->db->update('tka', $data);
     }
 
     public function cariDataMahasiswa()

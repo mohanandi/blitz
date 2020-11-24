@@ -1,3 +1,6 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
@@ -9,15 +12,14 @@
                     <thead>
                         <tr>
                             <th class="text-center">NO</th>
-                            <th class="text-center">NAMA MANDARIN</th>
-                            <th class="text-center">NAMA LATIN</th>
-                            <th class="text-center">NAMA PT</th>
-                            <th class="text-center">KEWARGANEGARAAN</th>
-                            <th class="text-center">PASSPORT</th>
-                            <th class="text-center">EXPIRED PASSPORT</th>
-                            <th class="text-center">TANGGAL LAHIR</th>
-                            <th class="text-center">KETERANGAN</th>
-                            <th class="text-center"><a href="<?= base_url('Data_Tka/detail'); ?>">Detail</a></th>
+                            <th class="text-center">Nama Mandarin</th>
+                            <th class="text-center">Nama Latin</th>
+                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Passport</th>
+                            <th class="text-center">Keterangan</th>
+                            <th class="text-center">input By</th>
+                            <th class="text-center">Tanggal Input</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,14 +29,15 @@
                                 <td class="text-center text-muted"><?= $no; ?></td>
                                 <td class="text-center"><?= $data_tka['nama_mandarin']; ?></td>
                                 <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
-                                <td class="text-center"><?= $data_tka['id_pt']; ?></td>
-                                <td class="text-center"><?= $data_tka['kewarganegaraan']; ?></td>
+                                <?php $data_pt = $this->db->get_where('pt', ['id' => $data_tka['id_pt']])->row_array(); ?>
+                                <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
                                 <td class="text-center"><?= $data_tka['passport']; ?></td>
-                                <td class="text-center"><?= date('d F Y', $data_tka['expired_passport']); ?></td>
-                                <td class="text-center"><?= date('d-m-Y', $data_tka['tgl_lahir']); ?></td>
                                 <td class="text-center"><?= $data_tka['ket']; ?></td>
+                                <?php $data_user = $this->db->get_where('user', ['id' => $data_tka['input_by_id']])->row_array(); ?>
+                                <td class="text-center"><?= $data_user['nama']; ?></td>
+                                <td class="text-center"><?= date('d-m-Y', $data_tka['tgl_input']); ?></td>
                                 <td class="text-center">
-                                    <div class="badge badge-success">Detail</div>
+                                    <a href="<?= base_url('Data_Tka/detail/'); ?><?= $data_tka['id']; ?>" class="badge badge-success">Detail</a>
                                 </td>
                             </tr>
                         <?php $no++;

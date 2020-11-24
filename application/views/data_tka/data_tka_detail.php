@@ -2,28 +2,52 @@
     <div class="col-lg-6">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">Profil TKA Luo Yi</h5>
+                <h5 class="card-title">Profil TKA</h5>
                 <table class="mb-0 table">
                     <tbody>
                         <tr>
-                            <th>Jenis Visa</th>
-                            <td> Visa 311 </td>
+                            <th>Nama Mandarin</th>
+                            <td><?= $tka['nama_mandarin']; ?></td>
                         </tr>
                         <tr>
-                            <th>Tanggal Expired</th>
-                            <td> 27 - 08 - 2021 </td>
+                            <th>Nama Latin</th>
+                            <td><?= $tka['nama_latin']; ?></td>
                         </tr>
                         <tr>
-                            <th>Tanggal Input</th>
-                            <td> 27 - 08 - 2020 </td>
+                            <th>Passport</th>
+                            <td><?= $tka['passport']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama PT</th>
+                            <td><?= $pt['nama_pt']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Expired Passport</th>
+                            <td><?= date('d-m-Y', $tka['expired_passport']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td><?= date('d-m-Y', $tka['tgl_lahir']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Kewarganegaraan</th>
+                            <td><?= $tka['kewarganegaraan']; ?></td>
                         </tr>
                         <tr>
                             <th>Keterangan</th>
-                            <td> Pekerja </td>
+                            <td><?= $tka['ket']; ?></td>
                         </tr>
                         <tr>
-                            <th>Status</th>
-                            <td> Aktif </td>
+                            <th>Input By</th>
+                            <td><?= $user['nama']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Input</th>
+                            <td><?= date('d-m-Y', $tka['tgl_input']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Action</th>
+                            <td><a href="<?= base_url('Data_Tka/edit/') ?><?= $tka['id']; ?>" class="badge badge-secondary">Edit</a></td>
                         </tr>
                     </tbody>
                 </table>

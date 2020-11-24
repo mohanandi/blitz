@@ -8,6 +8,8 @@ class Data_Tka extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Tka_Model');
+        $this->load->model('DataPt_Model');
+        $this->load->model('User_Model');
         is_logged_in();
     }
     public function index()
@@ -18,26 +20,74 @@ class Data_Tka extends CI_Controller
         $this->load->view('data_tka/data_tka', $data);
         $this->load->view('templates/footer');
     }
-    public function detail()
+    public function detail($id)
     {
+        $data['tka'] = $this->Tka_Model->getTkaById($id);
+        $data['pt'] = $this->DataPt_Model->getPtById($data['tka']['id_pt']);
+        $data['user'] = $this->User_Model->getUserById($data['tka']['input_by_id']);
         $data['judul'] = $this->judul;
         $this->load->view('templates/header', $data);
-        $this->load->view('data_tka/data_tka_detail');
+        $this->load->view('data_tka/data_tka_detail', $data);
         $this->load->view('templates/footer');
     }
-    public function edit()
+    public function edit($id)
     {
-        $data['judul'] = $this->judul;
-        $this->load->view('templates/header');
-        $this->load->view('data_tka/data_tka_edit');
-        $this->load->view('templates/footer');
+        $data['tka'] = $this->Tka_Model->getTkaById($id);
+
+        $this->form_validation->set_rules('nama_mandarin', 'Nama Mandarin', 'required');
+        $this->form_validation->set_rules('nama_latin', 'Nama Latin', 'required');
+        $this->form_validation->set_rules('kewarganegaraan', 'Kewarganegaraan', 'required');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
+        if ($data['tka']['passport'] == $this->input->post('passport', true)) {
+            $this->form_validation->set_rules('passport', 'Passport', 'required');
+        } else {
+            $this->form_validation->set_rules('passport', 'Passport', 'required|is_unique[tka.passport]', [
+                'is_unique' => 'Passport ini sudah ada di Database'
+            ]);
+        }
+        $this->form_validation->set_rules('exp_passport', 'Expired Passport', 'required');
+        $this->form_validation->set_rules('nama_pt', 'Nama PT', 'required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['judul'] = $this->judul;
+            $data['button'] = "Simpan Edit";
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_tka/data_tka_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Tka_Model->EditTka();
+            $this->session->set_flashdata('flash', 'Dirubah');
+            redirect("Data_Tka/detail/$id");
+        }
     }
     public function tambah()
     {
-        $data['judul'] = $this->judul;
-        $this->load->view('templates/header', $data);
-        $this->load->view('data_tka/data_tka_tambah');
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('nama_mandarin', 'Nama Mandarin', 'required');
+        $this->form_validation->set_rules('nama_latin', 'Nama Latin', 'required');
+        $this->form_validation->set_rules('kewarganegaraan', 'Kewarganegaraan', 'required');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('passport', 'Passport', 'required|is_unique[tka.passport]', [
+            'is_unique' => 'Passport ini sudah ada di Database'
+        ]);
+        $this->form_validation->set_rules('exp_passport', 'Expired Passport', 'required');
+        $this->form_validation->set_rules('nama_pt', 'Nama PT', 'required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['tka'] = null;
+            $data['button'] = "Tambahkan";
+            $data['judul'] = $this->judul;
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_tka/data_tka_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Tka_Model->tambahTka();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('Data_Tka');
+        }
     }
     public function notif()
     {

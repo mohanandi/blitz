@@ -1,4 +1,3 @@
-<div class="alert alert-success fade show" role="alert">Data berhasil ditambah !</div>
 <div class="alert alert-danger fade show" role="alert">Data gagal ditambah !</div>
 <div class="row">
     <div class="col-md-12">
