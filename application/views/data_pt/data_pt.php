@@ -1,18 +1,15 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data PT Shanghai Shenhua
-
+            <div class="card-header">Data PT
                 <button type="button" class="btn mr-2 mb-2 btn-primary btn-actions-pane-right" data-toggle="modal" data-target="#exampleModal">
                     Export
                 </button>
                 <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Pt/tambah'); ?>">Tambah PT</a>
-
-
             </div>
-            <?php if ($this->session->flashdata('flash')) : ?>
-                <div class="alert alert-success fade show" role="alert">Data Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
-            <?php endif; ?>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                     <thead>
@@ -23,7 +20,7 @@
                             <th class="text-center">Nama Client</th>
                             <th class="text-center">Alamat</th>
                             <th class="text-center">Keterangan</th>
-                            <th class="text-center">Detail</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,12 +29,13 @@
                             <tr>
                                 <td class="text-center"><?= $i++; ?></td>
                                 <td class="text-center"><?= $pt['nama_pt']; ?></td>
-                                <td class="text-center"><?= $pt['pic']; ?></td>
+                                <?php $data_pic = $this->db->get_where('user', ['id' => $pt['id_pic']])->row_array(); ?>
+                                <td class="text-center"><?= $data_pic['nama']; ?></td>
                                 <td class="text-center"><?= $pt['nama_client']; ?></td>
                                 <td class="text-center"><?= $pt['alamat']; ?></td>
-                                <td class="text-center"><?= $pt['keterangan']; ?></td>
+                                <td class="text-center"><?= $pt['ket']; ?></td>
                                 <td class="text-center">
-                                    <a type="button" href="<?= base_url('Data_Pt/detail/'); ?><?= $pt['id']; ?>" class="badge badge-secondary">Detail PT</a>
+                                    <a type="button" href="<?= base_url('Data_Pt/detail/'); ?><?= $pt['id']; ?>" class="badge badge-success">Detail PT</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

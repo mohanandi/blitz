@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class DataPt_Model extends CI_Model
 {
 
-    public function getAllDatapt()
+    public function getAllDataPt()
     {
         $this->db->order_by('nama_pt', 'ASC');
         return $this->db->get('pt')->result_array();
@@ -12,11 +12,11 @@ class DataPt_Model extends CI_Model
     public function tambahDataPt()
     {
         $data = [
-            "nama_pt" => $this->input->post('namapt', true),
-            "pic" => $this->input->post('pic', true),
+            "nama_pt" => $this->input->post('nama_pt', true),
+            "id_pic" => $this->input->post('pic', true),
             "nama_client" => $this->input->post('client', true),
             "alamat" => $this->input->post('alamat', true),
-            "keterangan" => $this->input->post('keterangan', true),
+            "ket" => $this->input->post('ket', true),
             "input_by_id" => $this->session->userdata('id'),
             "tgl_input" => time()
         ];
@@ -33,18 +33,16 @@ class DataPt_Model extends CI_Model
         $this->db->delete('pt');
     }
 
-    public function ubahData()
+    public function EditPt()
     {
         $data = [
-            "nama_pt" => $this->input->post('namapt', true),
-            "pic" => $this->input->post('pic', true),
+            "nama_pt" => $this->input->post('nama_pt', true),
+            "id_pic" => $this->input->post('pic', true),
             "nama_client" => $this->input->post('client', true),
             "alamat" => $this->input->post('alamat', true),
-            "keterangan" => $this->input->post('keterangan', true),
-            "input_by_id" => $this->session->userdata('id'),
-            "tgl_input" => time()
+            "ket" => $this->input->post('ket', true)
         ];
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id', $this->input->post('id_pt'));
         $this->db->update('pt', $data);
     }
 }

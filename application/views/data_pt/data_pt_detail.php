@@ -13,15 +13,23 @@
                             <th class="text-center">Nama Client</th>
                             <th class="text-center">Alamat</th>
                             <th class="text-center">Keterangan</th>
+                            <th class="text-center">Input By</th>
+                            <th class="text-center">Tanggal Input</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center text-muted">Shanghai Shenhua</td>
-                            <td class="text-center">Andi Rahmadi</td>
-                            <td class="text-center">Luo Yi</td>
-                            <td class="text-center">Jakarta Barat</td>
-                            <td class="text-center">Lolos</td>
+                            <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
+                            <td class="text-center"><?= $data_pic['nama']; ?></td>
+                            <td class="text-center"><?= $data_pt['nama_client']; ?></td>
+                            <td class="text-center"><?= $data_pt['alamat']; ?></td>
+                            <td class="text-center"><?= $data_pt['ket']; ?></td>
+                            <td class="text-center"><?= $input_by['nama']; ?></td>
+                            <td class="text-center"><?= date('d-m-Y', $data_pt['tgl_input']); ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('Data_Pt/edit/'); ?><?= $data_pt['id']; ?>" class="badge badge-secondary">Edit</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

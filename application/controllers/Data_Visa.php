@@ -12,13 +12,14 @@ class Data_Visa extends CI_Controller
     {
         $data['judul'] = 'Data Visa';
         $this->load->view('templates/header', $data);
-        $this->load->view('data_visa');
+        $this->load->view('data_visa/data_visa');
         $this->load->view('templates/footer');
     }
     public function tambah()
     {
-        $this->load->view('templates/header');
-        $this->load->view('data_visa_tambah');
+        $data['judul'] = 'Data Visa';
+        $this->load->view('templates/header', $data);
+        $this->load->view('data_visa/data_visa_tambah');
         $this->load->view('templates/footer');
     }
 }
