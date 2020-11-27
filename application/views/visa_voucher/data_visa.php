@@ -1,3 +1,6 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Jenis Visa Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
@@ -13,24 +16,36 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Nama Visa</th>
                             <th class="text-center">Status RPTKA</th>
-                            <th class="text-center">Syarat Sebelumnya</th>
-                            <th class="text-center">Tanggal Input</th>
+                            <th class="text-center">Syarat Visa Sebelumnya</th>
                             <th class="text-center">Input By</th>
+                            <th class="text-center">Tanggal Input</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">1</td>
-                            <td class="text-center">Nama Visa</td>
-                            <td class="text-center">Status RPTKA</td>
-                            <td class="text-center">Syarat Pengisian Sebelumnya</td>
-                            <td class="text-center">Syarat Pengisian Sebelumnya</td>
-                            <td class="text-center">Syarat Pengisian Sebelumnya</td>
-                            <td class="text-center">
-                                <a href="" class="badge badge-success">Edit</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($data_jenis_visa as $jenis_visa) :
+                            if (($jenis_visa['id'] == '1') or ($jenis_visa['id'] == '2')) :
+                            else :
+                        ?>
+                                <tr>
+                                    <td class="text-center"><?= $no; ?></td>
+                                    <td class="text-center"><?= $jenis_visa['visa']; ?></td>
+                                    <?php $jenis_select = $this->db->get_where('kategori_visa', ['id_kategori' => $jenis_visa['kategori_id']])->row_array(); ?>
+                                    <td class="text-center"><?= $jenis_select['status']; ?></td>
+                                    <?php $jenis_select = $this->db->get_where('jenis_visa', ['id' => $jenis_visa['id_visa_sebelumnya']])->row_array(); ?>
+                                    <td class="text-center"><?= $jenis_select['visa']; ?></td>
+                                    <?php $jenis_select = $this->db->get_where('user', ['id' => $jenis_visa['input_by_id']])->row_array(); ?>
+                                    <td class="text-center"><?= $jenis_select['nama']; ?></td>
+                                    <td class="text-center"><?= date('d-m-Y', $jenis_visa['tgl_input']); ?></td>
+                                    <td class="text-center">
+                                        <a href="<?= base_url('Jenis_Visa/edit/'); ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Edit</a>
+                                    </td>
+                                </tr>
+                        <?php
+                            endif;
+                            $no++;
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>
