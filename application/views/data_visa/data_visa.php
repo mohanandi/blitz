@@ -9,10 +9,10 @@
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Nama PT</th>
-                            <th class="text-center">Visa 211 Aktif</th>
-                            <th class="text-center">Visa 211 Non-Aktif</th>
-                            <th class="text-center">Detail</th>
+                            <th class="text-center">Nama Visa</th>
+                            <th class="text-center">Visa Aktif</th>
+                            <th class="text-center">Visa Non-Aktif</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>

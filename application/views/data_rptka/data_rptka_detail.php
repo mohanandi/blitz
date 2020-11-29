@@ -1,4 +1,87 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">Data RPTKA
+            </div>
+            <div class="table-responsive" style="padding: 10px;">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Nomor RPTKA</th>
+                            <th class="text-center">Tanggal Terbit</th>
+                            <th class="text-center">Tanggal Expired</th>
+                            <th class="text-center">Jumlah RPTKA</th>
+                            <th class="text-center">RPTKA Terpakai</th>
+                            <th class="text-center">Keterangan</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><?= $data_rptka['id_pt']; ?></td>
+                            <td class="text-center"><?= $data_rptka['no_rptka']; ?></td>
+                            <td class="text-center"><?= $data_rptka['tgl_terbit']; ?></td>
+                            <td class="text-center"><?= $data_rptka['tgl_expired']; ?></td>
+                            <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
+                            <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
+                            <td class="text-center"><?= $data_rptka['ket']; ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('Data_Rptka/edit/'); ?><?= $data_rptka['id']; ?>" class="badge badge-secondary">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">Data Jabatan RPTKA
+                <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Rptka/tambah_jabatan/'); ?><?= $data_rptka['id']; ?>">Tambah Jabatan RPTKA</a>
+            </div>
+            <div class="table-responsive" style="padding: 10px;">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nama Jabatan</th>
+                            <th class="text-center">Jumlah Jabatan </th>
+                            <th class="text-center">Jumlah Jabatan Terpakai</th>
+                            <th class="text-center">Jumlah jabatan Sisa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1;
+                        if ($data_jabatan) :
+                            foreach ($data_jabatan as $jabatan) : ?>
+                                <tr>
+                                    <td class="text-center"><?= $no; ?></td>
+                                    <td class="text-center"><?= $jabatan['jabatan']; ?></td>
+                                    <td class="text-center"><?= $jabatan['jumlah']; ?></td>
+                                    <td class="text-center"><?= $jabatan['jumlah']; ?></td>
+                                    <td class="text-center"><?= $jabatan['jumlah']; ?></td>
+                                </tr>
+                            <?php $no++;
+                            endforeach;
+                        else : ?>
+                            <tr>
+                                <td class="text-center" colspan="5">Data Jabatan Belum Ditambahkan</td>
+                            </tr>
+                        <?php endif;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Detail RPTKA
@@ -248,83 +331,4 @@
 
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-6">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Manajemen Kuota</h5>
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th>Jabatan</th>
-                            <th>Jumlah</th>
-                            <th>Terpakai</th>
-                            <th>Sisa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Project Manager</th>
-                            <td>4</td>
-                            <td>1</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th>Engineer</th>
-                            <td>5</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <th>Site Engineer</th>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th>Civil Engineer</th>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th>Project Planning Designer</th>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Total Kuota</h5>
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover text-center">
-                    <tbody>
-                        <tr>
-                            <th>Total</th>
-                            <td>30</td>
-                            <td>9</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <th>Export Excel</th>
-                            <td rowspan="3">
-                                <form action="#">
-                                    <input class="btn-actions-pane-right mb-2 mr-2 btn btn-success" type="submit" value="Export" />
-                                </form>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+</div> -->
