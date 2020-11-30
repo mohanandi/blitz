@@ -32,8 +32,14 @@
         </div>
     </div>
 </div>
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <?php if (form_error('jumlah_jabatan[]')) : ?>
     <div class="alert alert-danger fade show" role="alert"><?= form_error('jumlah_jabatan[]'); ?></div>
+<?php endif; ?>
+<?php if (form_error('nama_jabatan[]')) : ?>
+    <div class="alert alert-danger fade show" role="alert"><?= form_error('nama_jabatan[]'); ?></div>
 <?php endif; ?>
 <div class="row">
     <div class="col-md-12">
@@ -61,7 +67,18 @@
                                         </td>
                                         <td><button type="button" name="remove" id="<?= $i; ?>" class="btn btn-danger btn_remove">X</button></td>
                                     </tr>
-                            <?php }
+                                <?php }
+                            elseif ($data_jabatan) :
+                                $i = 0;
+                                foreach ($data_jabatan as $jabatan) : ?>
+                                    <tr id="row<?= $i; ?>" class="dynamic-added">
+                                        <td><input type="text" name="nama_jabatan[]" placeholder="Jabatan RPTKA" value="<?= $jabatan['jabatan']; ?>" class="form-control name_list" required />
+                                        <td><input type="number" name="jumlah_jabatan[]" placeholder="Jumlah Jabatan" value="<?= $jabatan['jumlah']; ?>" class="form-control name_list" required="" /></td>
+                                        </td>
+                                        <td><button type="button" name="remove" id="<?= $i; ?>" class="btn btn-danger btn_remove">X</button></td>
+                                    </tr>
+                            <?php $i++;
+                                endforeach;
                             endif; ?>
                         </table>
                         <button type="submit" class="btn btn-success"><?= $button; ?></button>

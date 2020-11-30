@@ -69,6 +69,7 @@ class Data_Pt extends CI_Controller
         $data['button'] = 'Simpan Edit';
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
         $data['pic'] = $this->User_Model->getPic();
+        $id_pt = $data['data_pt']['id'];
         if ($data['data_pt']['nama_pt'] == $this->input->post('nama_pt', true)) {
             $this->form_validation->set_rules('nama_pt', 'Nama PT', 'trim|required');
         } else {
@@ -87,7 +88,7 @@ class Data_Pt extends CI_Controller
         } else {
             $this->DataPt_Model->EditPt();
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('Data_Pt');
+            redirect("Data_Pt/detail/$id_pt");
         }
     }
 }

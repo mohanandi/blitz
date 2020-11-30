@@ -24,8 +24,8 @@
                         <tr>
                             <td class="text-center"><?= $data_rptka['id_pt']; ?></td>
                             <td class="text-center"><?= $data_rptka['no_rptka']; ?></td>
-                            <td class="text-center"><?= $data_rptka['tgl_terbit']; ?></td>
-                            <td class="text-center"><?= $data_rptka['tgl_expired']; ?></td>
+                            <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_terbit']); ?></td>
+                            <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_expired']); ?></td>
                             <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
                             <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
                             <td class="text-center"><?= $data_rptka['ket']; ?></td>
@@ -43,7 +43,11 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data Jabatan RPTKA
-                <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Rptka/tambah_jabatan/'); ?><?= $data_rptka['id']; ?>">Tambah Jabatan RPTKA</a>
+                <?php if ($data_jabatan == null) : ?>
+                    <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Rptka/tambah_jabatan/'); ?><?= $data_rptka['id']; ?>">Tambah Jabatan RPTKA</a>
+                <?php else : ?>
+                    <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-secondary" type="submit" href="<?= base_url('Data_Rptka/edit_jabatan/'); ?><?= $data_rptka['id']; ?>">Edit Jabatan RPTKA</a>
+                <?php endif; ?>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">

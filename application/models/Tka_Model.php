@@ -9,6 +9,21 @@ class Tka_Model extends CI_model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getTkaIdPt()
+    {
+        $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+        $this->db->from('tka');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getTkaIdByPt($id)
+    {
+        $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+        $this->db->from('tka');
+        $this->db->where('id_pt', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getTkaById($id)
     {
         return $this->db->get_where('tka', ['id' => $id])->row_array();

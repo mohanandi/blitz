@@ -19,6 +19,7 @@ class Jenis_Visa_Model extends CI_Model
     }
     public function getJenisVisa()
     {
+        $this->db->order_by('visa', 'ASC');
         return $this->db->get_where('jenis_visa')->result_array();
     }
     public function TambahJenisVisa()
