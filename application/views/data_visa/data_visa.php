@@ -22,15 +22,49 @@
                                 <tr>
                                     <td class="text-center"><?= $no; ?></td>
                                     <td class="text-center"><?= $jenis_visa['visa']; ?></td>
-                                    <?php if ($jenis_visa['kategori_id'] == 1) : ?>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">3</td>
+                                    <?php if ($jenis_visa['kategori_id'] == 1) :
+                                        $this->db->select('id_penghubung_visa312');
+                                        $this->db->from('penghubung_visa312');
+                                        $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                        $this->db->where('status', 'Aktif');
+                                        $query = $this->db->get();
+                                        $data = $query->result_array();
+                                        $jumlah_aktif = count($data);
+                                    ?>
+                                        <td class="text-center"><?= $jumlah_aktif; ?></td>
+                                        <?php
+                                        $this->db->select('id_penghubung_visa312');
+                                        $this->db->from('penghubung_visa312');
+                                        $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                        $this->db->where('status', 'Aktif');
+                                        $query = $this->db->get();
+                                        $data = $query->result_array();
+                                        $jumlah_non = count($data);
+                                        ?>
+                                        <td class="text-center"><?= $jumlah_non; ?></td>
                                         <td class="text-center">
                                             <a href="<?= base_url('Data_Visa/visa312/') ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Detail</a>
                                         </td>
-                                    <?php elseif ($jenis_visa['kategori_id'] == 2) : ?>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">10</td>
+                                    <?php elseif ($jenis_visa['kategori_id'] == 2) :
+                                        $this->db->select('id_penghubung_visa211');
+                                        $this->db->from('penghubung_visa211');
+                                        $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                        $this->db->where('status', 'Aktif');
+                                        $query = $this->db->get();
+                                        $data = $query->result_array();
+                                        $jumlah_aktif = count($data);
+                                    ?>
+                                        <td class="text-center"><?= $jumlah_aktif; ?></td>
+                                        <?php
+                                        $this->db->select('id_penghubung_visa211');
+                                        $this->db->from('penghubung_visa211');
+                                        $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                        $this->db->where('status', 'Non Aktif');
+                                        $query = $this->db->get();
+                                        $data = $query->result_array();
+                                        $jumlah_non = count($data);
+                                        ?>
+                                        <td class="text-center"><?= $jumlah_non; ?></td>
                                         <td class="text-center">
                                             <a href="<?= base_url('Data_Visa/visa211/') ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Detail</a>
                                         </td>

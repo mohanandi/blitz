@@ -25,6 +25,8 @@ class Data_Tka extends CI_Controller
         $data['tka'] = $this->Tka_Model->getTkaById($id);
         $data['pt'] = $this->DataPt_Model->getPtById($data['tka']['id_pt']);
         $data['user'] = $this->User_Model->getUserById($data['tka']['input_by_id']);
+        $data['riwayat_visa211'] = $this->Tka_Model->getIdVisa211($id);
+        $data['riwayat_visa312'] = $this->Tka_Model->getIdVisa312($id);
         $data['judul'] = $this->judul;
         $this->load->view('templates/header', $data);
         $this->load->view('data_tka/data_tka_detail', $data);

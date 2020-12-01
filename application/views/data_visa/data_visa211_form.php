@@ -53,19 +53,19 @@
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">Tanggal Awal Visa</label>
                         <div class="col-sm-10">
-                            <input name="tgl_awal" id="tgl_awal" type="date" class="form-control">
+                            <input name="tgl_awal" id="tgl_awal" type="date" class="form-control" required>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="passport" class="col-sm-2 col-form-label">Tanggal Expired Visa</label>
                         <div class="col-sm-10">
-                            <input name="tgl_expired" id="tgl_expired" type="date" class="form-control">
+                            <input name="tgl_expired" id="tgl_expired" type="date" class="form-control" required>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="Keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                            <input name="ket" id="ket" type="text" placeholder="Keterangan" class="form-control">
+                            <input name="ket" id="ket" type="text" placeholder="Keterangan" class="form-control" required>
                         </div>
                     </div>
                     <div class="position-relative row form-check">

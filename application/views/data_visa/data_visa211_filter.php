@@ -54,32 +54,72 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;
-                        foreach ($data_tka as $tka) :
-                            $this->db->select('id_penghubung_visa211');
-                            $this->db->from('penghubung_visa211');
-                            $this->db->where(array('id_jenis_visa' => $data_jenis_visa['id'], 'id_tka' => $tka['id']));
-                            $query = $this->db->get();
-                            $check_visa = $query->result();
-                            if ($check_visa) :
-                            else : ?>
-                                <tr>
-                                    <td class="text-center"><?= $no; ?></td>
-                                    <?php $pt = $this->db->select('nama_pt')->get_where('pt', ['id' => $tka['id_pt']])->row_array(); ?>
-                                    <td class="text-center"><?= $pt['nama_pt']; ?></td>
-                                    <td class="text-center"><?= $tka['passport']; ?></td>
-                                    <td class="text-center"><?= $tka['nama_latin']; ?></td>
-                                    <td class="text-center">
-                                        <form action="<?= base_url('Data_Visa/tambah_visa211/'); ?>" method="POST">
-                                            <input type="hidden" name="id_tka" value="<?= $tka['id']; ?>">
-                                            <input type="hidden" name="id_visa" value="<?= $data_jenis_visa['id']; ?>">
-                                            <button type="submit" class="badge badge-success">Pilih</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                        <?php endif;
-                            $no++;
-                        endforeach; ?>
+                        <?php if ($jalan_pintas == 1) {
+                            $no = 1;
+                            foreach ($id_tenaga as $tka) :
+                                $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+                                $this->db->from('tka');
+                                $this->db->where('id', $tka['id_tka']);
+                                $query = $this->db->get();
+                                $data_tka = $query->row_array();
+                                $this->db->select('id_penghubung_visa211');
+                                $this->db->from('penghubung_visa211');
+                                $this->db->where(array('id_jenis_visa' => $data_jenis_visa['id'], 'id_tka' => $tka['id_tka']));
+                                $query = $this->db->get();
+                                $check_visa = $query->result();
+                                if ($check_visa) :
+                                else : ?>
+                                    <tr>
+                                        <td class="text-center"><?= $no; ?></td>
+                                        <?php $pt = $this->db->select('nama_pt')->get_where('pt', ['id' => $data_tka['id_pt']])->row_array(); ?>
+                                        <td class="text-center"><?= $pt['nama_pt']; ?></td>
+                                        <td class="text-center"><?= $data_tka['passport']; ?></td>
+                                        <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
+                                        <td class="text-center">
+                                            <form action="<?= base_url('Data_Visa/tambah_visa211/'); ?>" method="POST">
+                                                <input type="hidden" name="id_tka" value="<?= $tka['id_tka']; ?>">
+                                                <input type="hidden" name="id_visa" value="<?= $data_jenis_visa['id']; ?>">
+                                                <button type="submit" class="badge badge-success">Pilih</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endif;
+                                $no++;
+                            endforeach;
+                        } else {
+                            $no = 1;
+                            foreach ($id_tenaga as $tka) :
+                                $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+                                $this->db->from('tka');
+                                $this->db->where('id', $tka['id']);
+                                $query = $this->db->get();
+                                $data_tka = $query->row_array();
+                                $this->db->select('id_penghubung_visa211');
+                                $this->db->from('penghubung_visa211');
+                                $this->db->where(array('id_jenis_visa' => $data_jenis_visa['id'], 'id_tka' => $tka['id']));
+                                $query = $this->db->get();
+                                $check_visa = $query->result();
+                                if ($check_visa) :
+                                else : ?>
+                                    <tr>
+                                        <td class="text-center"><?= $no; ?></td>
+                                        <?php $pt = $this->db->select('nama_pt')->get_where('pt', ['id' => $data_tka['id_pt']])->row_array(); ?>
+                                        <td class="text-center"><?= $pt['nama_pt']; ?></td>
+                                        <td class="text-center"><?= $data_tka['passport']; ?></td>
+                                        <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
+                                        <td class="text-center">
+                                            <form action="<?= base_url('Data_Visa/tambah_visa211/'); ?>" method="POST">
+                                                <input type="hidden" name="id_tka" value="<?= $tka['id']; ?>">
+                                                <input type="hidden" name="id_visa" value="<?= $data_jenis_visa['id']; ?>">
+                                                <button type="submit" class="badge badge-success">Pilih</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                        <?php $no++;
+                                endif;
+                            endforeach;
+                        } ?>
                     </tbody>
                 </table>
             </div>

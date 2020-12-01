@@ -63,133 +63,37 @@
                         <table class="mb-0 table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama TKA</th>
-                                    <th>Kewarganegaraan</th>
-                                    <th>Passport</th>
+                                    <th>Nama Visa</th>
+                                    <th>Tanggal Awal</th>
+                                    <th>Tanggal Expired</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">7</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">8</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">9</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">10</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">11</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">12</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">13</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">14</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">15</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">16</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">17</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">18</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">19</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">20</th>
-                                    <td>Luo Yi</td>
-                                    <td>RRC</td>
-                                    <td>992888KY92IIU</td>
-                                </tr>
+                                <?php foreach ($riwayat_visa211 as $visa211) : ?>
+                                    <tr>
+                                        <?php
+                                        $this->db->select('visa');
+                                        $this->db->from('jenis_visa');
+                                        $this->db->where('id', $visa211['id_jenis_visa']);
+                                        $query = $this->db->get();
+                                        $data_jenis_visa = $query->row_array();
+                                        $this->db->select('*');
+                                        $this->db->from('visa_211');
+                                        $this->db->where('id_penghubung', $visa211['id_penghubung_visa211']);
+                                        $query = $this->db->get();
+                                        $data_visa = $query->row_array();
+                                        ?>
+                                        <th><?= $data_jenis_visa['visa']; ?></th>
+                                        <th><?= date('d-m-Y', $data_visa['tgl_awal']); ?></th>
+                                        <th><?= date('d-m-Y', $data_visa['tgl_expired']); ?></th>
+                                        <td><?= $visa211['status']; ?></td>
+                                        <td>
+                                            <a>Detail</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

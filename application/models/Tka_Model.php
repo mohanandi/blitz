@@ -11,16 +11,32 @@ class Tka_Model extends CI_model
     }
     public function getTkaIdPt()
     {
-        $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+        $this->db->select('id');
         $this->db->from('tka');
         $query = $this->db->get();
         return $query->result_array();
     }
     public function getTkaIdByPt($id)
     {
-        $this->db->select(array('id', 'id_pt', 'nama_latin', 'passport'));
+        $this->db->select('id');
         $this->db->from('tka');
         $this->db->where('id_pt', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getIdVisa211($id)
+    {
+        $this->db->select('*');
+        $this->db->from('penghubung_visa211');
+        $this->db->where('id_tka', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getIdVisa312($id)
+    {
+        $this->db->select('id_penghubung_visa312');
+        $this->db->from('penghubung_visa312');
+        $this->db->where('id_tka', $id);
         $query = $this->db->get();
         return $query->result_array();
     }
