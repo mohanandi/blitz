@@ -33,7 +33,7 @@ class User_List extends CI_Controller
             $data['user'] = null;
             $data['subjudul'] = 'Tambah User';
             $data['button'] = "Tambahkan";
-            $data['data_role'] = $this->User_Model->getRole();
+            $data['role'] = $this->User_Model->getRole();
             $this->load->view('templates/header', $data);
             $this->load->view('user/user_form', $data);
             $this->load->view('templates/footer');

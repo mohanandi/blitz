@@ -107,38 +107,13 @@
 
 </div>
 
-<script type="text/javascript" src="<?= base_url(); ?>assets/scripts/main.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/scripts/main.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable();
     });
 </script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        var t = $('#example').DataTable();
-        var counter = 1;
-
-        $('#addRow').on('click', function() {
-            t.row.add([
-                counter,
-                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-                '<input name="jumlah" id="jum" type="text" class="form-control-sm form-control">',
-                '<form> <select class="form-control-sm form-control" onchange="location = this.value;"><option>Pilih ... </option><option>Apply Visa Singapore</option><option>Apply Visa Malaysia</option><option>Apply Telex 211 A</option><option>Apply Telex 211 B</option><option>Apply Telex 212</option><option>Apply Telex 312</option><option>Apply Telex 313</option><option>Apply Telex 314</option><option>Apply Telex 317</option><option>Visa Other</option><option>Acc Penurunan Kitas 12 Bulan</option><option>Acc Penurunan Kitas 6 Bulan</option><option>ERP Tidak Kembali</option><option>EPO</option><option>BAP</option></select></form>',
-                '<input name="jumlah" id="jum" type="number" class="form-control-sm form-control">'
-            ]).draw(false);
-
-            counter++;
-        });
-
-        // Automatically add a first row of data
-        $('#addRow').click();
-    });
-</script>
-
-
 </body>
 
 </html>

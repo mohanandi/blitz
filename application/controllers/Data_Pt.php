@@ -91,4 +91,9 @@ class Data_Pt extends CI_Controller
             redirect("Data_Pt/detail/$id_pt");
         }
     }
+
+    public function sidebar()
+    {
+        $this->load->view('sidebar');
+    }
 }
