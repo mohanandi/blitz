@@ -76,4 +76,18 @@ class Rptka_Model extends CI_Model
         $this->db->where('id', $this->input->post('id_user'));
         $this->db->update('user', $data);
     }
+
+    // Untuk mendapatkan pilihan RPTKA
+    public function getRptkaByPt($id_pt)
+    {
+        $this->db->where('id_pt', $id_pt);
+        return $this->db->get('rptka')->result();
+    }
+
+    // Untuk mendapatkan pilihan Jabatan
+    public function getJabtanPilihan()
+    {
+        $this->db->join('rptka', 'jabatan_rptka.id_rptka = rptka.id');
+        return $this->db->get('jabatan_rptka')->result();
+    }
 }

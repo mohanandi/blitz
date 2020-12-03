@@ -13,7 +13,7 @@ class Data_Visa_Model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    public function getVisaSebelumnya($id_visa)
+    public function getVisa211Sebelumnya($id_visa)
     {
         $this->db->select('id_tka');
         $this->db->from('penghubung_visa211');

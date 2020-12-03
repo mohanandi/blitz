@@ -84,4 +84,3 @@
 <script>
     $("#visa_sebelumnya").chained("#status_rptka");
 </script>
-</script>

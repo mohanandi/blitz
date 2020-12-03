@@ -62,8 +62,8 @@
                                 $this->db->where('id', $tka['id_tka']);
                                 $query = $this->db->get();
                                 $data_tka = $query->row_array();
-                                $this->db->select('id_penghubung_visa211');
-                                $this->db->from('penghubung_visa211');
+                                $this->db->select('id_penghubung_visa312');
+                                $this->db->from('penghubung_visa312');
                                 $this->db->where(array('id_jenis_visa' => $data_jenis_visa['id'], 'id_tka' => $tka['id_tka']));
                                 $query = $this->db->get();
                                 $check_visa = $query->result();
@@ -94,7 +94,7 @@
                                             <td class="text-center"><?= $data_tka['passport']; ?></td>
                                             <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
                                             <td class="text-center">
-                                                <form action="<?= base_url('Data_Visa/tambah_visa211/'); ?>" method="POST">
+                                                <form action="<?= base_url('Data_Visa/tambah_visa312/'); ?>" method="POST">
                                                     <input type="hidden" name="id_tka" value="<?= $tka['id_tka']; ?>">
                                                     <input type="hidden" name="id_visa" value="<?= $data_jenis_visa['id']; ?>">
                                                     <button type="submit" class="badge badge-success">Pilih</button>
@@ -113,8 +113,8 @@
                                 $this->db->where('id', $tka['id']);
                                 $query = $this->db->get();
                                 $data_tka = $query->row_array();
-                                $this->db->select('id_penghubung_visa211');
-                                $this->db->from('penghubung_visa211');
+                                $this->db->select('id_penghubung_visa312');
+                                $this->db->from('penghubung_visa312');
                                 $this->db->where(array('id_jenis_visa' => $data_jenis_visa['id'], 'id_tka' => $tka['id']));
                                 $query = $this->db->get();
                                 $check_visa = $query->result();
@@ -127,7 +127,7 @@
                                         <td class="text-center"><?= $data_tka['passport']; ?></td>
                                         <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
                                         <td class="text-center">
-                                            <form action="<?= base_url('Data_Visa/tambah_visa211/'); ?>" method="POST">
+                                            <form action="<?= base_url('Data_Visa/tambah_visa312/'); ?>" method="POST">
                                                 <input type="hidden" name="id_tka" value="<?= $tka['id']; ?>">
                                                 <input type="hidden" name="id_visa" value="<?= $data_jenis_visa['id']; ?>">
                                                 <button type="submit" class="badge badge-success">Pilih</button>
