@@ -16,14 +16,14 @@
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="col-md-5">
-            <img src="assets/images/city.jpg" alt="login" class="login-card-img">
+            <img src="assets/images/city-2.jpg" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
-                <img src="assets/images/logo.jpg" alt="logo" class="logo">
+                <h2>Selamat Datang,</h2>
               </div>
-              <p class="login-card-description">Sign into your account</p>
+              <p class="login-card-description">Masukan username dan password</p>
               <form action="#!">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
