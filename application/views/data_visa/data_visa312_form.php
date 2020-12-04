@@ -56,8 +56,12 @@
                         <div class="col-sm-10">
                             <select class="form-control" name="no_rptka" id="no_rptka">
                                 <option value="">Select No RPTKA</option>
-                                <?php foreach ($data_rptka as $rptka) : ?>
-                                    <option value="<?= $rptka->id; ?>"><?= $rptka->no_rptka; ?></option>
+                                <?php foreach ($data_rptka as $rptka) :
+                                    $sisa = $rptka->jumlah_rptka - $rptka->jumlah_terpakai;
+                                    if ($sisa == 0) :
+                                    else : ?>
+                                        <option value="<?= $rptka->id; ?>"><?= $rptka->no_rptka; ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -67,8 +71,13 @@
                         <div class="col-sm-10">
                             <select class="form-control" name="jabatan_rptka" id="jabatan_rptka">
                                 <option value="">Select Jabatan</option>
-                                <?php foreach ($data_jabatan as $jabatan) : ?>
-                                    <option class="<?= $jabatan->id_rptka ?>" value="<?= $jabatan->id_jabatan_rptka; ?>"><?= $jabatan->jabatan; ?></option>
+                                <?php foreach ($data_jabatan as $jabatan) :
+                                    $sisa = $jabatan->jumlah - $jabatan->terpakai;
+                                    if ($sisa == 0) :
+                                    else : ?>
+                                        <option class="<?= $jabatan->id_rptka ?>" value="<?= $jabatan->id_jabatan_rptka; ?>"><?= $jabatan->jabatan; ?></option>
+                                    <?php endif; ?>
+                                    ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>

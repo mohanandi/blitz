@@ -45,7 +45,7 @@ class Data_Visa extends CI_Controller
                 $data['check_pt'] = $this->input->post('nama_pt');
             } else {
                 $data['visa_sebelumnya'] = $this->Jenis_Visa_Model->getJenisVisaById($data['data_jenis_visa']['id_visa_sebelumnya']);
-                $data['id_tenaga'] = $this->Data_Visa_Model->getVisa211Sebelumnya($data['visa_sebelumnya']['id']);
+                $data['id_tenaga'] = $this->Data_Visa_Model->getVisa312Sebelumnya($data['visa_sebelumnya']['id']);
                 $data['jalan_pintas'] = 1;
                 $data['check_pt'] = $this->input->post('nama_pt');
             }
@@ -56,7 +56,7 @@ class Data_Visa extends CI_Controller
                 $data['check_pt'] = null;
             } else {
                 $data['visa_sebelumnya'] = $this->Jenis_Visa_Model->getJenisVisaById($data['data_jenis_visa']['id_visa_sebelumnya']);
-                $data['id_tenaga'] = $this->Data_Visa_Model->getVisa211Sebelumnya($data['visa_sebelumnya']['id']);
+                $data['id_tenaga'] = $this->Data_Visa_Model->getVisa312Sebelumnya($data['visa_sebelumnya']['id']);
                 $data['jalan_pintas'] = 1;
                 $data['check_pt'] = null;
             }

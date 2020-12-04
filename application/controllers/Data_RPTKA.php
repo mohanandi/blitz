@@ -71,6 +71,7 @@ class Data_Rptka extends CI_Controller
         $data['judul'] = 'Data RPTKA';
         $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
         $data['data_jabatan'] = $this->Rptka_Model->getJabatanByRptka($id);
+        $data['data_pengguna'] = $this->Rptka_Model->getPenggunaRptka($id);
         $this->load->view('templates/header', $data);
         $this->load->view('data_rptka/data_rptka_detail', $data);
         $this->load->view('templates/footer');

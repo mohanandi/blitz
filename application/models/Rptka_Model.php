@@ -3,6 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Rptka_Model extends CI_Model
 {
+    public function getPenggunaRptka($id)
+    {
+        return $this->db->get_where('penghubung_visa312', ['id_rptka' => $id])->result_array();
+    }
     public function getAllRptka()
     {
         return $this->db->get_where('rptka')->result_array();

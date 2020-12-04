@@ -12,7 +12,7 @@ class Data_Voucher extends CI_Controller
     {
         $data['judul'] = 'Data Voucher';
         $this->load->view('templates/header', $data);
-        $this->load->view('data_voucher_visa');
+        $this->load->view('data_voucher/data_voucher_visa');
         $this->load->view('templates/footer');
     }
 
