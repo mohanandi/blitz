@@ -31,7 +31,7 @@
                                 <td class="text-center"><?= date('d-m-Y', $rptka['tgl_terbit']); ?></td>
                                 <td class="text-center"><?= date('d-m-Y', $rptka['tgl_expired']); ?></td>
                                 <td class="text-center"><?= $rptka['jumlah_rptka']; ?></td>
-                                <td class="text-center">0</td>
+                                <td class="text-center"><?= $rptka['jumlah_terpakai']; ?></td>
                                 <td class="text-center"><?= $rptka['ket']; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('Data_Rptka/detail/') ?><?= $rptka['id']; ?>" class="badge badge-success">Detail</a>

@@ -15,6 +15,10 @@ class Rptka_Model extends CI_Model
     {
         return $this->db->get_where('jabatan_rptka', ['id_rptka' => $id])->result_array();
     }
+    public function getJabatanById($id)
+    {
+        return $this->db->get_where('jabatan_rptka', ['id_jabatan_rptka' => $id])->row_array();
+    }
     public function TambahRptka()
     {
         $data = [
@@ -23,6 +27,7 @@ class Rptka_Model extends CI_Model
             "tgl_terbit" => strtotime($this->input->post('tgl_terbit', true)),
             "tgl_expired" => strtotime($this->input->post('tgl_expired', true)),
             "jumlah_rptka" => $this->input->post('jumlah_pengguna', true),
+            "jumlah_terpakai" => 0,
             "ket" => $this->input->post('ket', true),
             "input_by_id" => $this->session->userdata('id'),
             "tgl_input" => time()
@@ -64,6 +69,14 @@ class Rptka_Model extends CI_Model
             $this->db->insert('jabatan_rptka', $data);
         }
     }
+    public function TambahTerpakaiJabatan($terpakai)
+    {
+        $data = [
+            "terpakai" => $terpakai
+        ];
+        $this->db->where('id_jabatan_rptka', $this->input->post('jabatan_rptka'));
+        $this->db->update('jabatan_rptka', $data);
+    }
     public function EditUser()
     {
         $data = [
@@ -89,5 +102,14 @@ class Rptka_Model extends CI_Model
     {
         $this->db->join('rptka', 'jabatan_rptka.id_rptka = rptka.id');
         return $this->db->get('jabatan_rptka')->result();
+    }
+
+    public function TambahTerpakaiRptka($terpakai)
+    {
+        $data = [
+            "jumlah_terpakai" => $terpakai
+        ];
+        $this->db->where('id', $this->input->post('no_rptka'));
+        $this->db->update('rptka', $data);
     }
 }

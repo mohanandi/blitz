@@ -24,7 +24,7 @@ class Data_Visa extends CI_Controller
     public function visa312($id_visa)
     {
         $data['judul'] = 'Data Visa';
-        $data['data_visa'] = $this->Data_Visa_Model->getAllVisa312($id_visa);
+        $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllVisa312($id_visa);
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
         $this->load->view('templates/header', $data);
@@ -68,8 +68,8 @@ class Data_Visa extends CI_Controller
 
     public function tambah_visa312()
     {
-        $this->form_validation->set_rules('no_rptka', 'No RPTKA', 'required');
-        $this->form_validation->set_rules('jabatan_rptka', 'Jabatan RPTKA', 'required');
+        $this->form_validation->set_rules('no_rptka', 'No RPTKA', 'trim|required');
+        $this->form_validation->set_rules('jabatan_rptka', 'Jabatan RPTKA', 'trim|required');
         $this->form_validation->set_rules('tgl_awal', 'Tanggal Awal Visa', 'trim|required');
         $this->form_validation->set_rules('waktu_visa', 'Jangka Waktu visa (Bulan)', 'trim|required');
         $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'trim|required');
@@ -97,11 +97,17 @@ class Data_Visa extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $id_visa = $this->input->post('id_visa');
-            $this->Data_Visa_Model->tambahPenghubungVisa211();
-            $id_penghubung = $this->Data_Visa_Model->getPenghubungVisa211();
-            $this->Data_Visa_Model->tambahVisa211($id_penghubung['id_penghubung_visa211']);
+            $this->Data_Visa_Model->tambahPenghubungVisa312();
+            $id_penghubung = $this->Data_Visa_Model->getPenghubungVisa312();
+            $this->Data_Visa_Model->tambahVisa312($id_penghubung['id_penghubung_visa312']);
+            $jabatan = $this->Rptka_Model->getJabatanById($this->input->post('jabatan_rptka'));
+            $jabatan_terpakai = $jabatan['terpakai'] + 1;
+            $this->Rptka_Model->TambahTerpakaiJabatan($jabatan_terpakai);
+            $rptka = $this->Rptka_Model->getRptkaById($this->input->post('no_rptka'));
+            $terpakai = $rptka['jumlah_terpakai'] + 1;
+            $this->Rptka_Model->TambahTerpakaiRptka($terpakai);
             $this->session->set_flashdata('flash', 'Visa Berhasil Ditambahkan');
-            redirect("Data_Visa/visa211/$id_visa");
+            redirect("Data_Visa/visa312/$id_visa");
         }
     }
 

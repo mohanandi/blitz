@@ -32,7 +32,7 @@ class Data_Pt extends CI_Controller
     }
     public function tambah()
     {
-        $this->form_validation->set_rules('nama_pt', 'Nama PT', 'required|is_unique[pt.nama_pt]', [
+        $this->form_validation->set_rules('nama_pt', 'Nama PT', 'trim|required|is_unique[pt.nama_pt]', [
             'is_unique' => 'Nama PT ini sudah ada di Database'
         ]);
         $this->form_validation->set_rules('pic', 'PIC', 'required');

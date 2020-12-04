@@ -22,10 +22,10 @@ class Data_Rptka extends CI_Controller
     public function tambah()
     {
         $this->form_validation->set_rules('nama_pt', 'Nama Mandarin', 'required');
-        $this->form_validation->set_rules('no_rptka', 'Nama Latin', 'required');
+        $this->form_validation->set_rules('no_rptka', 'Nama Latin', 'trim|required');
         $this->form_validation->set_rules('tgl_terbit', 'Kewarganegaraan', 'required');
         $this->form_validation->set_rules('tgl_expired', 'Tanggal Lahir', 'required');
-        $this->form_validation->set_rules('ket', 'Keterangan', 'required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
         $this->form_validation->set_rules('jumlah_pengguna', 'Jumalah Pengguna RPTKA', "required");
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Data RPTKA';

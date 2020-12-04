@@ -1,3 +1,6 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
 <div class="row">
     <div class="col-lg-6">
         <div class="main-card mb-3 card">

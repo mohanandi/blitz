@@ -27,7 +27,7 @@
                             <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_terbit']); ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_expired']); ?></td>
                             <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
-                            <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
+                            <td class="text-center"><?= $data_rptka['jumlah_terpakai']; ?></td>
                             <td class="text-center"><?= $data_rptka['ket']; ?></td>
                             <td class="text-center">
                                 <a href="<?= base_url('Data_Rptka/edit/'); ?><?= $data_rptka['id']; ?>" class="badge badge-secondary">Edit</a>
@@ -68,8 +68,8 @@
                                     <td class="text-center"><?= $no; ?></td>
                                     <td class="text-center"><?= $jabatan['jabatan']; ?></td>
                                     <td class="text-center"><?= $jabatan['jumlah']; ?></td>
-                                    <td class="text-center"><?= $jabatan['jumlah']; ?></td>
-                                    <td class="text-center"><?= $jabatan['jumlah']; ?></td>
+                                    <td class="text-center"><?= $jabatan['terpakai']; ?></td>
+                                    <td class="text-center"><?= $jabatan['jumlah'] - $jabatan['terpakai']; ?></td>
                                 </tr>
                             <?php $no++;
                             endforeach;
