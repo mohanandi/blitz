@@ -44,53 +44,63 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data Voucher
-            </div>
-            <form action="">
+            <form action="<?= base_url('Data_Voucher/tambahvouchervisa'); ?>" method="POST" onSubmit="return validate()">
+                <div class="card-header"> Pilih Data TKA untuk Voucher
+                </div>
                 <div class="table-responsive" style="padding: 10px;">
-                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
                                 <th class="text-center">No Passport</th>
                                 <th class="text-center">Nama Mandarin</th>
                                 <th class="text-center">Nama Latin</th>
-                                <th class="text-center">Lokasi</th>
-                                <th class="text-center">Harga</th>
+                                <th class="text-center">Pilih</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            for ($i = 0; $i < count($id_tka); $i++) :
-                                $this->db->select(array('id', 'passport', 'nama_mandarin', 'nama_latin'));
-                                $this->db->from('tka');
-                                $this->db->where('id', $id_tka[$i]);
-                                $query = $this->db->get();
-                                $data_tka = $query->row_array();
-                            ?>
+                            <?php $i = 1;
+                            foreach ($data_tka as $tka) : ?>
                                 <tr id="row<?= $i; ?>" class="dynamic-added">
-                                    <td class="text-center"><?= $i + 1; ?></td>
+                                    <td class="text-center"><?= $i; ?></td>
                                     <td class="text-center">
-                                        <?= $data_tka['passport']; ?>
+                                        <?= $tka['passport']; ?>
                                     </td>
-                                    <td class="text-center"><?= $data_tka['nama_mandarin']; ?></td>
-                                    <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
+                                    <td class="text-center"><?= $tka['nama_mandarin']; ?></td>
+                                    <td class="text-center"><?= $tka['nama_latin']; ?></td>
                                     <td id="tombol<?= $i; ?>">
-                                        <input type="hidden" id="nama_pt" name="nama_pt" value="<?= $id_pt; ?>">
-                                        <input type="hidden" id="kategori" name="kategori" value="<?= $id_kategori; ?>">
-                                        <input type="hidden" id="jenis_proses" name="jenis_proses" value="<?= $id_jenis_proses; ?>" required>
-                                    </td>
-                                    <td>
-                                        <select name="" id="" class="form-control">
-                                            <option value=""></option>
-                                        </select>
+                                        <input type="checkbox" name="data_tka[]" id="data_tka[]" value="<?= $tka['id']; ?>">
+                                        <input type="hidden" name="nama_pt" id="nama_pt" value="<?= $id_pt ?>">
+                                        <input type="hidden" name="kategori" id="kategori" value="<?= $id_kategori; ?>">
+                                        <input type="hidden" name="jenis_proses" id="jenis_proses" value="<?= $id_jenis_proses; ?>">
                                     </td>
                                 </tr>
-                            <?php endfor; ?>
+                            <?php $i++;
+                            endforeach; ?>
                         </tbody>
                     </table>
+                    <button type="submit" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary">Tambahkan TKA</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script language="javascript">
+    function validate() {
+        var chks = document.getElementsByName('data_tka[]');
+        var hasChecked = false;
+        for (var i = 0; i < chks.length; i++) {
+            if (chks[i].checked) {
+                hasChecked = true;
+                break;
+            }
+        }
+
+        if (hasChecked == false) {
+            alert("Please select at least one.");
+            return false;
+        }
+        return true;
+    }
+</script>

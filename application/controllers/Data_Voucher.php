@@ -60,8 +60,20 @@ class Data_Voucher extends CI_Controller
         $data['judul'] = 'Data Voucher';
         $data['button'] = 'Buat Voucher';
         $data['id_pt'] = $this->input->post('nama_pt');
+        $data['data_tka'] = $this->Data_Voucher_Model->getTkaIdByPt($this->input->post('nama_pt'));
         $data['id_kategori'] = $this->input->post('kategori');
         $data['id_jenis_proses'] = $this->input->post('jenis_proses');
+        $this->load->view('templates/header', $data);
+        $this->load->view('data_voucher/data_visa', $data);
+        $this->load->view('templates/footer');
+    }
+    public function tambahvouchervisa()
+    {
+        $data['id_tka'] = $this->input->post('data_tka[]');
+        $data['id_pt'] = $this->input->post('nama_pt');
+        $data['id_kategori'] = $this->input->post('kategori');
+        $data['id_jenis_proses'] = $this->input->post('jenis_proses');
+        $data['judul'] = 'Data Voucher';
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/visa_form', $data);
         $this->load->view('templates/footer');
