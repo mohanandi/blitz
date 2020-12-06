@@ -7,9 +7,14 @@
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
                     <thead>
                         <tr>
-                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Nama Perusahaan</th>
+                            <th class="text-center">Nama Client</th>
                             <th class="text-center">Kategori Voucher</th>
                             <th class="text-center">Jenis Proses</th>
+                            <th class="text-center">Lokasi</th>
+                            <th class="text-center">Mata Uang</th>
+                            <th class="text-center">Staff OP</th>
+                            <th class="text-center">Note</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,10 +35,20 @@
                             $this->db->where('id_proses', $id_jenis_proses);
                             $query = $this->db->get();
                             $data_jenis_proses = $query->row_array();
+                            $this->db->select('lokasi');
+                            $this->db->from('harga');
+                            $this->db->where('id_harga', $lokasi);
+                            $query = $this->db->get();
+                            $data_lokasi = $query->row_array();
                             ?>
                             <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
+                            <td class="text-center"><?= $nama_client; ?></td>
                             <td class="text-center"><?= $data_kategori['kategori']; ?></td>
                             <td class="text-center"><?= $data_jenis_proses['nama_proses']; ?></td>
+                            <td class="text-center"><?= $data_lokasi['lokasi']; ?></td>
+                            <td class="text-center"><?= $mata_uang; ?></td>
+                            <td class="text-center"><?= $staff; ?></td>
+                            <td class="text-center"><?= $note; ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -73,6 +88,11 @@
                                         <input type="hidden" name="nama_pt" id="nama_pt" value="<?= $id_pt ?>">
                                         <input type="hidden" name="kategori" id="kategori" value="<?= $id_kategori; ?>">
                                         <input type="hidden" name="jenis_proses" id="jenis_proses" value="<?= $id_jenis_proses; ?>">
+                                        <input type="hidden" name="nama_client" id="nama_client" value="<?= $nama_client; ?>">
+                                        <input type="hidden" name="lokasi" id="lokasi" value="<?= $lokasi; ?>">
+                                        <input type="hidden" name="staff" id="staff" value="<?= $staff; ?>">
+                                        <input type="hidden" name="note" id="note" value="<?= $note; ?>">
+                                        <input type="hidden" name="mata_uang" id="mata_uang" value="<?= $mata_uang; ?>">
                                     </td>
                                 </tr>
                             <?php $i++;

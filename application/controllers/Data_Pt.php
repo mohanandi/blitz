@@ -14,7 +14,7 @@ class Data_Pt extends CI_Controller
 
     public function index()
     {
-        $data['judul'] = 'Data PT';
+        $data['judul'] = 'Data Perusahaan';
         $data['pt'] = $this->DataPt_Model->getAllDataPt();
         $this->load->view('templates/header', $data);
         $this->load->view('data_pt/data_pt', $data);
@@ -22,7 +22,7 @@ class Data_Pt extends CI_Controller
     }
     public function detail($id)
     {
-        $data['judul'] = 'Data PT';
+        $data['judul'] = 'Data Perusahaan';
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
         $data['data_pic'] = $this->User_Model->getUserById($data['data_pt']['id_pic']);
         $data['input_by'] = $this->User_Model->getUserById($data['data_pt']['input_by_id']);
@@ -41,7 +41,7 @@ class Data_Pt extends CI_Controller
         $this->form_validation->set_rules('ket', 'Keterangan', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data['pic'] = $this->User_Model->getPic();
-            $data['judul'] = "Data PT";
+            $data['judul'] = 'Data Perusahaan';
             $data['subjudul'] = "Tambah PT";
             $data['button'] = "Tambahkan";
             $data['data_pt'] = null;
@@ -64,7 +64,7 @@ class Data_Pt extends CI_Controller
 
     public function edit($id)
     {
-        $data['judul'] = 'Data PT';
+        $data['judul'] = 'Data Perusahaan';
         $data['subjudul'] = 'Edit PT';
         $data['button'] = 'Simpan Edit';
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
