@@ -24,8 +24,9 @@
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        foreach ($tka as $data_tka) : ?>
+                        foreach ($id_tka as $tka) : ?>
                             <tr>
+                                <?php $data_tka = $this->db->get_where('tka', ['id' => $tka['id']])->row_array(); ?>
                                 <td class="text-center text-muted"><?= $no; ?></td>
                                 <td class="text-center"><?= $data_tka['nama_mandarin']; ?></td>
                                 <td class="text-center"><?= $data_tka['nama_latin']; ?></td>

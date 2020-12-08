@@ -14,7 +14,7 @@ class Data_Tka extends CI_Controller
     }
     public function index()
     {
-        $data['tka'] = $this->Tka_Model->getAllTka();
+        $data['id_tka'] = $this->Tka_Model->getAllIdTka();
         $data['judul'] = $this->judul;
         $this->load->view('templates/header', $data);
         $this->load->view('data_tka/data_tka', $data);

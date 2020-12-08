@@ -4,6 +4,50 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
+			<div class="card-header">Filter
+				<a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Data_Voucher/report'); ?>" type="button">Report Voucher Page</a>
+			</div>
+			<div class="table-responsive" style="padding: 20px;">
+				<form class="" action="" method="POST">
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<label for="exampleEmail11" class=""><b>Dari</b></label>
+								<input name="kewarganegaraan" id="kewarganegaraan" placeholder="Kewarganegaraan" type="date" class=" form-control">
+								<?= form_error('kewarganegaraan'); ?>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<label for="examplePassword11" class=""><b>Sampai</b></label>
+								<input name="tgl_lahir" id="tgl_lahir" type="date" class="form-control">
+								<?= form_error('tgl_lahir'); ?>
+							</div>
+						</div>
+					</div>
+					<div class="position-relative form-group">
+						<label for="exampleAddress" class=""><b>Nama Perusahaan</b></label>
+						<select class="form-control" id="nama_pt" name="nama_pt">
+							<option value="">Select Perusahaan</option>
+							<?php foreach ($data_pt as $pt) : ?>
+								<option value="<?= $pt['id']; ?>"><?= $pt['nama_pt']; ?></option>
+							<?php endforeach; ?>
+						</select>
+						<?= form_error('nama_pt'); ?>
+					</div>
+					<div class="position-relative row form-check">
+						<div class="right">
+							<button type="submit" class="btn btn-success">Filter</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-card mb-3 card">
 			<div class="card-header">Data Voucher
 				<a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Data_Voucher/kategori'); ?>" type="button">Tambah Voucher</a>
 			</div>

@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Data_Voucher extends CI_Controller
 {
     public function __construct()
@@ -14,9 +13,19 @@ class Data_Voucher extends CI_Controller
     public function index()
     {
         $data['data_id_voucher'] = $this->Data_Voucher_Model->getVoucherVisa();
+        $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
         $data['judul'] = 'Data Voucher';
         $this->load->view('templates/header', $data);
-        $this->load->view('data_voucher/data_voucher');
+        $this->load->view('data_voucher/data_voucher', $data);
+        $this->load->view('templates/footer');
+    }
+    public function report()
+    {
+        $data['data_id_voucher'] = $this->Data_Voucher_Model->getVoucherVisa();
+        $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['judul'] = 'Data Voucher';
+        $this->load->view('templates/header', $data);
+        $this->load->view('data_voucher/data_voucher_report', $data);
         $this->load->view('templates/footer');
     }
     public function detail($id_voucher)

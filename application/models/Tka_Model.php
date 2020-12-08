@@ -9,6 +9,13 @@ class Tka_Model extends CI_model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getAllIdTka()
+    {
+        $this->db->select('*');
+        $this->db->from('tka');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getTkaIdPt()
     {
         $this->db->select('id');
