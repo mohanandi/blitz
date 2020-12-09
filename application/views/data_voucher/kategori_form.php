@@ -48,7 +48,7 @@
                             <?= form_error('kategori'); ?>
                         </div>
                     </div>
-                    <div class="position-relative row form-group">
+                    <div class="position-relative row form-group" id="kategori_select">
                         <label for="passport" class="col-sm-2 col-form-label"><b>Jenis Proses</b></label>
                         <div class="col-sm-10">
                             <select name="jenis_proses" id="jenis_proses" class="form-control">
@@ -66,7 +66,7 @@
                             <?= form_error('jenis_proses'); ?>
                         </div>
                     </div>
-                    <div class="position-relative row form-group">
+                    <div class="position-relative row form-group" id="kategori_select2">
                         <label for="passport" class="col-sm-2 col-form-label"><b>Lokasi</b></label>
                         <div class="col-sm-10">
                             <select name="lokasi" id="lokasi" class="form-control">
@@ -128,4 +128,18 @@
 <script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
 <script>
     $("#lokasi").chained("#jenis_proses");
+    $(document).ready(function() {
+        $("#kategori_select").hide();
+        $("#kategori_select2").hide();
+    });
+    $('#kategori').change(function() {
+        var kategori_selected = $("#kategori").val();
+        if (kategori_selected == '1') {
+            $("#kategori_select").show();
+            $("#kategori_select2").show();
+        } else {
+            $("#kategori_select").hide();
+            $("#kategori_select2").hide();
+        }
+    });
 </script>
