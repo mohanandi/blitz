@@ -33,8 +33,14 @@
                                 <td class="text-center"><?= $us['is_active'] ?></td>
                                 <td class="text-center"><?= date('d-m-Y G:i:s', $us['last_login']); ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('User_List/edit/'); ?><?= $us['id']; ?>" class="badge badge-success">Edit</a>
-                                    <a href="<?= base_url(); ?>" class="badge badge-danger">Delete</a>
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="<?= base_url('User_List/edit/'); ?><?= $us['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         <?php $no++;
@@ -45,3 +51,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.action-delete').click(function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You Will delete this data !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = $(this).data('href');
+            }
+        })
+    });
+</script>

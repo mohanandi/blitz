@@ -4,12 +4,13 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
-			<div class="card-header">Filter
+			<div class="card-header">
+				<button id="filter" class="btn btn-primary btn-sm rounded-0 action-delete" type="button">Filter</button>
 				<?php if (set_value('sampai')) : ?>
 					<a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Data_Voucher/report'); ?>" type="button">Report Voucher Page</a>
 				<?php endif; ?>
 			</div>
-			<div class="table-responsive" style="padding: 20px;">
+			<div class="table-responsive" id="filter_box" style="padding: 20px;">
 				<form class="" action="" method="POST">
 					<div class="form-row">
 						<div class="col-md-6">
@@ -173,3 +174,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$("#filter_box").hide();
+	});
+	$('#filter').click(function() {
+		$("#filter_box").toggle();
+	});
+</script>

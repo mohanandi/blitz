@@ -26,7 +26,7 @@ class Data_Voucher_Model extends CI_Model
     {
         $this->db->select('harga');
         $this->db->from('pengguna_voucher_entertaint');
-        $query = $this->db->where('id_voucher_entertaint', $id_voucher);
+        $this->db->where('id_voucher_entertaint', $id_voucher);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -148,6 +148,7 @@ class Data_Voucher_Model extends CI_Model
         $this->db->where('id_voucher', $this->input->post('id_voucher'));
         $this->db->update('voucher_entertaint', $data);
     }
+
     public function ubahDataPenggunaVoucherEntertaint($id_pengguna)
     {
         $data = [

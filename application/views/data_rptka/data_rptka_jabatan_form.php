@@ -20,8 +20,8 @@
                         <tr>
                             <td class="text-center"><?= $data_rptka['id_pt']; ?></td>
                             <td class="text-center"><?= $data_rptka['no_rptka']; ?></td>
-                            <td class="text-center"><?= $data_rptka['tgl_terbit']; ?></td>
-                            <td class="text-center"><?= $data_rptka['tgl_expired']; ?></td>
+                            <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_terbit']); ?></td>
+                            <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_expired']); ?></td>
                             <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
                             <td class="text-center"><?= $data_rptka['jumlah_rptka']; ?></td>
                             <td class="text-center"><?= $data_rptka['ket']; ?></td>
@@ -33,15 +33,54 @@
     </div>
 </div>
 <?php if ($this->session->flashdata('flash')) : ?>
-    <div class="alert alert-success fade show" role="alert">Data <?= $this->session->flashdata('flash'); ?> .</div>
+    <div class="alert alert-danger fade show" role="alert">Data <?= $this->session->flashdata('flash'); ?> .</div>
 <?php endif; ?>
-<?php if (form_error('jumlah_jabatan[]')) : ?>
-    <div class="alert alert-danger fade show" role="alert"><?= form_error('jumlah_jabatan[]'); ?></div>
-<?php endif; ?>
-<?php if (form_error('nama_jabatan[]')) : ?>
-    <div class="alert alert-danger fade show" role="alert"><?= form_error('nama_jabatan[]'); ?></div>
-<?php endif; ?>
+
 <div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">
+                <?= $subjudul; ?>
+            </div>
+            <div class="table-responsive" style="padding: 20px;">
+                <form class="" action="" method="post">
+                    <div class="position-relative row form-group">
+                        <label for="client" class="col-sm-2 col-form-label"><b>Nama Jabatan</b></label>
+                        <div class="col-sm-10">
+                            <?php if (set_value('jabatan')) :  ?>
+                                <input name="jabatan" id="jabatan" type="text" value="<?= set_value('jabatan'); ?>" placeholder="Nama Jabatan" class="form-control">
+                            <?php elseif ($data_jabatan['jabatan']) :  ?>
+                                <input name="jabatan" id="jabatan" type="text" value="<?= $data_jabatan['jabatan']; ?>" placeholder="Nama Jabatan" class="form-control">
+                            <?php else :  ?>
+                                <input name="jabatan" id="jabatan" type="text" placeholder="Nama Jabatan" class="form-control">
+                            <?php endif;  ?>
+                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="position-relative row form-group">
+                        <label for="jumlah" class="col-sm-2 col-form-label"><b>Jumlah</b></label>
+                        <div class="col-sm-10">
+                            <?php if (set_value('jumlah')) :  ?>
+                                <input name="jumlah" id="jumlah" type="number" value="<?= set_value('jumlah'); ?>" placeholder="Jumlah Jabatan" class="form-control">
+                            <?php elseif ($data_jabatan['jumlah']) :  ?>
+                                <input name="jumlah" id="jumlah" type="number" value="<?= $data_jabatan['jumlah']; ?>" placeholder="jumlah Jabatan" class="form-control">
+                            <?php else :  ?>
+                                <input name="jumlah" id="jumlah" type="number" placeholder="Jumlah Jabatan" class="form-control">
+                            <?php endif;  ?>
+                            <?= form_error('jumlah', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="position-relative row form-check">
+                        <div class="right">
+                            <button type="submit" class="btn btn-success"><?= $button; ?></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header"><?= $subjudul; ?>
@@ -87,8 +126,8 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> -->
+<!-- 
 <script type="text/javascript">
     $(document).ready(function() {
         var i = 1;
@@ -107,4 +146,4 @@
 
 
     });
-</script>
+</script> -->

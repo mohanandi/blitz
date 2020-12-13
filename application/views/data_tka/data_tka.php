@@ -14,7 +14,7 @@
                             <th class="text-center">NO</th>
                             <th class="text-center">Nama Mandarin</th>
                             <th class="text-center">Nama Latin</th>
-                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Nama Perusahaan</th>
                             <th class="text-center">Passport</th>
                             <th class="text-center">Keterangan</th>
                             <th class="text-center">input By</th>

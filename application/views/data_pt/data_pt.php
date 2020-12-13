@@ -4,11 +4,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data PT
-                <button type="button" class="btn mr-2 mb-2 btn-primary btn-actions-pane-right" data-toggle="modal" data-target="#exampleModal">
-                    Export
-                </button>
-                <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Pt/tambah'); ?>">Tambah PT</a>
+            <div class="card-header">Data Perusahaan
+                <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Pt/tambah'); ?>">Tambah Perusahaan</a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
@@ -35,7 +32,7 @@
                                 <td class="text-center"><?= $pt['alamat']; ?></td>
                                 <td class="text-center"><?= $pt['ket']; ?></td>
                                 <td class="text-center">
-                                    <a type="button" href="<?= base_url('Data_Pt/detail/'); ?><?= $pt['id']; ?>" class="badge badge-success">Detail PT</a>
+                                    <a type="button" href="<?= base_url('Data_Pt/detail/'); ?><?= $pt['id']; ?>" class="badge badge-success">Detail</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

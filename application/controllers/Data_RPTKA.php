@@ -53,7 +53,7 @@ class Data_Rptka extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Tambah RPTKA';
-            $data['button'] = 'Tambahkan RPTKA';
+            $data['button'] = 'Simpan Edit RPTKA';
             $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
             $data['pt'] = $this->DataPt_Model->getAllDataPt();
             $this->load->view('templates/header', $data);
@@ -80,69 +80,76 @@ class Data_Rptka extends CI_Controller
     public function tambah_jabatan($id)
     {
         $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
-        $jumlah_rptka = $data['data_rptka']['jumlah_rptka'];
-
-        $this->form_validation->set_rules('nama_jabatan[]', 'Nama Jabatan', 'trim|required', [
-            'required' => 'Nama jabatan dan jumlahnya harus diisi terlebih dahulu, Klik Tambah Baris Jabatan untuk memunculkan kolom'
-        ]);
-        if ($this->input->post('jumlah_jabatan[]')) {
-            $jumlah_jabatan = array_sum($this->input->post('jumlah_jabatan[]'));
-            if ($jumlah_rptka >= $jumlah_jabatan) {
-            } else {
-                $this->form_validation->set_rules('jumlah_jabatan[]', 'Jumlah Jabatan', "trim|required|in_list[$jumlah_rptka]", [
-                    'in_list' => 'Total Jumlah Jabatan RPTKA tidak sesuai dengan Jumlah Pengguna RPTKA'
-                ]);
-            }
-            $id_rptka = $this->input->post('id_rptka');
-        } else {
-        }
+        $this->form_validation->set_rules('jabatan', 'Nama Jabatan', 'trim|required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah Jabatan', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Tambah Jabatan RPTKA';
             $data['button'] = 'Tambahkan Jabatan RPTKA';
-            $data['pt'] = $this->DataPt_Model->getAllDataPt();
             $data['data_jabatan'] = null;
             $this->load->view('templates/header', $data);
             $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->Rptka_Model->TambahJabatan();
-            $this->session->set_flashdata('flash', 'Jabatan RPTKA Berhasil Ditambahkan');
-            redirect("Data_Rptka/detail/$id_rptka");
+            $jumlah_rptka = $data['data_rptka']['jumlah_rptka'];
+            $terpakai = $this->Rptka_Model->getJabatanTerpakai($id);
+            $jabatan_terpakai = 0;
+            foreach ($terpakai as $jt) :
+                $jabatan_terpakai += $jt['jumlah'];
+            endforeach;
+            $jabatan_terpakai += $this->input->post('jumlah');
+            if ($jabatan_terpakai <= $jumlah_rptka) {
+                $this->Rptka_Model->TambahJabatan($id);
+                $this->session->set_flashdata('flash', 'Jabatan RPTKA Berhasil Ditambahkan');
+                redirect("Data_Rptka/detail/$id");
+            } else {
+                $data['judul'] = 'Data RPTKA';
+                $data['subjudul'] = 'Tambah Jabatan RPTKA';
+                $data['button'] = 'Tambahkan Jabatan RPTKA';
+                $data['data_jabatan'] = null;
+                $this->session->set_flashdata('flash', 'Jabatan RPTKA Gagal Ditambahkan Karena Total Jumlah Tidak Sesuai');
+                $this->load->view('templates/header', $data);
+                $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
+                $this->load->view('templates/footer');
+            }
         }
     }
     public function edit_jabatan($id)
     {
-        $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
-        $jumlah_rptka = $data['data_rptka']['jumlah_rptka'];
-
-        $this->form_validation->set_rules('nama_jabatan[]', 'Nama Jabatan', 'trim|required', [
-            'required' => 'Nama jabatan dan jumlahnya harus diisi terlebih dahulu, Klik Tambah Baris Jabatan untuk memunculkan kolom'
-        ]);
-        if ($this->input->post('jumlah_jabatan[]')) {
-            $jumlah_jabatan = array_sum($this->input->post('jumlah_jabatan[]'));
-            if ($jumlah_jabatan == $jumlah_rptka) {
-            } else {
-                $this->form_validation->set_rules('jumlah_jabatan[]', 'Jumlah Jabatan', "trim|required|in_list[$jumlah_rptka]", [
-                    'in_list' => 'Total Jumlah Jabatan RPTKA tidak sesuai dengan Jumlah Pengguna RPTKA'
-                ]);
-            }
-            $id_rptka = $this->input->post('id_rptka');
-        } else {
-        }
+        $data['data_jabatan'] = $this->Rptka_Model->getJabatanByRptkaById($id);
+        $data['data_rptka'] = $this->Rptka_Model->getRptkaById($data['data_jabatan']['id_rptka']);
+        $id_rptka = $data['data_jabatan']['id_rptka'];
+        $this->form_validation->set_rules('jabatan', 'Nama Jabatan', 'trim|required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah Jabatan', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Edit Jabatan RPTKA';
             $data['button'] = 'Simpan Edit Jabatan RPTKA';
-            $data['pt'] = $this->DataPt_Model->getAllDataPt();
-            $data['data_jabatan'] = $this->Rptka_Model->getJabatanByRptka($id);
             $this->load->view('templates/header', $data);
             $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->Rptka_Model->EditJabatan();
-            $this->session->set_flashdata('flash', 'Jabatan RPTKA Berhasil Dirubah');
-            redirect("Data_Rptka/detail/$id_rptka");
+            $jumlah_rptka = $data['data_rptka']['jumlah_rptka'];
+            $terpakai = $this->Rptka_Model->getJabatanTerpakai($id_rptka);
+            $jabatan_terpakai = 0;
+            foreach ($terpakai as $jt) :
+                $jabatan_terpakai += $jt['jumlah'];
+            endforeach;
+            $jabatan_terpakai = $jabatan_terpakai - $data['data_jabatan']['jumlah'];
+            $jabatan_terpakai += $this->input->post('jumlah');
+            if ($jabatan_terpakai <= $jumlah_rptka) {
+                $this->Rptka_Model->EditJabatan($id);
+                $this->session->set_flashdata('flash', 'Jabatan RPTKA Berhasil Dirubah');
+                redirect("Data_Rptka/detail/$id_rptka");
+            } else {
+                $data['judul'] = 'Data RPTKA';
+                $data['subjudul'] = 'Edit Jabatan RPTKA';
+                $data['button'] = 'Simpan Edit Jabatan RPTKA';
+                $this->session->set_flashdata('flash', 'Jabatan RPTKA Gagal Ditambahkan Karena Total Jumlah Tidak Sesuai');
+                $this->load->view('templates/header', $data);
+                $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
+                $this->load->view('templates/footer');
+            }
         }
     }
 }

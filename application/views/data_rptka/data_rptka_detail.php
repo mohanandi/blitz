@@ -5,12 +5,13 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data RPTKA
+                <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Export/export_rptka/' . $data_rptka['id']); ?>" type="button" type="button" data-toggle="tooltip" data-placement="top" title="Export"><i class="fa fa-download" aria-hidden="true"></i></a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
                     <thead>
                         <tr>
-                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Nama Perusahaan</th>
                             <th class="text-center">Nomor RPTKA</th>
                             <th class="text-center">Tanggal Terbit</th>
                             <th class="text-center">Tanggal Expired</th>
@@ -22,7 +23,14 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center"><?= $data_rptka['id_pt']; ?></td>
+                            <?php
+                            $this->db->select('nama_pt');
+                            $this->db->from('pt');
+                            $this->db->where('id', $data_rptka['id_pt']);
+                            $query = $this->db->get();
+                            $data_pt = $query->row_array();
+                            ?>
+                            <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
                             <td class="text-center"><?= $data_rptka['no_rptka']; ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_terbit']); ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_rptka['tgl_expired']); ?></td>
@@ -30,7 +38,11 @@
                             <td class="text-center"><?= $data_rptka['jumlah_terpakai']; ?></td>
                             <td class="text-center"><?= $data_rptka['ket']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('Data_Rptka/edit/'); ?><?= $data_rptka['id']; ?>" class="badge badge-secondary">Edit</a>
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <a href="<?= base_url('Data_Rptka/edit/'); ?><?= $data_rptka['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
                     </tbody>
@@ -43,11 +55,7 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data Jabatan RPTKA
-                <?php if ($data_jabatan == null) : ?>
-                    <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Rptka/tambah_jabatan/'); ?><?= $data_rptka['id']; ?>">Tambah Jabatan RPTKA</a>
-                <?php else : ?>
-                    <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-secondary" type="submit" href="<?= base_url('Data_Rptka/edit_jabatan/'); ?><?= $data_rptka['id']; ?>">Edit Jabatan RPTKA</a>
-                <?php endif; ?>
+                <a type="button" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" href="<?= base_url('Data_Rptka/tambah_jabatan/'); ?><?= $data_rptka['id']; ?>">Tambah Jabatan RPTKA</a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
@@ -58,6 +66,7 @@
                             <th class="text-center">Jumlah Jabatan </th>
                             <th class="text-center">Jumlah Jabatan Terpakai</th>
                             <th class="text-center">Jumlah jabatan Sisa</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +79,16 @@
                                     <td class="text-center"><?= $jabatan['jumlah']; ?></td>
                                     <td class="text-center"><?= $jabatan['terpakai']; ?></td>
                                     <td class="text-center"><?= $jabatan['jumlah'] - $jabatan['terpakai']; ?></td>
+                                    <td class="text-center">
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <a href="<?= base_url('Data_Rptka/edit_jabatan/' . $jabatan['id_jabatan_rptka']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                            </li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             <?php $no++;
                             endforeach;

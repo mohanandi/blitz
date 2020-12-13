@@ -19,6 +19,10 @@ class Rptka_Model extends CI_Model
     {
         return $this->db->get_where('jabatan_rptka', ['id_rptka' => $id])->result_array();
     }
+    public function getJabatanByRptkaById($id)
+    {
+        return $this->db->get_where('jabatan_rptka', ['id_jabatan_rptka' => $id])->row_array();
+    }
     public function getJabatanById($id)
     {
         return $this->db->get_where('jabatan_rptka', ['id_jabatan_rptka' => $id])->row_array();
@@ -51,27 +55,24 @@ class Rptka_Model extends CI_Model
         $this->db->where('id', $this->input->post('id_rptka'));
         $this->db->update('rptka', $data);
     }
-    public function TambahJabatan()
+    public function TambahJabatan($id)
     {
-        for ($i = 0; $i < count($this->input->post('nama_jabatan[]')); $i++) {
-            $data = [
-                "id_rptka" => $this->input->post('id_rptka', true),
-                "jabatan" => $this->input->post("nama_jabatan[$i]", true),
-                "jumlah" => $this->input->post("jumlah_jabatan[$i]", true)
-            ];
-            $this->db->insert('jabatan_rptka', $data);
-        }
+        $data = [
+            "id_rptka" => $id,
+            "jabatan" => $this->input->post("jabatan", true),
+            "jumlah" => $this->input->post("jumlah", true),
+            "terpakai" => 0
+        ];
+        $this->db->insert('jabatan_rptka', $data);
     }
-    public function EditJabatan()
+    public function EditJabatan($id)
     {
-        for ($i = 0; $i < count($this->input->post('nama_jabatan[]')); $i++) {
-            $data = [
-                "id_rptka" => $this->input->post('id_rptka', true),
-                "jabatan" => $this->input->post("nama_jabatan[$i]", true),
-                "jumlah" => $this->input->post("jumlah_jabatan[$i]", true)
-            ];
-            $this->db->insert('jabatan_rptka', $data);
-        }
+        $data = [
+            "jabatan" => $this->input->post("jabatan", true),
+            "jumlah" => $this->input->post("jumlah", true)
+        ];
+        $this->db->where('id_jabatan_rptka', $id);
+        $this->db->update('jabatan_rptka', $data);
     }
     public function TambahTerpakaiJabatan($terpakai)
     {
@@ -100,6 +101,14 @@ class Rptka_Model extends CI_Model
         $this->db->where('id_pt', $id_pt);
         return $this->db->get('rptka')->result();
     }
+    public function getJabatanTerpakai($id_rptka)
+    {
+        $this->db->select(array('id_jabatan_rptka', 'jumlah'));
+        $this->db->from('jabatan_rptka');
+        $this->db->where('id_rptka', $id_rptka);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     // Untuk mendapatkan pilihan Jabatan
     public function getJabtanPilihan()
@@ -114,6 +123,14 @@ class Rptka_Model extends CI_Model
             "jumlah_terpakai" => $terpakai
         ];
         $this->db->where('id', $this->input->post('no_rptka'));
+        $this->db->update('rptka', $data);
+    }
+    public function EditJabatanRptka($jumlah_jabatan, $id_rptka)
+    {
+        $data = [
+            "jumlah_rptka" => $jumlah_jabatan
+        ];
+        $this->db->where('id', $id_rptka);
         $this->db->update('rptka', $data);
     }
 }
