@@ -18,6 +18,7 @@ class Data_Voucher extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data['data_id_voucher'] = $this->Data_Voucher_Model->getVoucherVisa();
+            $data['data_id_voucher_entertaint'] = $this->Data_Voucher_Model->getVoucherEntertaint();
             $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
             $data['judul'] = 'Data Voucher';
             $this->load->view('templates/header', $data);
@@ -28,6 +29,7 @@ class Data_Voucher extends CI_Controller
             $sampai = strtotime($this->input->post('sampai')) + (60 * 60 * 24);
             $id_pt = $this->input->post('nama_pt');
             $data['data_id_voucher'] = $this->Data_Voucher_Model->getVoucherVisaFilter($id_pt, $dari, $sampai);
+            $data['data_id_voucher_entertaint'] = $this->Data_Voucher_Model->getVoucherEntertaintFilter($id_pt, $dari, $sampai);
             $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
             $data['judul'] = 'Data Voucher';
             $this->load->view('templates/header', $data);
@@ -47,7 +49,7 @@ class Data_Voucher extends CI_Controller
     public function detail($id_voucher)
     {
         $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
-        $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($data['data_voucher']['id_voucher']);
+        $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
         $data['judul'] = 'Data Voucher';
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/data_vouchervisa_detail', $data);
@@ -83,28 +85,23 @@ class Data_Voucher extends CI_Controller
                 $this->input->post();
                 $this->data_visa();
             } else {
-                $this->input->post();
-                $this->tambah_entertaint();
+                $kode = $this->Data_Voucher_Model->getKodeVoucherEntertaint();
+                $this->Data_Voucher_Model->tambahVoucherEntertaint($kode);
+                $data_voucher = $this->Data_Voucher_Model->getLastKodeEntertaint();
+                $id_voucher = $data_voucher['id_voucher'];
+                redirect("Data_Voucher/detail_entertaint/$id_voucher");
             }
         }
     }
 
-    public function tambah_entertaint()
+    public function detail_entertaint($id_voucher)
     {
-        $data = array(
-            'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
-            'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
-        );
+        $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
+        $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherEntertaint($id_voucher);
         $data['judul'] = 'Data Voucher';
         $data['button'] = 'Buat Voucher';
-        $data['id_pt'] = $this->input->post('nama_pt');
-        $data['nama_client'] = $this->input->post('nama_client');
-        $data['id_kategori'] = $this->input->post('kategori');
-        $data['mata_uang'] = $this->input->post('mata_uang');
-        $data['staff'] = $this->input->post('staff');
-        $data['note'] = $this->input->post('note');
         $this->load->view('templates/header', $data);
-        $this->load->view('data_voucher/entertaint_form', $data);
+        $this->load->view('data_voucher/entertaint_detail', $data);
         $this->load->view('templates/footer');
     }
     public function data_visa()
@@ -124,6 +121,35 @@ class Data_Voucher extends CI_Controller
         $this->load->view('data_voucher/data_visa', $data);
         $this->load->view('templates/footer');
     }
+    public function tambah_voucher_entertaint($id_voucher)
+    {
+        $data = array(
+            'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
+            'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
+        );
+        $this->form_validation->set_rules('nama', 'Total Harga', 'trim');
+        $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
+        $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+        $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
+            $data['judul'] = 'Data Voucher';
+            $data['button'] = 'Tambahkan Data Voucher';
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_voucher/entertaint_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Data_Voucher_Model->tambahDataVoucherEntertaint();
+            $voucher = $this->Data_Voucher_Model->getVoucherEntertaintById($this->input->post('id_voucher'));
+            $total_harga = $voucher['total_harga'] + $this->input->post('harga');
+            $jumlah_data = $voucher['jumlah_data'] + 1;
+            $this->Data_Voucher_Model->updateDataEntertaint($total_harga, $jumlah_data);
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect("Data_Voucher/detail_entertaint/$id_voucher");
+        }
+    }
+
     public function tambahvouchervisa()
     {
         $this->form_validation->set_rules('total', 'Total Harga', 'trim|required');
@@ -165,5 +191,54 @@ class Data_Voucher extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('input_visa_other');
         $this->load->view('templates/footer');
+    }
+
+    public function delete_data_entertaint($id_pengguna)
+    {
+        $data_voucher = $this->Data_Voucher_Model->getIdVoucherEntertaint($id_pengguna);
+        $id_voucher = $data_voucher['id_voucher_entertaint'];
+        $this->Data_Voucher_Model->hapusDataPenggunaEntertaint($id_pengguna);
+        $data = $this->Data_Voucher_Model->getHargaVoucherEntertaint($id_voucher);
+        $total_harga = 0;
+        foreach ($data as $d) :
+            $total_harga += $d['harga'];
+        endforeach;
+        $jumlah_data = count($data);;
+        $this->Data_Voucher_Model->ubahDataEntertaint($total_harga, $jumlah_data, $id_voucher);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect("Data_Voucher/detail_entertaint/$id_voucher");
+    }
+    public function ubah_data_entertaint($id_pengguna)
+    {
+        $data = array(
+            'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
+            'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
+        );
+        $this->form_validation->set_rules('nama', 'Total Harga', 'trim');
+        $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
+        $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+        $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+
+        $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherEntertaintById($id_pengguna);
+        $id_voucher = $data['data_pengguna_voucher']['id_voucher_entertaint'];
+        if ($this->form_validation->run() == FALSE) {
+            $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
+            $data['judul'] = 'Data Voucher';
+            $data['button'] = 'Simpan Edit Data Voucher';
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_voucher/entertaint_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Data_Voucher_Model->ubahDataPenggunaVoucherEntertaint($id_pengguna);
+            $data = $this->Data_Voucher_Model->getHargaVoucherEntertaint($id_voucher);
+            $total_harga = 0;
+            foreach ($data as $d) :
+                $total_harga += $d['harga'];
+            endforeach;
+            $jumlah_data = count($data);;
+            $this->Data_Voucher_Model->ubahDataEntertaint($total_harga, $jumlah_data, $id_voucher);
+            $this->session->set_flashdata('flash', 'Dirubah');
+            redirect("Data_Voucher/detail_entertaint/$id_voucher");
+        }
     }
 }
