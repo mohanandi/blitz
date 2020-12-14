@@ -87,7 +87,6 @@
                                         <?= $this->session->userdata('nama'); ?>
                                     </div>
                                     <div class="widget-subheading">
-                                        VP People Manager
                                     </div>
                                 </div>
                             </div>

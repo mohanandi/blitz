@@ -36,7 +36,7 @@
                                         $this->db->select('id_penghubung_visa312');
                                         $this->db->from('penghubung_visa312');
                                         $this->db->where('id_jenis_visa', $jenis_visa['id']);
-                                        $this->db->where('status', 'Aktif');
+                                        $this->db->where('status !=', 'Aktif');
                                         $query = $this->db->get();
                                         $data = $query->result_array();
                                         $jumlah_non = count($data);
@@ -59,7 +59,7 @@
                                         $this->db->select('id_penghubung_visa211');
                                         $this->db->from('penghubung_visa211');
                                         $this->db->where('id_jenis_visa', $jenis_visa['id']);
-                                        $this->db->where('status', 'Non Aktif');
+                                        $this->db->where('status !=', 'Aktif');
                                         $query = $this->db->get();
                                         $data = $query->result_array();
                                         $jumlah_non = count($data);

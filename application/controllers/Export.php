@@ -70,61 +70,269 @@ class Export extends CI_Controller
     }
     public function export_vouchervisa($id_voucher)
     {
+        $data_voucher = $this->db->get_where('voucher_visa', ['id_voucher' => $id_voucher])->row_array();
+        $judul = "Voucher " . $data_voucher['kode_voucher'];
+        $data_pt = $this->db->get_where('pt', ['id' => $data_voucher['id_pt']])->row_array();
+        $jenis_proses = $this->db->get_where('jenis_proses', ['id_proses' => $data_voucher['id_jenis_proses']])->row_array();
+        $data_pengguna_voucher = $this->db->get_where('pengguna_voucher_visa', ['id_voucher_visa' => $data_voucher['id_voucher']])->result_array();
+        $lokasi = $this->db->get_where('harga', ['id_harga' => $data_voucher['lokasi']])->row_array();
 
-        $styleArray = [
-            'font' => [
-                'bold' => true,
-            ],
-            'alignment' => [
-                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
-            ],
-            'borders' => [
-                'top' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'right' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'bottom' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'left' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ]
-            ],
-        ];
+        $style_col = array(
+            'font' => array('bold' => true), // Set font nya jadi bold
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+        $style_cols = array(
+            'font' => array('bold' => true), // Set font nya jadi bold
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+        $style_row = array(
+            'alignment' => array(
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+        $style_cops = array(
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border bottom dengan garis tipis
+            )
+        );
 
         $spreadsheet = new Spreadsheet;
 
-        $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'Nama Puskesmas')
-            ->setCellValue('A2', 'No Registrasi')
-            ->setCellValue('A3', 'Tanggal Pendirian')
-            ->setCellValue('A4', 'Alamat')
-            ->setCellValue('A5', 'Kecamatan')
-            ->setCellValue('A6', 'Kabupaten/Kota')
-            ->setCellValue('A7', 'Provinsi')
-            ->setCellValue('A8', 'No. Telepon Puskesmas dan No Telepon Whatsapp')
-            ->setCellValue('A9', 'No. Telepon Ruang Gadar')
-            ->setCellValue('A10', 'No. Faksimile')
-            ->setCellValue('A11', 'Alamat email')
-            ->setCellValue('A12', 'Alamat website');
+        $spreadsheet->getProperties()->setCreator('My Notes Code')
+            ->setLastModifiedBy('My Notes Code')
+            ->setTitle("Data Voucher")
+            ->setSubject("Voucher")
+            ->setDescription("Laporan Voucher")
+            ->setKeywords("Data voucher");
 
-        $spreadsheet->getActiveSheet()->getStyle('A1:A12')->applyFromArray($styleArray);
 
-        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(50);
-        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+        $objDrawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+        $objDrawing->setName('Media Kreatif Indonesia');
+        $objDrawing->setDescription('Logo Media Kreatif');
+        $objDrawing->setPath('assets/images/blog.png');
+        $objDrawing->setCoordinates('B1');
+        $objDrawing->setWorksheet($spreadsheet->getActiveSheet());
+        $objDrawing->setWidth(170)->setHeight(170);
+
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', "PT. BLITZINDO UTAMA"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A1:F4'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(20); // Set font size 15 untuk kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk 
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER); // Set text center untuk 
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A5', "FORM PROSES"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A5:F5'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A5')->getFont()->setBold(TRUE); // Set bold kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A5')->getFont()->setSize(14); // Set font size 15 untuk kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk 
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A6', $data_voucher['kode_voucher']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A6:F6'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A6')->getFont()->setBold(TRUE); // Set bold kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A6')->getFont()->setSize(14); // Set font size 14 untuk kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A6')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
+
+
+        // Field Lokasi dan Staff OP
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A8', "NAMA PERUSAHAAN"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A8:B8'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A8:B8')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C8', $data_pt['nama_pt']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('C8:F8'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C8:F8')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A9', "NAMA CLIENT"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A9:B9'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A9:B9')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C9', $data_voucher['nama_client']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('C9:D9'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C9:D9')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A10', "TANGGAL"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A10:B10'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A10:B10')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C10', date('d-m-Y', $data_voucher['tgl_input'])); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('C10:D10'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C10:D10')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E9', "LOKASI"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('E9')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F9', $lokasi['lokasi']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('F9')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E10', "STAFF OP"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('E10')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F10', $data_voucher['staff']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('F10')->applyFromArray($style_cols);
+
+
+        $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(20);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A12', "NO");
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B12', "NAMA");
+        $spreadsheet->getActiveSheet()->mergeCells('B12:C12');
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('D12', "NO PASSPORT");
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E12', "JENIS PROSES");
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F12', "JUMLAH");
+
+        $spreadsheet->getActiveSheet()->getStyle('A12')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('B12')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('C12')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('D12')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('E12')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('F12')->applyFromArray($style_col);
+
+        $no = 1;
+        $numrow = 13;
+        foreach ($data_pengguna_voucher as $pengguna_voucher) :
+            $data_tka = $this->db->get_where('tka', ['id' => $pengguna_voucher['id_tka']])->row_array();
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data_tka['nama_mandarin']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data_tka['nama_latin']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data_tka['passport']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $jenis_proses['nama_proses']);
+            if ($data_voucher['mata_uang'] == 'Rupiah') {
+                $harga = "Rp " . number_format($pengguna_voucher['harga'], 2, ',', '.');
+            } else {
+                $harga = "$ " . number_format($pengguna_voucher['harga'], 2, '.', ',');
+            }
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $harga);
+
+            // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+            $spreadsheet->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('B' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('C' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('D' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('E' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
+
+            $spreadsheet->getActiveSheet()->getRowDimension($numrow)->setRowHeight(20);
+
+            $no++; // Tambah 1 setiap kali looping
+            $numrow++; // Tambah 1 setiap kali looping
+        endforeach;
+
+        if ($no <= 20) {
+            $sisa = 20 - $no;
+            for ($i = 0; $i <= $sisa; $i++) {
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $numrow, "$no");
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $numrow, "");
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('C' . $numrow, "");
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('D' . $numrow, "");
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('E' . $numrow, "");
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $numrow, "");
+
+                // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+                $spreadsheet->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
+                $spreadsheet->getActiveSheet()->getStyle('B' . $numrow)->applyFromArray($style_row);
+                $spreadsheet->getActiveSheet()->getStyle('C' . $numrow)->applyFromArray($style_row);
+                $spreadsheet->getActiveSheet()->getStyle('D' . $numrow)->applyFromArray($style_row);
+                $spreadsheet->getActiveSheet()->getStyle('E' . $numrow)->applyFromArray($style_row);
+                $spreadsheet->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
+
+                $spreadsheet->getActiveSheet()->getRowDimension($numrow)->setRowHeight(20);
+                $numrow++;
+                $no++;
+            }
+        } else {
+        }
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A33', "TOTAL"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A33:E33'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A33:E33')->applyFromArray($style_col);
+
+        if ($data_voucher['mata_uang'] == "Rupiah") {
+            $cetak_total = "Rp " . number_format($data_voucher['total_harga'], 2, ',', '.');
+        } else {
+            $cetak_total = "$ " . number_format($data_voucher['total_harga'], 2, '.', ',');
+        }
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F33', $cetak_total); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('F33')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A35', "APPLY BY");
+        $spreadsheet->getActiveSheet()->mergeCells('A35:B36'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A35:B36')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C35', $data_voucher['input_by_id']);
+        $spreadsheet->getActiveSheet()->mergeCells('C35:F36'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C35:F36')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A37', "HEAD DPT");
+        $spreadsheet->getActiveSheet()->mergeCells('A37:B38'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A37:B38')->applyFromArray($style_col);
+
+        $spreadsheet->getActiveSheet()->mergeCells('C37:F38'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C37:F38')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A40', "NOTE	:");
+        $spreadsheet->getActiveSheet()->mergeCells('A40:B40'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A40')->getFont()->setBold(TRUE);
+        $spreadsheet->getActiveSheet()->getStyle('A40')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A41', $data_voucher['note']);
+        $spreadsheet->getActiveSheet()->mergeCells('A41:F45'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A41:F45')->applyFromArray($style_col);
+
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(10); // Set width kolom B
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(15); // Set width kolom C
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom F
+
+        // Set orientasi kertas jadi LANDSCAPE
+        $spreadsheet->getActiveSheet()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+
+        // Set judul file excel nya
+        $spreadsheet->getActiveSheet(0)->setTitle("Laporan Data Transaksi");
+        $spreadsheet->setActiveSheetIndex(0);
 
         $writer = new Xlsx($spreadsheet);
 
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="Identitas Puskesmas.xlsx"');
+        header('Content-Disposition: attachment;filename=' . $judul . '.xlsx');
         header('Cache-Control: max-age=0');
 
         $myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
-
-        // Attach the "My Data" worksheet as the first worksheet in the Spreadsheet object
-        $spreadsheet->addSheet($myWorkSheet, 0);
 
         $writer->save('php://output');
     }
@@ -134,28 +342,6 @@ class Export extends CI_Controller
         $judul = "RPTKA " . $data_rptka['no_rptka'];
         $data_jabatan_rptka = $this->db->get_where('jabatan_rptka', ['id_rptka' => $id_rptka])->result_array();
         $data_pengguna_rptka = $this->db->get_where('penghubung_visa312', ['id_rptka' => $id_rptka, 'id_pt' => $data_rptka['id_pt']])->result_array();
-        $styleArray = [
-            'font' => [
-                'bold' => true,
-            ],
-            'alignment' => [
-                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
-            ],
-            'borders' => [
-                'top' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'right' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'bottom' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ],
-                'left' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                ]
-            ],
-        ];
 
         $style_col = array(
             'font' => array('bold' => true), // Set font nya jadi bold
@@ -321,15 +507,6 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(25); // Set width kolom C
         $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20); // Set width kolom D
         $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom E
-        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(15); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(30); // Set width kolom F
-        $spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(15); // Set width kolom F
 
         // Set orientasi kertas jadi LANDSCAPE
         $spreadsheet->getActiveSheet()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
