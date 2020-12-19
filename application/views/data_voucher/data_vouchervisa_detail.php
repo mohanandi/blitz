@@ -71,6 +71,7 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data Voucher
+                <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Jenis_Visa/tambah'); ?>" type="button">Tambah Data Voucher</a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -107,7 +108,7 @@
                                 <td class="text-center">
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Data_Voucher/delete_data_entertaint/' . $pengguna_voucher['id_pengguna_voucher']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Data_Voucher/delete_data_visa/' . $pengguna_voucher['id_pengguna_voucher']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
                                         </li>
                                     </ul>
                                 </td>

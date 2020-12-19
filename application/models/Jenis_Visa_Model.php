@@ -45,4 +45,9 @@ class Jenis_Visa_Model extends CI_Model
         $this->db->where('id', $this->input->post('id_visa'));
         $this->db->update('jenis_visa', $data);
     }
+    public function DeleteJenisVisa($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('jenis_visa');
+    }
 }

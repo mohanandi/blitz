@@ -78,4 +78,10 @@ class Jenis_Visa extends CI_Controller
             redirect("Jenis_visa");
         }
     }
+    public function hapus($id)
+    {
+        $this->Jenis_Visa_Model->DeleteJenisVisa($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect("Jenis_visa");
+    }
 }

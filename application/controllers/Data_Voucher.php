@@ -208,6 +208,21 @@ class Data_Voucher extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect("Data_Voucher/detail_entertaint/$id_voucher");
     }
+    public function delete_data_visa($id_pengguna)
+    {
+        $data_voucher = $this->Data_Voucher_Model->getIdVoucherEntertaint($id_pengguna);
+        $id_voucher = $data_voucher['id_voucher_entertaint'];
+        $this->Data_Voucher_Model->hapusDataPenggunaEntertaint($id_pengguna);
+        $data = $this->Data_Voucher_Model->getHargaVoucherEntertaint($id_voucher);
+        $total_harga = 0;
+        foreach ($data as $d) :
+            $total_harga += $d['harga'];
+        endforeach;
+        $jumlah_data = count($data);;
+        $this->Data_Voucher_Model->ubahDataEntertaint($total_harga, $jumlah_data, $id_voucher);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect("Data_Voucher/detail_entertaint/$id_voucher");
+    }
     public function ubah_data_entertaint($id_pengguna)
     {
         $data = array(

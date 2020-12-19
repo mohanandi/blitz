@@ -5,9 +5,7 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data Jenis Visa
-
                 <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Jenis_Visa/tambah'); ?>" type="button">Tambah Visa</a>
-
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
@@ -39,7 +37,14 @@
                                     <td class="text-center"><?= $jenis_select['nama']; ?></td>
                                     <td class="text-center"><?= date('d-m-Y', $jenis_visa['tgl_input']); ?></td>
                                     <td class="text-center">
-                                        <a href="<?= base_url('Jenis_Visa/edit/'); ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Edit</a>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <a href="<?= base_url('Jenis_Visa/edit/'); ?><?= $jenis_visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Jenis_Visa/hapus/'); ?><?= $jenis_visa['id']; ?>" title="Delete"><i class="fa fa-trash"></i></button>
+                                            </li>
+                                        </ul>
                                     </td>
                                 </tr>
                         <?php
@@ -52,3 +57,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.action-delete').click(function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You Will delete this data !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = $(this).data('href');
+            }
+        })
+    });
+</script>
