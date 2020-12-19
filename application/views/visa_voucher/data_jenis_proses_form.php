@@ -8,7 +8,13 @@
                     <div class="position-relative row form-group">
                         <label for="NamaTKA" class="col-sm-2 col-form-label"><b>Nama Proses</b></label>
                         <div class="col-sm-10">
-                            <input name="nama_proses" id="nama_proses" value="<?= set_value('nama_proses'); ?>" type="text" placeholder="Nama Proses Voucher" class="form-control">
+                            <?php if (set_value('nama_proses')) : ?>
+                                <input name="nama_proses" id="nama_proses" value="<?= set_value('nama_proses'); ?>" type="text" placeholder="Nama Proses Voucher" class="form-control">
+                            <?php elseif ($data_proses['nama_proses']) : ?>
+                                <input name="nama_proses" id="nama_proses" value="<?= $data_proses['nama_proses']; ?>" type="text" placeholder="Nama Proses Voucher" class="form-control">
+                            <?php else : ?>
+                                <input name="nama_proses" id="nama_proses" value="" type="text" placeholder="Nama Proses Voucher" class="form-control">
+                            <?php endif; ?>
                             <?= form_error('nama_proses'); ?>
                         </div>
                     </div>

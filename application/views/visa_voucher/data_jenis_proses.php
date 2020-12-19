@@ -33,7 +33,14 @@
                                 <td class="text-center"><?= $input_by['nama']; ?></td>
                                 <td class="text-center"><?= date('d-m-Y', $proses['tgl_input']); ?></td>
                                 <td class="text-center">
-                                    <a href="" class="badge badge-secondary">Edit</a>
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="<?= base_url('Jenis_Voucher/edit_proses/' . $proses['id_proses']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Jenis_voucher/delete_proses/' . $proses['id_proses']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         <?php $no++;
@@ -81,7 +88,14 @@
                                 <?php $dollar = "$ " . number_format($harga['dollar'], 2, '.', ','); ?>
                                 <td class="text-center"><?= $dollar; ?></td>
                                 <td class="text-center">
-                                    <a href="" class="badge badge-secondary">Edit</a>
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="<?= base_url('Jenis_Voucher/edit_lokasi/' . $harga['id_harga']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Jenis_voucher/delete_lokasi/' . $harga['id_harga']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         <?php $no++;
@@ -96,5 +110,23 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('table.display').DataTable();
+    });
+</script>
+
+<script>
+    $('.action-delete').click(function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You Will delete this data !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = $(this).data('href');
+            }
+        })
     });
 </script>
