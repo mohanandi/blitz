@@ -292,7 +292,7 @@ class Export extends CI_Controller
         $data_pt = $this->db->get_where('pt', ['id' => $data_voucher['id_pt']])->row_array();
         $jenis_proses = $this->db->get_where('jenis_proses', ['id_proses' => $data_voucher['id_jenis_proses']])->row_array();
         $data_pengguna_voucher = $this->db->get_where('pengguna_voucher_visa', ['id_voucher_visa' => $data_voucher['id_voucher']])->result_array();
-        $lokasi = $this->db->get_where('harga', ['id_harga' => $data_voucher['lokasi']])->row_array();
+        $lokasi = $this->db->get_where('harga', ['id_harga' => $data_voucher['id_lokasi']])->row_array();
 
         $style_col = array(
             'font' => array('bold' => true), // Set font nya jadi bold

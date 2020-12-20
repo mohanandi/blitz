@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data Spesifikasi Voucher
+            <div class="card-header">Data Spesifikasi Voucher <?= $data_voucher['kode_voucher']; ?>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
@@ -100,6 +100,7 @@
                             endforeach; ?>
                         </tbody>
                     </table>
+                    <input type="hidden" name="id_voucher" id="id_voucher" value="<?= $data_voucher['id_voucher']; ?>">
                     <button type="submit" class="btn-actions-pane-right mb-2 mr-2 btn btn-primary">Tambahkan TKA</button>
                 </div>
             </form>

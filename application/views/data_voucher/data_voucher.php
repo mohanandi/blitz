@@ -80,7 +80,6 @@
 							<th class="text-center">Nama Perushaan</th>
 							<th class="text-center">Jumlah Data</th>
 							<th class="text-center">Total Harga</th>
-							<th class="text-center">Status Invoice</th>
 							<th class="text-center">Input By</th>
 							<th class="text-center">Tanggal Input</th>
 							<th class="text-center">Action</th>
@@ -109,20 +108,10 @@
 								$this->db->where('id', $data_voucher['input_by_id']);
 								$query_input_by = $this->db->get();
 								$data_input_by = $query_input_by->row_array();
-								$this->db->select('id_invoice');
-								$this->db->from('invoice_voucher_visa');
-								$this->db->where('id_voucher_visa', $data_voucher['id_voucher']);
-								$query_invoice = $this->db->get();
-								$data_invoice = $query_invoice->row_array();
 								?>
 								<td class="text-center"><?= $data_pt['nama_pt']; ?></td>
 								<td class="text-center"><?= $data_voucher['jumlah_data']; ?></td>
 								<td class="text-center"><?= $harga; ?></td>
-								<?php if ($data_invoice) : ?>
-									<td class="text-center"><?= $data_invoice['invoice']; ?></td>
-								<?php else : ?>
-									<td class="text-center"><span class="badge badge-secondary">Belum Ada Invoice</span></td>
-								<?php endif; ?>
 								<td class="text-center"><?= $data_input_by['nama']; ?></td>
 								<td class="text-center"><?= date('d-m-Y', $data_voucher['tgl_input']); ?></td>
 								<td class="text-center">
@@ -152,20 +141,10 @@
 								$this->db->where('id', $data_voucher['input_by_id']);
 								$query_input_by = $this->db->get();
 								$data_input_by = $query_input_by->row_array();
-								$this->db->select('id_invoice');
-								$this->db->from('invoice_voucher_visa');
-								$this->db->where('id_voucher_visa', $data_voucher['id_voucher']);
-								$query_invoice = $this->db->get();
-								$data_invoice = $query_invoice->row_array();
 								?>
 								<td class="text-center"><?= $data_pt['nama_pt']; ?></td>
 								<td class="text-center"><?= $data_voucher['jumlah_data']; ?></td>
 								<td class="text-center"><?= $harga; ?></td>
-								<?php if ($data_invoice) : ?>
-									<td class="text-center"><?= $data_invoice['invoice']; ?></td>
-								<?php else : ?>
-									<td class="text-center"><span class="badge badge-secondary">Belum Ada Invoice</span></td>
-								<?php endif; ?>
 								<td class="text-center"><?= $data_input_by['nama']; ?></td>
 								<td class="text-center"><?= date('d-m-Y', $data_voucher['tgl_input']); ?></td>
 								<td class="text-center">
