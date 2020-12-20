@@ -8,13 +8,17 @@ class Home extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Home_Model');
     }
 
     public function index()
     {
+        $data['jumlah_visa'] = $this->Home_Model->jumlahVisa();
+        $data['jumlah_tka'] = $this->Home_Model->jumlahTka();
+        $data['jumlah_pt'] = $this->Home_Model->jumlahPt();
         $data['judul'] = "Home";
         $this->load->view('templates/header', $data);
-        $this->load->view('home');
+        $this->load->view('home', $data);
         $this->load->view('templates/footer');
     }
 }

@@ -3,11 +3,11 @@
         <div class="card mb-3 widget-content bg-midnight-bloom">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Visa 312</div>
-                    <div class="widget-subheading">Jumlah Visa 312 Selesai</div>
+                    <div class="widget-heading">Jumlah Visa</div>
+                    <div class="widget-subheading">Jumlah Jenis Visa</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>1183</span></div>
+                    <div class="widget-numbers text-white"><span><?= $jumlah_visa; ?></span></div>
                 </div>
             </div>
         </div>
@@ -16,11 +16,11 @@
         <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah Client</div>
-                    <div class="widget-subheading">Total Client</div>
+                    <div class="widget-heading">Jumlah TKA</div>
+                    <div class="widget-subheading">Total TKA</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>568</span></div>
+                    <div class="widget-numbers text-white"><span><?= $jumlah_tka; ?></span></div>
                 </div>
             </div>
         </div>
@@ -29,11 +29,11 @@
         <div class="card mb-3 widget-content bg-grow-early">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah TKA</div>
-                    <div class="widget-subheading">Total semua TKA</div>
+                    <div class="widget-heading">Jumlah Perusahaan</div>
+                    <div class="widget-subheading"></div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>1892</span></div>
+                    <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="card mb-3 widget-content bg-love-kiss">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah PT</div>
+                    <div class="widget-heading">Jumlah Voucher</div>
                     <div class="widget-subheading">Total PT yang ada</div>
                 </div>
                 <div class="widget-content-right">
@@ -63,8 +63,7 @@
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                     <thead>
                         <tr>
-                            <th class="text-center">Jenis</th>
-                            <th class="text-center">Hari Ini</th>
+                            <th class="text-center">Nama Visa</th>
                             <th class="text-center">Satu Minggu</th>
                             <th class="text-center">Dua Minggu</th>
                             <th class="text-center">Tiga Minggu</th>
@@ -81,78 +80,6 @@
                             <td class="text-center">13</td>
                             <td class="text-center">9</td>
                             <td class="text-center">2</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 211</td>
-                            <td class="text-center">121</td>
-                            <td class="text-center">63</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">4</td>
-                            <td class="text-center">12</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 212</td>
-                            <td class="text-center">81</td>
-                            <td class="text-center">41</td>
-                            <td class="text-center">223</td>
-                            <td class="text-center">92</td>
-                            <td class="text-center">12</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 312-2</td>
-                            <td class="text-center">211</td>
-                            <td class="text-center">43</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">4</td>
-                            <td class="text-center">32</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 312</td>
-                            <td class="text-center">261</td>
-                            <td class="text-center">43</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">1</td>
-                            <td class="text-center">232</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 312</td>
-                            <td class="text-center">101</td>
-                            <td class="text-center">43</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">9</td>
-                            <td class="text-center">222</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Visa 312</td>
-                            <td class="text-center">201</td>
-                            <td class="text-center">43</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">2</td>
-                            <td class="text-center">102</td>
                             <td class="text-center">8</td>
                             <td class="text-center">
                                 <div class="badge badge-success">Detail</div>
