@@ -4,13 +4,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Profile PT
+            <div class="card-header">Profile Perusahaan
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
                     <thead>
                         <tr>
-                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Nama Perusahaan</th>
                             <th class="text-center">PIC</th>
                             <th class="text-center">Nama Client</th>
                             <th class="text-center">Alamat</th>
@@ -43,352 +43,90 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data PT Shanghai Shenhua
-                <button type="button" class="btn mr-2 mb-2 btn-primary btn-actions-pane-right" data-toggle="modal" data-target="#exampleModal">
-                    Export
-                </button>
-                <form action="Data TKA-Tambah.html">
-                    <input class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" type="submit" value="Tambah TKA" />
-                </form>
+            <div class="card-header">Data TKA Perusahaan
             </div>
-
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Nama PT</th>
-                            <th class="text-center">PIC</th>
-                            <th class="text-center">Nama Client</th>
-                            <th class="text-center">Alamat</th>
+                            <th class="text-center">Nama Mandarin</th>
+                            <th class="text-center">Nama Latin</th>
+                            <th class="text-center">Passport</th>
                             <th class="text-center">Keterangan</th>
-                            <th class="text-center">Detail</th>
+                            <th class="text-center">Input By</th>
+                            <th class="text-center">Tanggal Input</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no = 1;
+                        foreach ($data_tka as $tka) : ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $no; ?></td>
+                                <td class="text-center"><?= $tka['nama_mandarin']; ?></td>
+                                <td class="text-center"><?= $tka['nama_latin']; ?></td>
+                                <td class="text-center"><?= $tka['passport']; ?></td>
+                                <td class="text-center"><?= $tka['ket']; ?></td>
+                                <?php $user = $this->db->get_where('user', ['id' => $tka['input_by_id']])->row_array(); ?>
+                                <td class="text-center"><?= $user['nama']; ?></td>
+                                <td class="text-center"><?= date('d-m-Y', $tka['tgl_input']); ?></td>
+                                <td class="text-center">
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="<?= base_url('Data_Tka/edit_jabatan/' . $tka['id']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">Data Visa dan RPTKA Perusahaan
+            </div>
+            <div class="table-responsive" style="padding: 10px;">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
+                    <thead>
                         <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nama Visa</th>
+                            <th class="text-center">Jumlah Aktif</th>
+                            <th class="text-center">Jumlah Non-Aktif</th>
+                            <th class="text-center">Action</th>
                         </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">Luo Yi</td>
-                            <td class="text-center">RRC</td>
-                            <td class="text-center">440088KJL66</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">15 - 04 - 1987</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1;
+                        foreach ($data_jenis_visa as $jenis_visa) : ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $no; ?></td>
+                                <td class="text-center"><?= $jenis_visa['visa']; ?></td>
+                                <td class="text-center"><?= $jenis_visa['visa']; ?></td>
+                                <td class="text-center"><?= $jenis_visa['visa']; ?></td>
+                                <td class="text-center">
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="<?= base_url('Data_Tka/edit_jabatan/' . $jenis_visa['visa']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -408,7 +146,7 @@
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="atas">
                     <thead>
                         <tr>
-                            <th class="text-left" style="font-size: 30px; color: green;">104</th>
+                            <th class="text-left" style="font-size: 30px; color: green;"><?= $jumlah_voucher; ?></th>
                         </tr>
                     </thead>
                 </table>
@@ -417,7 +155,7 @@
     </div>
 </div>
 
-
+<!-- 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -477,4 +215,4 @@
         </div>
     </div>
 
-</div>
+</div> -->

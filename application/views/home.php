@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-midnight-bloom">
+        <div class="card mb-3 widget-content bg-grow-early">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah Visa</div>
+                    <div class="widget-heading">Jumlah Perusahaan</div>
                     <div class="widget-subheading"><a href="">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_visa; ?></span></div>
+                    <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
                 </div>
             </div>
         </div>
@@ -26,19 +26,6 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah Perusahaan</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
         <div class="card mb-3 widget-content bg-love-kiss">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
@@ -47,6 +34,19 @@
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_voucher; ?></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card mb-3 widget-content bg-midnight-bloom">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Jumlah RPTKA</div>
+                    <div class="widget-subheading"><a href="">see detail</a></div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span><?= $jumlah_rptka; ?></span></div>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="table-responsive" style="padding: 10px;">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="example">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
                         <tr>
                             <th class="text-center">Nama Visa</th>
@@ -68,7 +68,6 @@
                             <th class="text-center">Dua Minggu</th>
                             <th class="text-center">Tiga Minggu</th>
                             <th class="text-center">Satu Bulan</th>
-                            <th class="text-center">Expired</th>
                             <th class="text-center">Detail</th>
                         </tr>
                     </thead>
@@ -77,12 +76,78 @@
                         foreach ($data_visa as $visa) : ?>
                             <tr>
                                 <td class="text-center text-muted"><?= $visa['visa']; ?></td>
-                                <td class="text-center">201</td>
-                                <td class="text-center">43</td>
-                                <td class="text-center">13</td>
-                                <td class="text-center">9</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">8</td>
+                                <?php if ($visa['kategori_id'] == 1) {
+                                    $seminggu = $this->db->from('penghubung_visa312')
+                                        ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+                                        ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa312.status', 'Aktif')
+                                        ->where('visa_312.tgl_expired >=', time())
+                                        ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 7)))
+                                        ->get()
+                                        ->num_rows();
+                                    $duaminggu = $this->db->from('penghubung_visa312')
+                                        ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+                                        ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa312.status', 'Aktif')
+                                        ->where('visa_312.tgl_expired >=', time())
+                                        ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+                                        ->get()
+                                        ->num_rows();
+                                    $tigaminggu = $this->db->from('penghubung_visa312')
+                                        ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+                                        ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa312.status', 'Aktif')
+                                        ->where('visa_312.tgl_expired >=', time())
+                                        ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 21)))
+                                        ->get()
+                                        ->num_rows();
+                                    $sebulan = $this->db->from('penghubung_visa312')
+                                        ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+                                        ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa312.status', 'Aktif')
+                                        ->where('visa_312.tgl_expired >=', time())
+                                        ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 30)))
+                                        ->get()
+                                        ->num_rows();
+                                } else {
+                                    $seminggu = $this->db->from('penghubung_visa211')
+                                        ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+                                        ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa211.status', 'Aktif')
+                                        ->where('visa_211.tgl_expired >=', time())
+                                        ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 7)))
+                                        ->get()
+                                        ->num_rows();
+                                    $duaminggu = $this->db->from('penghubung_visa211')
+                                        ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+                                        ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa211.status', 'Aktif')
+                                        ->where('visa_211.tgl_expired >=', time())
+                                        ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+                                        ->get()
+                                        ->num_rows();
+                                    $tigaminggu = $this->db->from('penghubung_visa211')
+                                        ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+                                        ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa211.status', 'Aktif')
+                                        ->where('visa_211.tgl_expired >=', time())
+                                        ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 21)))
+                                        ->get()
+                                        ->num_rows();
+                                    $sebulan = $this->db->from('penghubung_visa211')
+                                        ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+                                        ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa211.status', 'Aktif')
+                                        ->where('visa_211.tgl_expired >=', time())
+                                        ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 30)))
+                                        ->get()
+                                        ->num_rows();
+                                }
+                                ?>
+                                <td class="text-center"><?= $seminggu; ?></td>
+                                <td class="text-center"><?= $duaminggu; ?></td>
+                                <td class="text-center"><?= $tigaminggu; ?></td>
+                                <td class="text-center"><?= $sebulan; ?></td>
                                 <td class="text-center">
                                     <div class="badge badge-success">Detail</div>
                                 </td>

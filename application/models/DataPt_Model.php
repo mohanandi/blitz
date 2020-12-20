@@ -26,6 +26,10 @@ class DataPt_Model extends CI_Model
     {
         return $this->db->get_where('pt', ['id' => $id])->row_array();
     }
+    public function getDataTka($id)
+    {
+        return $this->db->get_where('tka', ['id_pt' => $id])->result_array();
+    }
 
     public function hapusDataPt($id)
     {
@@ -44,5 +48,31 @@ class DataPt_Model extends CI_Model
         ];
         $this->db->where('id', $this->input->post('id_pt'));
         $this->db->update('pt', $data);
+    }
+    public function getDataJenisVisa()
+    {
+        $this->db->order_by('visa', 'ASC');
+        $this->db->select('*');
+        $this->db->from('jenis_visa');
+        $this->db->where('id !=', 1);
+        $this->db->where('id !=', 2);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function jumlahVoucher($id_pt)
+    {
+        $this->db->select('id_voucher');
+        $this->db->where('id_pt', $id_pt);
+        $this->db->from('voucher_visa');
+        $query = $this->db->get();
+        $voucher_visa = $query->num_rows();
+        $this->db->select('id_voucher');
+        $this->db->where('id_pt', $id_pt);
+        $this->db->from('voucher_entertaint');
+        $query = $this->db->get();
+        $voucher_entertaint = $query->num_rows();
+        $total_voucher = $voucher_visa + $voucher_entertaint;
+        return $total_voucher;
     }
 }

@@ -26,6 +26,9 @@ class Data_Pt extends CI_Controller
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
         $data['data_pic'] = $this->User_Model->getUserById($data['data_pt']['id_pic']);
         $data['input_by'] = $this->User_Model->getUserById($data['data_pt']['input_by_id']);
+        $data['data_jenis_visa'] = $this->DataPt_Model->getDataJenisVisa();
+        $data['data_tka'] = $this->DataPt_Model->getDataTka($id);
+        $data['jumlah_voucher'] = $this->DataPt_Model->jumlahVoucher($id);
         $this->load->view('templates/header', $data);
         $this->load->view('data_pt/data_pt_detail', $data);
         $this->load->view('templates/footer');
