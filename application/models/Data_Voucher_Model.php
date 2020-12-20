@@ -132,8 +132,7 @@ class Data_Voucher_Model extends CI_Model
         $data = [
             "id_voucher_entertaint" => $this->input->post('id_voucher', true),
             "nama" => $this->input->post('nama', true),
-            "id_jenis_proses" => $this->input->post('jenis_proses', true),
-            "id_lokasi" => $this->input->post('lokasi', true),
+            "jenis_proses" => $this->input->post('jenis_proses', true),
             "harga" => $this->input->post('harga', true)
         ];
         $this->db->insert('pengguna_voucher_entertaint', $data);
@@ -153,8 +152,7 @@ class Data_Voucher_Model extends CI_Model
     {
         $data = [
             "nama" => $this->input->post('nama'),
-            "id_jenis_proses" => $this->input->post('jenis_proses'),
-            "id_lokasi" => $this->input->post('lokasi'),
+            "jenis_proses" => $this->input->post('jenis_proses'),
             "harga" => $this->input->post('harga')
         ];
         $this->db->where('id_pengguna_voucher_entertaint', $id_pengguna);
@@ -180,6 +178,7 @@ class Data_Voucher_Model extends CI_Model
             "mata_uang" => $this->input->post('mata_uang', true),
             "total_harga" => 0,
             "kategori_id" => $this->input->post('kategori', true),
+            "lokasi" => $this->input->post('lokasi_entertaint', true),
             "staff" => $this->input->post('staff', true),
             "note" => $this->input->post('note', true),
             "input_by_id" => $this->session->userdata('id'),

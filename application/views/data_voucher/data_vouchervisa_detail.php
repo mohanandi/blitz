@@ -19,6 +19,7 @@
                             <th class="text-center">Mata_Uang</th>
                             <th class="text-center">Note</th>
                             <th class="text-center">Staff OP</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +48,7 @@
                             $data_jenis_proses = $query->row_array();
                             $this->db->select('lokasi');
                             $this->db->from('harga');
-                            $this->db->where('id_harga', $data_voucher['lokasi']);
+                            $this->db->where('id_harga', $data_voucher['id_lokasi']);
                             $query = $this->db->get();
                             $data_lokasi = $query->row_array();
                             ?>
@@ -71,7 +72,7 @@
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-header">Data Voucher
-                <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Jenis_Visa/tambah'); ?>" type="button">Tambah Data Voucher</a>
+                <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Data_Voucher/tambah_data_voucher_visa/' . $id_voucher); ?>" type="button">Tambah Data Voucher</a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">

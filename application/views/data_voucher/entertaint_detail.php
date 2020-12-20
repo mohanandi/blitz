@@ -1,11 +1,11 @@
 <?php if ($this->session->flashdata('flash')) : ?>
-    <div class="alert alert-success fade show" role="alert">Jenis Visa Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
+    <div class="alert alert-success fade show" role="alert">Data Voucher Berhasil <?= $this->session->flashdata('flash'); ?> .</div>
 <?php endif; ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Data Spesifikasi Voucher
+            <div class="card-header">Data Spesifikasi Voucher <?= $data_voucher['kode_voucher']; ?>
                 <a class="btn-actions-pane-right mb-2 mr-2 btn btn-primary" href="<?= base_url('Export/export_voucher_entertaint/' . $data_voucher['id_voucher']); ?>" type="button" type="button" data-toggle="tooltip" data-placement="top" title="Export"><i class="fa fa-download" aria-hidden="true"></i></a>
             </div>
             <div class="table-responsive" style="padding: 10px;">
@@ -16,8 +16,10 @@
                             <th class="text-center">Nama Client</th>
                             <th class="text-center">Kategori Voucher</th>
                             <th class="text-center">Mata Uang</th>
+                            <th class="text-center">Lokasi</th>
                             <th class="text-center">Staff OP</th>
                             <th class="text-center">Note</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +46,19 @@
                             <td class="text-center"><?= $data_voucher['nama_client']; ?></td>
                             <td class="text-center"><?= $data_kategori['kategori']; ?></td>
                             <td class="text-center"><?= $data_voucher['mata_uang']; ?></td>
+                            <td class="text-center"><?= $data_voucher['lokasi']; ?></td>
                             <td class="text-center"><?= $data_voucher['staff']; ?></td>
                             <td class="text-center"><?= $data_voucher['note']; ?></td>
+                            <td class="text-center">
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <a href="" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -66,7 +79,6 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Jenis Proses</th>
-                            <th class="text-center">Lokasi</th>
                             <th class="text-center">Harga</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -83,8 +95,7 @@
                             <tr>
                                 <td class="text-center"><?= $no; ?></td>
                                 <td class="text-center"><?= $pengguna_voucher['nama']; ?></td>
-                                <td class="text-center"><?= $pengguna_voucher['id_jenis_proses']; ?></td>
-                                <td class="text-center"><?= $pengguna_voucher['id_lokasi']; ?></td>
+                                <td class="text-center"><?= $pengguna_voucher['jenis_proses']; ?></td>
                                 <td class="text-center"><?= $harga; ?></td>
                                 <td class="text-center">
                                     <ul class="list-inline m-0">

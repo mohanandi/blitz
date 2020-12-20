@@ -26,7 +26,7 @@
                     <div class="position-relative row form-group">
                         <label for="NamaTKA" class="col-sm-2 col-form-label"><b>Nama Client</b></label>
                         <div class="col-sm-10">
-                            <input type="text" name="nama_client" id="nama_client" class="form-control" value="<?= set_value('lokasi'); ?>">
+                            <input type="text" name="nama_client" id="nama_client" placeholder="Nama Client" class="form-control" value="<?= set_value('nama_client'); ?>">
                             <?= form_error('nama_client'); ?>
                         </div>
                     </div>
@@ -84,6 +84,17 @@
                             <?= form_error('lokasi'); ?>
                         </div>
                     </div>
+                    <div class="position-relative row form-group" id="kategori3">
+                        <label for="passport" class="col-sm-2 col-form-label"><b>Lokasi</b></label>
+                        <div class="col-sm-10">
+                            <?php if (set_value('lokasi_entertaint')) : ?>
+                                <input type="text" id="lokasi_entertaint" name="lokasi_entertaint" placeholder="Input Lokasi" class="form-control" value="<?= set_value('lokasi_entertaint'); ?>">
+                            <?php else : ?>
+                                <input type="text" id="lokasi_entertaint" name="lokasi_entertaint" placeholder="Input Lokasi" class="form-control" value="<?= set_value('lokasi_entertaint'); ?>">
+                            <?php endif; ?>
+                            <?= form_error('lokasi_entertaint'); ?>
+                        </div>
+                    </div>
                     <div class="position-relative row form-group">
                         <label for="passport" class="col-sm-2 col-form-label"><b>Mata Uang</b></label>
                         <div class="col-sm-10">
@@ -91,7 +102,7 @@
                                 <?php if (set_value('mata_uang')) : ?>
                                     <option value="<?= set_value('mata_uang'); ?>"><?= set_value('mata_uang'); ?></option>
                                 <?php else : ?>
-                                    <option value="">Select Jenis Proses</option>
+                                    <option value="">Select Mata Uang</option>
                                 <?php endif; ?>
                                 <option value="Dollar">Dollar</option>
                                 <option value="Rupiah">Rupiah</option>
@@ -102,14 +113,14 @@
                     <div class="position-relative row form-group">
                         <label for="passport" class="col-sm-2 col-form-label"><b>Staff OP</b></label>
                         <div class="col-sm-10">
-                            <input type="text" id="staff" name="staff" class="form-control" value="<?= set_value('staff'); ?>">
+                            <input type="text" id="staff" name="staff" placeholder="Staff Operattion" class="form-control" value="<?= set_value('staff'); ?>">
                             <?= form_error('staff'); ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="passport" class="col-sm-2 col-form-label"><b>Note</b></label>
                         <div class="col-sm-10">
-                            <input type="text" id="note" name="note" class="form-control" value="<?= set_value('note'); ?>">
+                            <input type="text" id="note" name="note" placeholder="Note" class="form-control" value="<?= set_value('note'); ?>">
                             <?= form_error('note'); ?>
                         </div>
                     </div>
@@ -129,17 +140,31 @@
 <script>
     $("#lokasi").chained("#jenis_proses");
     $(document).ready(function() {
-        $("#kategori_select").hide();
-        $("#kategori_select2").hide();
+        var kategori_selected = $("#kategori").val();
+        if (kategori_selected == '1') {
+            $("#kategori_select").show();
+            $("#kategori_select2").show();
+            $("#kategori3").hide();
+        } else {
+            $("#kategori_select").hide();
+            $("#kategori_select2").hide();
+            $("#kategori3").show();
+        }
+        // $("#kategori_select").hide();
+        // $("#kategori_select2").hide();
     });
+
+
     $('#kategori').change(function() {
         var kategori_selected = $("#kategori").val();
         if (kategori_selected == '1') {
             $("#kategori_select").show();
             $("#kategori_select2").show();
+            $("#kategori3").hide();
         } else {
             $("#kategori_select").hide();
             $("#kategori_select2").hide();
+            $("#kategori3").show();
         }
     });
 </script>

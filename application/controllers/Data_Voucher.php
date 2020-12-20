@@ -60,10 +60,12 @@ class Data_Voucher extends CI_Controller
         $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
         $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
+        $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
         if ($this->input->post('kategori') == 1) {
             $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
             $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
         } else {
+            $this->form_validation->set_rules('lokasi_entertaint', 'Lokasi', 'trim|required');
         }
         $this->form_validation->set_rules('staff', 'Staff OP', 'trim|required');
         $this->form_validation->set_rules('note', 'Note', 'trim|required');
@@ -123,18 +125,15 @@ class Data_Voucher extends CI_Controller
     }
     public function tambah_voucher_entertaint($id_voucher)
     {
-        $data = array(
-            'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
-            'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
-        );
-        $this->form_validation->set_rules('nama', 'Total Harga', 'trim');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim');
         $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
-        $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+        $data['data_pengguna_voucher'] = null;
 
         if ($this->form_validation->run() == FALSE) {
             $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
             $data['judul'] = 'Data Voucher';
+            $data['subjudul'] = 'Tambah Data Voucher';
             $data['button'] = 'Tambahkan Data Voucher';
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/entertaint_form', $data);
@@ -173,9 +172,30 @@ class Data_Voucher extends CI_Controller
             $kode = $this->Data_Voucher_Model->getKodeVoucher();
             $this->Data_Voucher_Model->tambahVoucherVisa($kode);
             $id_voucher = $this->Data_Voucher_Model->getLastKode();
+            $id = $id_voucher['id_voucher'];
             $this->Data_Voucher_Model->tambahPenggunaVoucherVisa($id_voucher['id_voucher']);
             $this->session->set_flashdata('flash', 'Voucher Berhasil Dibuat');
-            redirect("Data_Voucher");
+            redirect("Data_Voucher/detail/$id");
+        }
+    }
+    public function tambah_data_voucher_visa($id_voucher)
+    {
+        $data['judul'] = 'Data Voucher';
+        $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
+        $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
+        $data['data_tka'] = $this->Data_Voucher_Model->getTkaIdByPt($data['data_voucher']['id_pt']);
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_voucher/tambah_data_visa_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $kode = $this->Data_Voucher_Model->getKodeVoucher();
+            $this->Data_Voucher_Model->tambahVoucherVisa($kode);
+            $id_voucher = $this->Data_Voucher_Model->getLastKode();
+            $id = $id_voucher['id_voucher'];
+            $this->Data_Voucher_Model->tambahPenggunaVoucherVisa($id_voucher['id_voucher']);
+            $this->session->set_flashdata('flash', 'Voucher Berhasil Dibuat');
+            redirect("Data_Voucher/detail/$id");
         }
     }
 
@@ -225,13 +245,8 @@ class Data_Voucher extends CI_Controller
     }
     public function ubah_data_entertaint($id_pengguna)
     {
-        $data = array(
-            'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
-            'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
-        );
-        $this->form_validation->set_rules('nama', 'Total Harga', 'trim');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim');
         $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
-        $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
 
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherEntertaintById($id_pengguna);
@@ -239,6 +254,7 @@ class Data_Voucher extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
             $data['judul'] = 'Data Voucher';
+            $data['subjudul'] = 'Edit Data Voucher';
             $data['button'] = 'Simpan Edit Data Voucher';
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/entertaint_form', $data);
