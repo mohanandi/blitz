@@ -41,7 +41,7 @@ class Tka_Model extends CI_model
     }
     public function getIdVisa312($id)
     {
-        $this->db->select('id_penghubung_visa312');
+        $this->db->select('*');
         $this->db->from('penghubung_visa312');
         $this->db->where('id_tka', $id);
         $query = $this->db->get();
@@ -78,6 +78,10 @@ class Tka_Model extends CI_model
     public function getMahasiswaById($id)
     {
         return $this->db->get_where('mahasiswa', ['id' => $id])->row_array();
+    }
+    public function getVoucher($id)
+    {
+        return $this->db->get_where('pengguna_voucher_visa', ['id_tka' => $id])->result_array();
     }
 
     public function EditTka()

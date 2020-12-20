@@ -16,6 +16,8 @@ class Home extends CI_Controller
         $data['jumlah_visa'] = $this->Home_Model->jumlahVisa();
         $data['jumlah_tka'] = $this->Home_Model->jumlahTka();
         $data['jumlah_pt'] = $this->Home_Model->jumlahPt();
+        $data['jumlah_voucher'] = $this->Home_Model->jumlahVoucher();
+        $data['data_visa'] = $this->Home_Model->getDataJenisVisa();
         $data['judul'] = "Home";
         $this->load->view('templates/header', $data);
         $this->load->view('home', $data);

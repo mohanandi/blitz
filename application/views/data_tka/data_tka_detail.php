@@ -97,6 +97,29 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                                <?php foreach ($riwayat_visa312 as $visa312) : ?>
+                                    <tr>
+                                        <?php
+                                        $this->db->select('visa');
+                                        $this->db->from('jenis_visa');
+                                        $this->db->where('id', $visa312['id_jenis_visa']);
+                                        $query = $this->db->get();
+                                        $data_jenis_visa = $query->row_array();
+                                        $this->db->select('*');
+                                        $this->db->from('visa_312');
+                                        $this->db->where('id_penghubung_visa', $visa312['id_penghubung_visa312']);
+                                        $query = $this->db->get();
+                                        $data_visa = $query->row_array();
+                                        ?>
+                                        <th><?= $data_jenis_visa['visa']; ?></th>
+                                        <th><?= date('d-m-Y', $data_visa['tgl_awal']); ?></th>
+                                        <th><?= date('d-m-Y', $data_visa['tgl_expired']); ?></th>
+                                        <td><?= $visa312['status']; ?></td>
+                                        <td>
+                                            <a>Detail</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -117,318 +140,31 @@
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Nama PT</th>
-                            <th class="text-center">Jumlah Pengguna</th>
+                            <th class="text-center">Nama Perusahaan</th>
+                            <th class="text-center">Kode Voucher</th>
+                            <th class="text-center">Jenis Proses</th>
                             <th class="text-center">Tanggal Input Voucher</th>
-                            <th class="text-center">Invoice</th>
                             <th class="text-center">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center text-muted">1</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">2</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">3</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">4</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">5</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">6</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">7</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">8</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">9</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">10</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">11</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">12</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">13</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">14</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">15</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">16</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">17</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">18</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center text-muted">19</td>
-                            <td class="text-center">Shanghai Shenhua</td>
-                            <td class="text-center">21</td>
-                            <td class="text-center">27 - 02 - 2021</td>
-                            <td class="text-center">KKL90077YU8</td>
-                            <td class="text-center">
-                                <form>
-                                    <select class="form-control-sm form-control">
-                                        <option>Detail</option>
-                                        <option>Tambah</option>
-                                        <option>Hapus</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($riwayat_voucher as $voucher) :
+                            $data_voucher = $this->db->get_where('voucher_visa', ['id_voucher' => $voucher['id_voucher_visa']])->row_array();
+                            $data_pt = $this->db->get_where('pt', ['id' => $data_voucher['id_pt']])->row_array();
+                            $data_proses = $this->db->get_where('jenis_proses', ['id_proses' => $data_voucher['id_jenis_proses']])->row_array();
+                        ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $no; ?></td>
+                                <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
+                                <td class="text-center"><?= $data_voucher['kode_voucher']; ?></td>
+                                <td class="text-center"><?= $data_proses['nama_proses']; ?></td>
+                                <td class="text-center"><?= date('d-m-Y', $data_voucher['tgl_input']); ?></td>
+                                <td class="text-center">
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>

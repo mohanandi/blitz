@@ -13,6 +13,24 @@ class Data_Visa_Model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+    public function getPenghubungVisa211sebelumnya($id_visa, $id_tka)
+    {
+        $this->db->select('id_penghubung_visa211');
+        $this->db->from('penghubung_visa211');
+        $this->db->where('id_jenis_visa', $id_visa);
+        $this->db->where('id_tka', $id_tka);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+    public function getPenghubungVisa312sebelumnya($id_visa, $id_tka)
+    {
+        $this->db->select('id_penghubung_visa312');
+        $this->db->from('penghubung_visa312');
+        $this->db->where('id_jenis_visa', $id_visa);
+        $this->db->where('id_tka', $id_tka);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
     public function getPenghubungVisa312()
     {
         $this->db->select('id_penghubung_visa312');
@@ -66,6 +84,22 @@ class Data_Visa_Model extends CI_Model
             "status" => 'Aktif'
         ];
         $this->db->insert('penghubung_visa211', $data);
+    }
+    public function updatePenghubungVisa211($id)
+    {
+        $data = [
+            "status" => 'Sudah Diperpanjang'
+        ];
+        $this->db->where('id_penghubung_visa211', $id);
+        $this->db->update('penghubung_visa211', $data);
+    }
+    public function updatePenghubungVisa312($id)
+    {
+        $data = [
+            "status" => 'Sudah Diperpanjang'
+        ];
+        $this->db->where('id_penghubung_visa312', $id);
+        $this->db->update('penghubung_visa312', $data);
     }
     public function tambahPenghubungVisa312()
     {

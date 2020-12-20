@@ -4,7 +4,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Visa</div>
-                    <div class="widget-subheading">Jumlah Jenis Visa</div>
+                    <div class="widget-subheading"><a href="">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_visa; ?></span></div>
@@ -17,7 +17,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah TKA</div>
-                    <div class="widget-subheading">Total TKA</div>
+                    <div class="widget-subheading"><a href="">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_tka; ?></span></div>
@@ -30,7 +30,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Perusahaan</div>
-                    <div class="widget-subheading"></div>
+                    <div class="widget-subheading"><a href="">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
@@ -43,10 +43,10 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Voucher</div>
-                    <div class="widget-subheading">Total PT yang ada</div>
+                    <div class="widget-subheading"><a href="">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>468</span></div>
+                    <div class="widget-numbers text-white"><span><?= $jumlah_voucher; ?></span></div>
                 </div>
             </div>
         </div>
@@ -73,25 +73,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center text-muted">Visa 312</td>
-                            <td class="text-center">201</td>
-                            <td class="text-center">43</td>
-                            <td class="text-center">13</td>
-                            <td class="text-center">9</td>
-                            <td class="text-center">2</td>
-                            <td class="text-center">8</td>
-                            <td class="text-center">
-                                <div class="badge badge-success">Detail</div>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($data_visa as $visa) : ?>
+                            <tr>
+                                <td class="text-center text-muted"><?= $visa['visa']; ?></td>
+                                <td class="text-center">201</td>
+                                <td class="text-center">43</td>
+                                <td class="text-center">13</td>
+                                <td class="text-center">9</td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">8</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Detail</div>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
             <div class="widget-content">
@@ -176,4 +180,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
