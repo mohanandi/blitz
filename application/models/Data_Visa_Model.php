@@ -80,6 +80,7 @@ class Data_Visa_Model extends CI_Model
     {
         $data = [
             "id_tka" => $this->input->post('id_tka', true),
+            "id_pt" => $this->input->post('id_pt', true),
             "id_jenis_visa" => $this->input->post('id_visa', true),
             "status" => 'Aktif'
         ];

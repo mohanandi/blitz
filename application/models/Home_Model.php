@@ -20,6 +20,14 @@ class Home_Model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getPt()
+    {
+        $this->db->order_by('nama_pt', 'ASC');
+        $this->db->select(array('id', 'nama_pt'));
+        $this->db->from('pt');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getData($id_visa)
     {
         $query = $this->db->from('penghubung_visa211')

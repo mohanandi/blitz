@@ -1,61 +1,7 @@
 <div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-grow-early">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah Perusahaan</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah TKA</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_tka; ?></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-love-kiss">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah Voucher</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_voucher; ?></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-midnight-bloom">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Jumlah RPTKA</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span><?= $jumlah_rptka; ?></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Expired Schedules
+            <div class="card-header">Expired Schedules Data Visa
                 <div class="btn-actions-pane-right">
                 </div>
             </div>

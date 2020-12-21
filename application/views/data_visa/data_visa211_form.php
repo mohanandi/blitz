@@ -45,6 +45,7 @@
                     <div class="position-relative row form-group">
                         <label for="NamaTKA" class="col-sm-2 col-form-label">Visa</label>
                         <input name="id_tka" id="id_tka" value="<?= $data_tka['id']; ?>" type="hidden" class="form-control">
+                        <input name="id_pt" id="id_pt" value="<?= $data_tka['id_pt']; ?>" type="hidden" class="form-control">
                         <input name="id_visa" id="id_visa" value="<?= $data_jenis_visa['id']; ?>" type="hidden" class="form-control">
                         <div class="col-sm-10">
                             <input name="nama_visa" id="nama_visa" value="<?= $data_jenis_visa['visa']; ?>" type="text" class="form-control" readonly>
