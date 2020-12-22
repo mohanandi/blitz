@@ -810,6 +810,7 @@ class Export extends CI_Controller
     {
         $data_rptka = $this->db->get_where('rptka', ['id' => $id_rptka])->row_array();
         $judul = "RPTKA " . $data_rptka['no_rptka'];
+        $data_pt = $this->db->get_where('pt', ['id' => $data_rptka['id_pt']])->row_array();
         $data_jabatan_rptka = $this->db->get_where('jabatan_rptka', ['id_rptka' => $id_rptka])->result_array();
         $data_pengguna_rptka = $this->db->get_where('penghubung_visa312', ['id_rptka' => $id_rptka, 'id_pt' => $data_rptka['id_pt']])->result_array();
 
@@ -841,12 +842,12 @@ class Export extends CI_Controller
 
         $spreadsheet = new Spreadsheet;
 
-        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B1', "DATA RPTKA"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B1', "DATA RPTKA" . $data_pt['nama_pt']); // Set kolom A1 dengan tulisan "DATA SISWA"
         $spreadsheet->getActiveSheet()->mergeCells('B1:N1'); // Set Merge Cell pada kolom A1 sampai F1
         $spreadsheet->getActiveSheet()->getStyle('B1')->getFont()->setBold(TRUE); // Set bold kolom A1
         $spreadsheet->getActiveSheet()->getStyle('B1')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
         $spreadsheet->getActiveSheet()->getStyle('B1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
-        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B2', "NO RPTKA"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B2', "NO RPTKA" . $data_rptka['no_rptka']); // Set kolom A1 dengan tulisan "DATA SISWA"
         $spreadsheet->getActiveSheet()->mergeCells('B2:N2'); // Set Merge Cell pada kolom A1 sampai F1
         $spreadsheet->getActiveSheet()->getStyle('B2')->getFont()->setBold(TRUE); // Set bold kolom A1
         $spreadsheet->getActiveSheet()->getStyle('B2')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
