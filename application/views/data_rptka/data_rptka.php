@@ -16,6 +16,8 @@
                             <th class="text-center">Jumlah RPTKA</th>
                             <th class="text-center">RPTKA Terpakai</th>
                             <th class="text-center">Keterangan</th>
+                            <th class="text-center">Input By</th>
+                            <th class="text-center">Tanggal Input</th>
                             <th class="text-center">Action</th>
 
                         </tr>
@@ -33,6 +35,9 @@
                                 <td class="text-center"><?= $rptka['jumlah_rptka']; ?></td>
                                 <td class="text-center"><?= $rptka['jumlah_terpakai']; ?></td>
                                 <td class="text-center"><?= $rptka['ket']; ?></td>
+                                <?php $data_user = $this->db->select('nama')->get_where('user', ['id' => $rptka['input_by_id']])->row_array(); ?>
+                                <td class="text-center"><?= $data_user['nama']; ?></td>
+                                <td class="text-center"><?= date('d-m-Y', $rptka['tgl_input']); ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('Data_Rptka/detail/') ?><?= $rptka['id']; ?>" class="badge badge-success">Detail</a>
                                 </td>

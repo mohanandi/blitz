@@ -3,12 +3,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home_Model extends CI_Model
 {
-    public function jumlahRptka()
+    public function jumlahRptka($dari = null, $standard_sampai = null, $id_pt = null)
     {
-        $this->db->select('id');
-        $this->db->from('rptka');
-        $query = $this->db->get();
-        return $query->num_rows();
+        if ($id_pt == null) {
+            $this->db->select('id');
+            $this->db->from('rptka');
+            $query = $this->db->get();
+            return $query->num_rows();
+        } elseif ($id_pt = 'Semua Perusahaan') {
+            $sampai = $standard_sampai + (60 * 60 * 24);
+            $this->db->select('id');
+            $this->db->from('rptka');
+            $this->db->where('tgl_input >=', $dari);
+            $this->db->where('tgl_input <=', $sampai);
+            $query = $this->db->get();
+            return $query->num_rows();
+        } else {
+            $sampai = $standard_sampai + (60 * 60 * 24);
+            $this->db->select('id');
+            $this->db->from('rptka');
+            $this->db->where('tgl_input >=', $dari);
+            $this->db->where('tgl_input <=', $sampai);
+            $this->db->where('id_pt', $id_pt);
+            $query = $this->db->get();
+            return $query->num_rows();
+        }
     }
     public function getDataJenisVisa()
     {

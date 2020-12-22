@@ -188,6 +188,14 @@
                                 ->where('id_pt', $pt['id'])
                                 ->get()
                                 ->num_rows();
+                            $jumlah_visa211 = $this->db->from('penghubung_visa211')
+                                ->where('id_pt', $pt['id'])
+                                ->get()
+                                ->num_rows();
+                            $jumlah_visa312 = $this->db->from('penghubung_visa312')
+                                ->where('id_pt', $pt['id'])
+                                ->get()
+                                ->num_rows();
                         ?>
                             <tr>
                                 <td class="text-center text-muted"><?= $no; ?></td>
@@ -195,6 +203,8 @@
                                 <td class="text-center"><?= $jumlah_tka; ?></td>
                                 <td class="text-center"><?= $jumlah_voucher; ?></td>
                                 <td class="text-center"><?= $jumlah_rptka; ?></td>
+                                <td class="text-center"><?= $jumlah_visa211; ?></td>
+                                <td class="text-center"><?= $jumlah_visa312; ?></td>
                                 <td class="text-center">
                                     <div class="badge badge-success">Detail</div>
                                 </td>
