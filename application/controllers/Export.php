@@ -864,9 +864,10 @@ class Export extends CI_Controller
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('J3', "JANGKA WAKTU VISA (BULAN)"); // Set kolom F3 dengan tulisan "ALAMAT"
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('K3', "TANGGAL TERBIT VISA"); // Set kolom F3 dengan tulisan "ALAMAT"
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('L3', "NO KITAS"); // Set kolom F3 dengan tulisan "ALAMAT"
-        $spreadsheet->setActiveSheetIndex(0)->setCellValue('M3', "KADALUARSA KITAS"); // Set kolom F3 dengan tulisan "ALAMAT"
-        $spreadsheet->setActiveSheetIndex(0)->setCellValue('N3', "KETERANGAN"); // Set kolom F3 dengan tulisan "ALAMAT"
-        $spreadsheet->setActiveSheetIndex(0)->setCellValue('O3', "STATUS"); // Set kolom F3 dengan tulisan "ALAMAT"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('M3', "NO NOTIFIKASI"); // Set kolom F3 dengan tulisan "ALAMAT"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('N3', "KADALUARSA KITAS"); // Set kolom F3 dengan tulisan "ALAMAT"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('O3', "KETERANGAN"); // Set kolom F3 dengan tulisan "ALAMAT"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('P3', "STATUS"); // Set kolom F3 dengan tulisan "ALAMAT"
 
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
@@ -884,6 +885,7 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
         $spreadsheet->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
         $spreadsheet->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
 
         // Set height baris ke 1, 2 dan 3
         $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
@@ -907,9 +909,10 @@ class Export extends CI_Controller
             $spreadsheet->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $data_visa['waktu_visa']);
             $spreadsheet->setActiveSheetIndex(0)->setCellValue('K' . $numrow, date('d-m-Y', $data_visa['tgl_awal']));
             $spreadsheet->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data_visa['no_kitas']);
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('M' . $numrow, date('d-m-Y', $data_visa['tgl_expired']));
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('N' . $numrow, $data_visa['ket']);
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $pengguna_rptka['status']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('M' . $numrow, $data_visa['no_notifikasi']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('N' . $numrow, date('d-m-Y', $data_visa['tgl_expired']));
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $data_visa['ket']);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('P' . $numrow, $pengguna_rptka['status']);
 
             $spreadsheet->getActiveSheet()->getStyle('B' . $numrow)->applyFromArray($style_row);
             $spreadsheet->getActiveSheet()->getStyle('C' . $numrow)->applyFromArray($style_row);
@@ -925,6 +928,7 @@ class Export extends CI_Controller
             $spreadsheet->getActiveSheet()->getStyle('M' . $numrow)->applyFromArray($style_row);
             $spreadsheet->getActiveSheet()->getStyle('N' . $numrow)->applyFromArray($style_row);
             $spreadsheet->getActiveSheet()->getStyle('O' . $numrow)->applyFromArray($style_row);
+            $spreadsheet->getActiveSheet()->getStyle('P' . $numrow)->applyFromArray($style_row);
 
             $numrow++;
             $no++;
