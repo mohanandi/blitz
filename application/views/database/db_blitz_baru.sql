@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Des 2020 pada 11.54
+-- Waktu pembuatan: 24 Des 2020 pada 03.14
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -115,9 +115,12 @@ INSERT INTO `jabatan_rptka` (`id_jabatan_rptka`, `id_rptka`, `jabatan`, `jumlah`
 (2, 1, 'Teacher', 4, 1),
 (3, 1, 'Doctor', 1, 1),
 (4, 2, 'Engineer', 2, 2),
-(5, 2, 'Doctor', 1, 0),
-(6, 3, 'Doctor', 2, 0),
-(7, 4, 'finance', 20, 1);
+(5, 2, 'Doctor', 1, 1),
+(6, 3, 'Doctor', 2, 2),
+(7, 4, 'finance', 20, 1),
+(8, 2, 'Sales', 1, 1),
+(9, 5, 'Finance', 2, 1),
+(10, 5, 'Engineer', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -166,7 +169,9 @@ INSERT INTO `jenis_visa` (`id`, `visa`, `kategori_id`, `id_visa_sebelumnya`, `in
 (3, 'Visa 312', 1, 1, 1, 1607840077),
 (4, 'Visa 312-1', 1, 3, 1, 1607840090),
 (5, 'Visa 211', 2, 2, 1, 1607935968),
-(6, 'Visa 211-1', 2, 2, 1, 1607935978);
+(6, 'Visa 211-1', 2, 5, 1, 1607935978),
+(9, 'Visa 211-2', 2, 6, 1, 1608466152),
+(10, 'Visa 312-2', 1, 4, 1, 1608466732);
 
 -- --------------------------------------------------------
 
@@ -297,7 +302,8 @@ INSERT INTO `pengguna_voucher_visa` (`id_pengguna_voucher`, `id_voucher_visa`, `
 (35, 13, 7, 3400000),
 (37, 14, 2, 50),
 (38, 14, 3, 50),
-(39, 14, 3087, 50);
+(39, 14, 3087, 50),
+(40, 15, 3093, 90);
 
 -- --------------------------------------------------------
 
@@ -308,6 +314,7 @@ INSERT INTO `pengguna_voucher_visa` (`id_pengguna_voucher`, `id_voucher_visa`, `
 CREATE TABLE `penghubung_visa211` (
   `id_penghubung_visa211` int(11) NOT NULL,
   `id_tka` int(11) NOT NULL,
+  `id_pt` int(255) NOT NULL,
   `id_jenis_visa` int(11) NOT NULL,
   `status` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -316,13 +323,18 @@ CREATE TABLE `penghubung_visa211` (
 -- Dumping data untuk tabel `penghubung_visa211`
 --
 
-INSERT INTO `penghubung_visa211` (`id_penghubung_visa211`, `id_tka`, `id_jenis_visa`, `status`) VALUES
-(1, 2, 7, 'Aktif'),
-(2, 3087, 7, 'Aktif'),
-(3, 3087, 8, 'Aktif'),
-(4, 3087, 5, 'Aktif'),
-(5, 3091, 5, 'Aktif'),
-(6, 2, 8, 'Aktif');
+INSERT INTO `penghubung_visa211` (`id_penghubung_visa211`, `id_tka`, `id_pt`, `id_jenis_visa`, `status`) VALUES
+(1, 2, 0, 7, 'Aktif'),
+(2, 3087, 0, 7, 'Aktif'),
+(3, 3087, 0, 8, 'Aktif'),
+(4, 3087, 0, 5, 'Sudah Diperpanjang'),
+(5, 3091, 0, 5, 'Aktif'),
+(6, 2, 0, 8, 'Aktif'),
+(10, 3087, 0, 6, 'Sudah Diperpanjang'),
+(11, 3087, 0, 9, 'Aktif'),
+(12, 3093, 0, 5, 'Sudah Diperpanjang'),
+(13, 3093, 0, 6, 'Aktif'),
+(14, 3094, 128, 5, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -348,9 +360,14 @@ INSERT INTO `penghubung_visa312` (`id_penghubung_visa312`, `id_pt`, `id_tka`, `i
 (1, 15, 2, 3, 1, 2, 'Aktif'),
 (2, 15, 3087, 3, 1, 1, 'Aktif'),
 (3, 15, 5, 3, 1, 3, 'Aktif'),
-(4, 15, 2, 4, 2, 4, 'Aktif'),
+(4, 15, 2, 4, 2, 4, 'Sudah Diperpanjang'),
 (5, 15, 3, 3, 2, 4, 'Aktif'),
-(6, 114, 3090, 3, 4, 7, 'Aktif');
+(6, 114, 3090, 3, 4, 7, 'Aktif'),
+(7, 15, 3087, 4, 2, 5, 'Sudah Diperpanjang'),
+(9, 15, 3087, 10, 3, 6, 'Aktif'),
+(10, 15, 2, 10, 2, 8, 'Aktif'),
+(11, 128, 3093, 3, 5, 9, 'Sudah Diperpanjang'),
+(12, 128, 3093, 4, 5, 10, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -496,7 +513,8 @@ INSERT INTO `pt` (`id`, `nama_pt`, `id_pic`, `nama_client`, `alamat`, `ket`, `in
 (120, 'PT DATANG ELECTRIC POWER OPERATION AND MAINTANANCE INDONEISA', 0, 'MR GAO XUEFENG', 'JL MEULABOH TAPAKTUAN KEL SUAK PUNTONG KEC KUALA PESISIR', '-', '', 0),
 (121, 'PT ARUNA MARTHA NUSAJAYA', 0, 'EDY', 'Mega Glodok Kemayoran Blok C nomor 6, Jl. Angkasa Kaveling B6, Kel. Gunung Sahari Selatan, Kec. Kemayoran', '-', '', 0),
 (123, 'PT KARYA SEJATI READYMIX BORNEO', 0, 'LENY RUIMIN', 'RUKAN THE BEACH BOULEVARD BLOK B  NOMOR 28', '-', '', 0),
-(124, 'Keep Smile', 0, ' 茉莉花', 'mgk', 'sasa', '1', 1605930308);
+(124, 'Keep Smile', 0, ' 茉莉花', 'mgk', 'sasa', '1', 1605930308),
+(128, 'Contoh', 3, ' 茉莉花', 'Rumah Aldin', 'Buat Contoh aja', '1', 1608468019);
 
 -- --------------------------------------------------------
 
@@ -542,9 +560,10 @@ CREATE TABLE `rptka` (
 
 INSERT INTO `rptka` (`id`, `id_pt`, `no_rptka`, `tgl_terbit`, `tgl_expired`, `jumlah_rptka`, `jumlah_terpakai`, `ket`, `input_by_id`, `tgl_input`) VALUES
 (1, 15, 1122, 1606842000, 1607360400, 3, 3, 'Terserah Fajar', 1, 1607229861),
-(2, 15, 1234, 1609952400, 1609347600, 4, 2, 'Terserah Aldin', 1, 1607875596),
-(3, 15, 10021, 1606755600, 1609174800, 3, 0, 'Buat Contoh aja', 1, 1607940371),
-(4, 114, 99, 1607878800, 1618333200, 20, 1, '-', 9, 1607941737);
+(2, 15, 1234, 1609952400, 1609347600, 4, 4, 'Terserah Aldin', 1, 1607875596),
+(3, 15, 10021, 1606755600, 1609174800, 3, 2, 'Buat Contoh aja', 1, 1607940371),
+(4, 114, 99, 1607878800, 1618333200, 20, 1, '-', 9, 1607941737),
+(5, 128, 10021, 1609693200, 1609347600, 4, 2, 'Terserah Fajar', 1, 1608468094);
 
 -- --------------------------------------------------------
 
@@ -3691,7 +3710,9 @@ INSERT INTO `tka` (`id`, `id_pt`, `nama_mandarin`, `nama_latin`, `kewarganegaraa
 (3089, 114, '子龙', 'putri', 'China', 'EH19888000', 1607878800, 318877200, '-', 9, 1607941662),
 (3090, 114, '子龙', 'putri', 'China', 'EH1876600', 1607878800, 318877200, '-', 9, 1607941675),
 (3091, 29, '骄傲送', 'rita', 'Indonesia', 'gh12345656', 1605027600, 1183741200, '-', 9, 1607941949),
-(3092, 35, '韩周', 'Banfu', 'China', 'EH2903197', 1892653200, 1568307600, '-', 9, 1607942145);
+(3092, 35, '韩周', 'Banfu', 'China', 'EH2903197', 1892653200, 1568307600, '-', 9, 1607942145),
+(3093, 128, '韩周', 'Zilong', 'China', '1510511006', 1606755600, 1606582800, 'Buat Contoh aja', 1, 1608468053),
+(3094, 128, '骄傲送', 'Yu Zhong', 'China', '9870987EA', 1609088400, 1609088400, 'Buat Contoh aja', 1, 1608556315);
 
 -- --------------------------------------------------------
 
@@ -3717,7 +3738,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `email`, `password`, `image`, `role_id`, `pic_pt`, `is_active`, `date_created`, `last_login`) VALUES
-(1, 'Andi Rahmadi', 'andimohan2601@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', 1, 'Aktif', 'Aktif', 0, 1608444382),
+(1, 'Andi Rahmadi', 'andimohan2601@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', 1, 'Aktif', 'Aktif', 0, 1608775802),
 (2, 'Iqbal Adhis', 'iqbaladhis@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', 2, 'Non-Aktif', 'Aktif', 0, 0),
 (3, 'Mohan', 'andimohan3@gmail.com', '$2y$10$4xj9oF6Q2EG0rrF0CLoj6e8VNdY2kGvnVPNKwaLvMwywh.vlh0BrK', '', 2, 'Aktif', 'Aktif', 0, 0),
 (6, 'Eka', 'eka@gmail.com', '$2y$10$kyCmm9lGWW.36x1RXJVyFO6Y9ZgnsTfVndDrlnINeiwr2BThAdjW2', 'default.jpg', 2, 'Non-Aktif', 'Aktif', 1606205216, 1606823798),
@@ -3776,7 +3797,7 @@ CREATE TABLE `user_menu` (
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
-(1, 'Dashboard'),
+(1, 'Dashboard & Report'),
 (2, 'Manajemen Data'),
 (3, 'Manajemen User & Perusahaan'),
 (4, 'Manajemen Visa & Voucher');
@@ -3820,7 +3841,7 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `judul`, `url`, `icon`) VALUES
-(1, 1, 'Home', 'Home', 'metismenu-icon pe-7s-home'),
+(1, 1, 'Reminder Schedule', 'Home', 'metismenu-icon pe-7s-home'),
 (2, 2, 'Data Perusahaan', 'Data_Pt', 'metismenu-icon pe-7s-portfolio'),
 (3, 2, 'Data TKA', 'Data_Tka', 'metismenu-icon pe-7s-users'),
 (4, 2, 'Data Voucher', 'Data_Voucher', 'metismenu-icon pe-7s-ticket'),
@@ -3829,7 +3850,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `judul`, `url`, `icon`) VALUES
 (7, 3, 'User List', 'User_List', 'metismenu-icon pe-7s-user'),
 (8, 4, 'Visa', 'Jenis_Visa', 'metismenu-icon pe-7s-credit'),
 (9, 4, 'Jenis Proses Voucher', 'Jenis_Voucher', 'metismenu-icon pe-7s-cash'),
-(11, 1, 'Report', 'Report', 'metismenu-icon pe-7s-news-paper');
+(11, 1, 'Report By Perusahaan', 'Home/perusahaan', 'metismenu-icon pe-7s-news-paper'),
+(12, 1, 'Report By Proccess', 'Home/proses', 'metismenu-icon pe-7s-server');
 
 -- --------------------------------------------------------
 
@@ -3879,7 +3901,12 @@ INSERT INTO `visa_211` (`id`, `id_penghubung`, `tgl_awal`, `tgl_expired`, `ket`,
 (3, 3, 1606928400, 1609779600, '-', 1, 1607940153),
 (4, 4, 1609779600, 1609088400, '-', 1, 1607940214),
 (5, 5, 1607706000, 1610384400, '-', 9, 1607942011),
-(6, 6, 1609952400, 1609520400, '-', 1, 1607943136);
+(6, 6, 1609952400, 1609520400, '-', 1, 1607943136),
+(7, 10, 1609261200, 1610125200, 'Gitu', 1, 1608465884),
+(8, 11, 1607533200, 1609434000, 'Gitu', 1, 1608466176),
+(9, 12, 1608570000, 1610125200, 'Buat Contoh aja', 1, 1608468184),
+(10, 13, 1608742800, 1609952400, 'Buat Contoh aja', 1, 1608468229),
+(11, 14, 1606755600, 1609779600, 'Buat Contoh aja', 1, 1608556380);
 
 -- --------------------------------------------------------
 
@@ -3910,7 +3937,12 @@ INSERT INTO `visa_312` (`id`, `id_penghubung_visa`, `tgl_awal`, `waktu_visa`, `t
 (3, 3, 1609347600, 2, 1610125200, '13131', 'kjiij', 'Buat Contoh aja', 1, 1607853465),
 (4, 4, 1606842000, 3, 1609779600, '2132131', '21ssqw1312', 'Buat Contoh aja', 1, 1607878188),
 (5, 5, 1606755600, 2, 1609866000, '2132131', '21ssqw1312', 'Buat Contoh aja', 1, 1607940599),
-(6, 6, 1607878800, 12, 1610557200, '1313666', '21ssqw1', '-', 9, 1607941827);
+(6, 6, 1607878800, 12, 1610557200, '1313666', '21ssqw1', '-', 9, 1607941827),
+(7, 7, 1609693200, 2, 1609779600, '2132131', '21ssqw1312', 'Terserah Fajar', 1, 1608464449),
+(9, 9, 1606842000, 3, 1609952400, '13131', '21ssqw1312', 'Terserah Fajar', 1, 1608467492),
+(10, 10, 1606755600, 2, 1609693200, '2132131', 'kjiij', '-dsa', 1, 1608467782),
+(11, 11, 1606755600, 4, 1609779600, '2132131', '21ssqw1312', 'Terserah Aldin', 1, 1608468291),
+(12, 12, 1606755600, 3, 1609779600, '2132131', '21ssqw1', 'Buat Contoh aja', 1, 1608468380);
 
 -- --------------------------------------------------------
 
@@ -3994,7 +4026,8 @@ INSERT INTO `voucher_visa` (`id_voucher`, `kode_voucher`, `id_pt`, `jumlah_data`
 (11, 'VCR/VISA/201220/5', 15, 0, 'mr shao', 'Dollar', 0, 1, 2, 4, 'Aldin', 'www', 1, 1608451972),
 (12, 'VCR/VISA/201220/6', 15, 0, 'mr shao', 'Rupiah', 0, 1, 2, 4, 'Aldin', 'www', 1, 1608452022),
 (13, 'VCR/VISA/201220/7', 15, 6, 'YU', 'Rupiah', 20400000, 1, 6, 9, 'ss', 'www', 1, 1608452899),
-(14, 'VCR/VISA/201220/8', 15, 3, 'mr shao', 'Dollar', 150, 1, 2, 4, 'Aldin', 'Di Besok', 1, 1608456021);
+(14, 'VCR/VISA/201220/8', 15, 3, 'mr shao', 'Dollar', 150, 1, 2, 4, 'Aldin', 'Di Besok', 1, 1608456021),
+(15, 'VCR/VISA/201220/9', 128, 1, 'Aldin', 'Dollar', 90, 1, 7, 11, 'Aldin', 'Di Besok', 1, 1608468733);
 
 --
 -- Indexes for dumped tables
@@ -4192,7 +4225,7 @@ ALTER TABLE `invoice_voucher_visa`
 -- AUTO_INCREMENT untuk tabel `jabatan_rptka`
 --
 ALTER TABLE `jabatan_rptka`
-  MODIFY `id_jabatan_rptka` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_jabatan_rptka` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_proses`
@@ -4204,7 +4237,7 @@ ALTER TABLE `jenis_proses`
 -- AUTO_INCREMENT untuk tabel `jenis_visa`
 --
 ALTER TABLE `jenis_visa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_visa`
@@ -4228,25 +4261,25 @@ ALTER TABLE `pengguna_voucher_entertaint`
 -- AUTO_INCREMENT untuk tabel `pengguna_voucher_visa`
 --
 ALTER TABLE `pengguna_voucher_visa`
-  MODIFY `id_pengguna_voucher` int(125) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_pengguna_voucher` int(125) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT untuk tabel `penghubung_visa211`
 --
 ALTER TABLE `penghubung_visa211`
-  MODIFY `id_penghubung_visa211` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_penghubung_visa211` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `penghubung_visa312`
 --
 ALTER TABLE `penghubung_visa312`
-  MODIFY `id_penghubung_visa312` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_penghubung_visa312` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `pt`
 --
 ALTER TABLE `pt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT untuk tabel `role`
@@ -4258,7 +4291,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `rptka`
 --
 ALTER TABLE `rptka`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `sidebar_access_menu`
@@ -4270,7 +4303,7 @@ ALTER TABLE `sidebar_access_menu`
 -- AUTO_INCREMENT untuk tabel `tka`
 --
 ALTER TABLE `tka`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3093;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3095;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
@@ -4300,7 +4333,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`
@@ -4312,13 +4345,13 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `visa_211`
 --
 ALTER TABLE `visa_211`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `visa_312`
 --
 ALTER TABLE `visa_312`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `voucher_entertaint`
@@ -4330,7 +4363,7 @@ ALTER TABLE `voucher_entertaint`
 -- AUTO_INCREMENT untuk tabel `voucher_visa`
 --
 ALTER TABLE `voucher_visa`
-  MODIFY `id_voucher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_voucher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
