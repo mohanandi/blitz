@@ -93,7 +93,7 @@
                                             <a href="<?= base_url('Jenis_Voucher/edit_lokasi/' . $harga['id_harga']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Jenis_voucher/delete_lokasi/' . $harga['id_harga']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Jenis_Voucher/delete_lokasi/' . $harga['id_harga']); ?>" title="Delete"><i class="fa fa-trash"></i></button>
                                         </li>
                                     </ul>
                                 </td>
