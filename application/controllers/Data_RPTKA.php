@@ -7,9 +7,9 @@ class Data_Rptka extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
         $this->load->model('DataPt_Model');
         $this->load->model('Rptka_Model');
+        is_logged_in();
     }
     public function index()
     {
