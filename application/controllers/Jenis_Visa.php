@@ -50,7 +50,7 @@ class Jenis_Visa extends CI_Controller
         } else {
             $this->Jenis_Visa_Model->EditJenisVisa();
             $this->session->set_flashdata('flash', 'Dirubah');
-            redirect("Jenis_visa");
+            redirect("Jenis_Visa");
         }
     }
 
@@ -78,13 +78,13 @@ class Jenis_Visa extends CI_Controller
         } else {
             $this->Jenis_Visa_Model->TambahJenisVisa();
             $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect("Jenis_visa");
+            redirect("Jenis_Visa");
         }
     }
     public function hapus($id)
     {
         $this->Jenis_Visa_Model->DeleteJenisVisa($id);
         $this->session->set_flashdata('flash', 'Dihapus');
-        redirect("Jenis_visa");
+        redirect("Jenis_Visa");
     }
 }
