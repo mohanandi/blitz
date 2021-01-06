@@ -16,12 +16,14 @@ class Data_Tka extends CI_Controller
     {
         $data['id_tka'] = $this->Tka_Model->getAllIdTka();
         $data['judul'] = $this->judul;
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_tka/data_tka', $data);
         $this->load->view('templates/footer');
     }
     public function detail($id)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['tka'] = $this->Tka_Model->getTkaById($id);
         $data['pt'] = $this->DataPt_Model->getPtById($data['tka']['id_pt']);
         $data['user'] = $this->User_Model->getUserById($data['tka']['input_by_id']);
@@ -57,6 +59,7 @@ class Data_Tka extends CI_Controller
             $data['judul'] = $this->judul;
             $data['subjudul'] = "Edit TKA";
             $data['button'] = "Simpan Edit";
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_tka/data_tka_form', $data);
             $this->load->view('templates/footer');
@@ -85,6 +88,7 @@ class Data_Tka extends CI_Controller
             $data['button'] = "Tambahkan";
             $data['subjudul'] = "Tambah TKA";
             $data['judul'] = $this->judul;
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_tka/data_tka_form', $data);
             $this->load->view('templates/footer');
@@ -97,6 +101,7 @@ class Data_Tka extends CI_Controller
     public function notif()
     {
         $data['judul'] = $this->judul;
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header');
         $this->load->view('data_taka/data_tka_notif');
         $this->load->view('templates/footer');

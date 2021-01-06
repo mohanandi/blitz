@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        foreach ($user as $us) : ?>
+                        foreach ($users as $us) : ?>
                             <tr>
                                 <td class="text-center text-muted"><?= $no; ?></td>
                                 <td class="text-center"><?= $us['nama']; ?></td>

@@ -14,6 +14,7 @@ class Jenis_Voucher extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Jenis Proses Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_harga'] = $this->Jenis_Voucher_Model->getAllHargaVoucher();
         $data['data_proses'] = $this->Jenis_Voucher_Model->getAllProsesVoucher();
         $this->load->view('templates/header', $data);
@@ -29,6 +30,7 @@ class Jenis_Voucher extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Jenis Proses Voucher';
             $data['button'] = 'Tambahkan Jenis Proses';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['data_proses'] = null;
             $this->load->view('templates/header', $data);
             $this->load->view('visa_voucher/data_jenis_proses_form', $data);
@@ -53,6 +55,7 @@ class Jenis_Voucher extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Jenis Proses Voucher';
             $data['button'] = 'Tambahkan Jenis Proses';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('visa_voucher/data_jenis_proses_form', $data);
             $this->load->view('templates/footer');
@@ -74,6 +77,7 @@ class Jenis_Voucher extends CI_Controller
             $data['judul'] = 'Jenis Proses Voucher';
             $data['button'] = 'Tambahkan Data Harga';
             $data['data_proses'] = $this->Jenis_Voucher_Model->getAllProsesVoucher();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('visa_voucher/data_harga_form', $data);
             $this->load->view('templates/footer');
@@ -94,6 +98,7 @@ class Jenis_Voucher extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Jenis Proses Voucher';
             $data['button'] = 'Simpan Edit';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['data_proses'] = $this->Jenis_Voucher_Model->getAllProsesVoucher();
             $this->load->view('templates/header', $data);
             $this->load->view('visa_voucher/data_harga_form', $data);
@@ -119,6 +124,7 @@ class Jenis_Voucher extends CI_Controller
     public function tambahProses()
     {
         $data['judul'] = 'Jenis Proses Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_harga'] = $this->Jenis_Voucher_Model->getAllHargaVoucher();
         $data['data_proses'] = $this->Jenis_Voucher_Model->getAllProsesVoucher();
         $this->load->view('templates/header', $data);

@@ -15,6 +15,7 @@ class Data_Rptka extends CI_Controller
     {
         $data['data_rptka'] = $this->Rptka_Model->getAllRptka();
         $data['judul'] = 'Data RPTKA';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_rptka/data_rptka', $data);
         $this->load->view('templates/footer');
@@ -33,6 +34,7 @@ class Data_Rptka extends CI_Controller
             $data['button'] = 'Tambahkan RPTKA';
             $data['data_rptka'] = null;
             $data['pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_rptka/data_rptka_form', $data);
             $this->load->view('templates/footer');
@@ -53,6 +55,7 @@ class Data_Rptka extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Tambah RPTKA';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['button'] = 'Simpan Edit RPTKA';
             $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
             $data['pt'] = $this->DataPt_Model->getAllDataPt();
@@ -72,6 +75,7 @@ class Data_Rptka extends CI_Controller
         $data['data_rptka'] = $this->Rptka_Model->getRptkaById($id);
         $data['data_jabatan'] = $this->Rptka_Model->getJabatanByRptka($id);
         $data['data_pengguna'] = $this->Rptka_Model->getPenggunaRptka($id);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_rptka/data_rptka_detail', $data);
         $this->load->view('templates/footer');
@@ -86,6 +90,7 @@ class Data_Rptka extends CI_Controller
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Tambah Jabatan RPTKA';
             $data['button'] = 'Tambahkan Jabatan RPTKA';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['data_jabatan'] = null;
             $this->load->view('templates/header', $data);
             $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
@@ -107,6 +112,7 @@ class Data_Rptka extends CI_Controller
                 $data['subjudul'] = 'Tambah Jabatan RPTKA';
                 $data['button'] = 'Tambahkan Jabatan RPTKA';
                 $data['data_jabatan'] = null;
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                 $this->session->set_flashdata('flash', 'Jabatan RPTKA Gagal Ditambahkan Karena Total Jumlah Tidak Sesuai');
                 $this->load->view('templates/header', $data);
                 $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
@@ -125,6 +131,7 @@ class Data_Rptka extends CI_Controller
             $data['judul'] = 'Data RPTKA';
             $data['subjudul'] = 'Edit Jabatan RPTKA';
             $data['button'] = 'Simpan Edit Jabatan RPTKA';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_rptka/data_rptka_jabatan_form', $data);
             $this->load->view('templates/footer');
@@ -145,6 +152,7 @@ class Data_Rptka extends CI_Controller
                 $data['judul'] = 'Data RPTKA';
                 $data['subjudul'] = 'Edit Jabatan RPTKA';
                 $data['button'] = 'Simpan Edit Jabatan RPTKA';
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                 $this->session->set_flashdata('flash', 'Jabatan RPTKA Gagal Ditambahkan Karena Total Jumlah Tidak Sesuai');
                 $this->load->view('templates/header', $data);
                 $this->load->view('data_rptka/data_rptka_jabatan_form', $data);

@@ -16,6 +16,7 @@ class Data_Visa extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisa();
         $this->load->view('templates/header', $data);
         $this->load->view('data_visa/data_visa', $data);
@@ -24,6 +25,7 @@ class Data_Visa extends CI_Controller
     public function visa312($id_visa)
     {
         $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllVisa312($id_visa);
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
@@ -38,6 +40,7 @@ class Data_Visa extends CI_Controller
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
         $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->input->post('nama_pt')) {
             if (($data['data_jenis_visa']['id_visa_sebelumnya'] == 1) or ($data['data_jenis_visa']['id_visa_sebelumnya'] == 2)) {
                 $data['id_tenaga'] = $this->Tka_Model->getTkaIdByPt($this->input->post('nama_pt'));
@@ -89,6 +92,7 @@ class Data_Visa extends CI_Controller
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
         $data['judul'] = 'Data Visa';
         $data['button'] = 'Tambahkan Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('data_visa/data_visa312_form', $data);
@@ -131,6 +135,7 @@ class Data_Visa extends CI_Controller
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllvisa211($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_visa/data_visa211', $data);
         $this->load->view('templates/footer');
@@ -142,6 +147,7 @@ class Data_Visa extends CI_Controller
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
         $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->input->post('nama_pt')) {
             if (($data['data_jenis_visa']['id_visa_sebelumnya'] == 1) or ($data['data_jenis_visa']['id_visa_sebelumnya'] == 2)) {
                 $data['id_tenaga'] = $this->Tka_Model->getTkaIdByPt($this->input->post('nama_pt'));
@@ -174,6 +180,7 @@ class Data_Visa extends CI_Controller
         $data['judul'] = 'Data Visa';
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_visa/data_visa211_form', $data);
         $this->load->view('templates/footer');
@@ -189,6 +196,7 @@ class Data_Visa extends CI_Controller
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
         $data['subjudul'] = $data['data_jenis_visa']['visa'];
         $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['button'] = 'Tambahkan Data Visa';
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);

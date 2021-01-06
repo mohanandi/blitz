@@ -12,10 +12,20 @@ class Profile extends CI_Controller
     public function index()
     {
         $data['judul'] = 'User Profile';
-        $data['user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data'] = $this->Profile_Model->check($this->session->userdata('id'));
         $this->load->view('templates/header', $data);
         $this->load->view('user_profile', $data);
+        $this->load->view('templates/footer');
+    }
+    public function edit($id)
+    {
+        $data['judul'] = 'User Profile';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['users'] = $this->db->get_where('user', ['id' => $id])->row_array();
+        $data['data'] = $this->Profile_Model->check($this->session->userdata('id'));
+        $this->load->view('templates/header', $data);
+        $this->load->view('edit_profile', $data);
         $this->load->view('templates/footer');
     }
 }

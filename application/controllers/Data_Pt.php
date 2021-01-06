@@ -16,6 +16,7 @@ class Data_Pt extends CI_Controller
     {
         $data['judul'] = 'Data Perusahaan';
         $data['pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_pt/data_pt', $data);
         $this->load->view('templates/footer');
@@ -23,6 +24,7 @@ class Data_Pt extends CI_Controller
     public function detail($id)
     {
         $data['judul'] = 'Data Perusahaan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
         $data['data_pic'] = $this->User_Model->getUserById($data['data_pt']['id_pic']);
         $data['input_by'] = $this->User_Model->getUserById($data['data_pt']['input_by_id']);
@@ -47,6 +49,7 @@ class Data_Pt extends CI_Controller
             $data['judul'] = 'Data Perusahaan';
             $data['subjudul'] = "Tambah PT";
             $data['button'] = "Tambahkan";
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['data_pt'] = null;
             $this->load->view('templates/header', $data);
             $this->load->view('data_pt/data_pt_form', $data);
@@ -73,6 +76,7 @@ class Data_Pt extends CI_Controller
         $data['data_pt'] = $this->DataPt_Model->getPtById($id);
         $data['pic'] = $this->User_Model->getPic();
         $id_pt = $data['data_pt']['id'];
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($data['data_pt']['nama_pt'] == $this->input->post('nama_pt', true)) {
             $this->form_validation->set_rules('nama_pt', 'Nama PT', 'trim|required');
         } else {

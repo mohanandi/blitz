@@ -21,6 +21,7 @@ class Data_Voucher extends CI_Controller
             $data['data_id_voucher_entertaint'] = $this->Data_Voucher_Model->getVoucherEntertaint();
             $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
             $data['judul'] = 'Data Voucher';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/data_voucher', $data);
             $this->load->view('templates/footer');
@@ -32,6 +33,7 @@ class Data_Voucher extends CI_Controller
             $data['data_id_voucher_entertaint'] = $this->Data_Voucher_Model->getVoucherEntertaintFilter($id_pt, $dari, $sampai);
             $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
             $data['judul'] = 'Data Voucher';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/data_voucher', $data);
             $this->load->view('templates/footer');
@@ -42,6 +44,7 @@ class Data_Voucher extends CI_Controller
         $data['data_id_voucher'] = $this->Data_Voucher_Model->getVoucherVisa();
         $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
         $data['judul'] = 'Data Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/data_voucher_report', $data);
         $this->load->view('templates/footer');
@@ -51,6 +54,7 @@ class Data_Voucher extends CI_Controller
         $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
         $data['judul'] = 'Data Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/data_vouchervisa_detail', $data);
         $this->load->view('templates/footer');
@@ -79,6 +83,7 @@ class Data_Voucher extends CI_Controller
             $data['judul'] = 'Data Voucher';
             $data['button'] = 'Buat Voucher';
             $data['data_kategori'] = $this->Data_Voucher_Model->getKategori();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/kategori_form', $data);
             $this->load->view('templates/footer');
@@ -106,6 +111,7 @@ class Data_Voucher extends CI_Controller
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherEntertaint($id_voucher);
         $data['judul'] = 'Data Voucher';
         $data['button'] = 'Buat Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/entertaint_detail', $data);
         $this->load->view('templates/footer');
@@ -123,6 +129,7 @@ class Data_Voucher extends CI_Controller
         $data['mata_uang'] = $this->input->post('mata_uang');
         $data['staff'] = $this->input->post('staff');
         $data['note'] = $this->input->post('note');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('data_voucher/data_visa', $data);
         $this->load->view('templates/footer');
@@ -139,6 +146,7 @@ class Data_Voucher extends CI_Controller
             $data['judul'] = 'Data Voucher';
             $data['subjudul'] = 'Tambah Data Voucher';
             $data['button'] = 'Tambahkan Data Voucher';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/entertaint_form', $data);
             $this->load->view('templates/footer');
@@ -164,6 +172,7 @@ class Data_Voucher extends CI_Controller
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
         $data['judul'] = 'Data Voucher';
         $data['button'] = 'Tambahkan Data Voucher';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/visa_form', $data);
@@ -182,6 +191,7 @@ class Data_Voucher extends CI_Controller
         $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
         $data['data_tka'] = $this->Data_Voucher_Model->getTkaIdByPt($data['data_voucher']['id_pt']);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/tambah_data_visa_form', $data);
@@ -254,6 +264,7 @@ class Data_Voucher extends CI_Controller
             $data['judul'] = 'Data Voucher';
             $data['subjudul'] = 'Edit Data Voucher';
             $data['button'] = 'Simpan Edit Data Voucher';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('data_voucher/entertaint_form', $data);
             $this->load->view('templates/footer');

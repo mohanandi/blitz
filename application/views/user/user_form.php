@@ -7,15 +7,15 @@
                 <form class="" method="POST">
                     <div class="position-relative row form-group">
                         <label for="NamaTKA" class="col-sm-2 col-form-label"><b>Nama</b></label>
-                        <?php if ($user['id']) : ?>
-                            <input name="id_user" id="id_user" type="hidden" value="<?= $user['id']; ?>" class=" form-control">
+                        <?php if ($users['id']) : ?>
+                            <input name="id_user" id="id_user" type="hidden" value="<?= $users['id']; ?>" class=" form-control">
                         <?php else : ?>
                         <?php endif; ?>
                         <div class="col-sm-10">
                             <?php if (set_value('nama')) : ?>
                                 <input name="nama" id="nama" type="text" value="<?= set_value('nama'); ?>" placeholder="Nama User" class="form-control">
-                            <?php elseif ($user['nama']) : ?>
-                                <input name="nama" id="nama" type="text" value="<?= $user['nama']; ?>" placeholder="Nama User" class="form-control">
+                            <?php elseif ($users['nama']) : ?>
+                                <input name="nama" id="nama" type="text" value="<?= $users['nama']; ?>" placeholder="Nama User" class="form-control">
                             <?php else : ?>
                                 <input name="nama" id="nama" type="text" placeholder="Nama User" class="form-control">
                             <?php endif; ?>
@@ -27,8 +27,8 @@
                         <div class="col-sm-10">
                             <?php if (set_value('email')) : ?>
                                 <input name="email" id="email" type="email" value="<?= set_value('email'); ?>" placeholder="Email" class="form-control">
-                            <?php elseif ($user['email']) : ?>
-                                <input name="email" id="email" type="email" value="<?= $user['email']; ?>" placeholder="Email" class="form-control">
+                            <?php elseif ($users['email']) : ?>
+                                <input name="email" id="email" type="email" value="<?= $users['email']; ?>" placeholder="Email" class="form-control">
                             <?php else : ?>
                                 <input name="email" id="email" type="email" placeholder="Email" class="form-control">
                             <?php endif; ?>
@@ -38,12 +38,12 @@
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label"><b>Password</b></label>
                         <div class="col-sm-10">
-                            <?php if ($user['password']) : ?>
-                                <input name="password" id="password" type="password" value="<?= $user['password']; ?>" placeholder="Password" class="form-control" readonly>
+                            <?php if ($users['password']) : ?>
+                                <input name="password" id="password" type="password" value="<?= $users['password']; ?>" placeholder="Password" class="form-control" readonly>
                             <?php elseif (set_value('password')) : ?>
                                 <input name="password" id="password" type="password" value="<?= set_value('password'); ?>" placeholder="Password" class="form-control">
                             <?php else : ?>
-                                <input name="password" id="password" type="password" value="<?= $user['password']; ?>" placeholder="Password" class="form-control">
+                                <input name="password" id="password" type="password" value="<?= $users['password']; ?>" placeholder="Password" class="form-control">
                             <?php endif; ?>
                             <?= form_error('password'); ?>
                         </div>
@@ -56,8 +56,8 @@
                                     $data_role = $this->db->get_where('role', ['id' => set_value('role_id')])->row_array();
                                 ?>
                                     <option value="<?= set_value('role_id'); ?>"> <?= $data_role['role']; ?></option>
-                                <?php elseif ($user['role_id']) :
-                                    $data_role = $this->db->get_where('role', ['id' => $user['role_id']])->row_array();
+                                <?php elseif ($users['role_id']) :
+                                    $data_role = $this->db->get_where('role', ['id' => $users['role_id']])->row_array();
                                 ?>
                                     <option value="<?= $data_role['id']; ?>"> <?= $data_role['role']; ?></option>
                                 <?php else : ?>
@@ -76,8 +76,8 @@
                             <select class="form-control" id="pic_pt" name="pic_pt">
                                 <?php if (set_value('pic_pt')) : ?>
                                     <option value="<?= set_value('pic_pt'); ?>"> <?= set_value('pic_pt'); ?></option>
-                                <?php elseif ($user['pic_pt']) : ?>
-                                    <option value="<?= $user['pic_pt']; ?>"> <?= $user['pic_pt']; ?></option>
+                                <?php elseif ($users['pic_pt']) : ?>
+                                    <option value="<?= $users['pic_pt']; ?>"> <?= $users['pic_pt']; ?></option>
                                 <?php else : ?>
                                     <option value="">Status PIC PT</option>
                                 <?php endif; ?>
@@ -93,8 +93,8 @@
                             <select class="form-control" id="is_active" name="is_active">
                                 <?php if (set_value('is_active')) : ?>
                                     <option value="<?= set_value('is_active'); ?>"> <?= set_value('is_active'); ?></option>
-                                <?php elseif ($user['is_active']) : ?>
-                                    <option value="<?= $user['is_active']; ?>"> <?= $user['is_active']; ?></option>
+                                <?php elseif ($users['is_active']) : ?>
+                                    <option value="<?= $users['is_active']; ?>"> <?= $users['is_active']; ?></option>
                                 <?php else : ?>
                                     <option value="">Status</option>
                                 <?php endif; ?>

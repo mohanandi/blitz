@@ -20,6 +20,7 @@ class Home extends CI_Controller
         // echo date('d-m-Y', time() + (60 * 60 * 24 * 7));
         $data['jumlah_rptka'] = $this->Home_Model->jumlahRptka();
         $data['jumlah_tka'] = $this->Home_Model->jumlahTka();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jumlah_pt'] = $this->Home_Model->jumlahPt();
         $data['jumlah_voucher'] = $this->Home_Model->jumlahVoucher();
         $data['data_visa'] = $this->Home_Model->getDataJenisVisa();
@@ -68,6 +69,7 @@ class Home extends CI_Controller
         // endforeach;
         // var_dump($jumlah_visa_minggu);
         $data['judul'] = "Report By Perusahaan";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('report/report', $data);
         $this->load->view('templates/footer');
@@ -97,6 +99,7 @@ class Home extends CI_Controller
         // endforeach;
         // var_dump($jumlah_visa_minggu);
         $data['judul'] = "Report By Proccess";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('report/report', $data);
         $this->load->view('templates/footer');

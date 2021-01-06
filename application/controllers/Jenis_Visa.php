@@ -15,6 +15,7 @@ class Jenis_Visa extends CI_Controller
     {
         $data['judul'] = 'Visa';
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisa();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('visa_voucher/data_visa', $data);
         $this->load->view('templates/footer');
@@ -39,6 +40,7 @@ class Jenis_Visa extends CI_Controller
                 'data_jenis_visa' => $this->Jenis_Visa_Model->getAllJenisVisa(),
             );
             $data['judul'] = 'Visa';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['button'] = 'Simpan Edit Visa';
             $data['subjudul'] = 'Edit Visa';
             $data['jenis_visa_detail'] = $this->Jenis_Visa_Model->getJenisVisaById($id);
@@ -69,6 +71,7 @@ class Jenis_Visa extends CI_Controller
             $data['judul'] = 'Visa';
             $data['subjudul'] = 'Tambah Visa';
             $data['button'] = 'Tambahkan Visa';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
             $this->load->view('visa_voucher/data_visa_form', $data);
             $this->load->view('templates/footer');

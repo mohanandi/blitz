@@ -83,6 +83,7 @@ class Sementara extends CI_Controller
     public function User_Profile()
     {
         $data['judul'] = 'User Profile';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('User Profile');
         $this->load->view('templates/footer');
@@ -90,6 +91,7 @@ class Sementara extends CI_Controller
     public function User()
     {
         $data['judul'] = 'User';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('user');
         $this->load->view('templates/footer');

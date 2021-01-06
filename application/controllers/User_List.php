@@ -6,13 +6,14 @@ class User_List extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
         $this->load->model('User_Model');
+        is_logged_in();
     }
     public function index()
     {
         $data['judul'] = 'User List';
-        $data['user'] = $this->User_Model->getAllUser();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['users'] = $this->User_Model->getAllUser();
         $this->load->view('templates/header', $data);
         $this->load->view('user/user_list', $data);
         $this->load->view('templates/footer');
@@ -30,8 +31,9 @@ class User_List extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data['judul'] = 'User List';
-            $data['user'] = null;
+            $data['users'] = null;
             $data['subjudul'] = 'Tambah User';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['button'] = "Tambahkan";
             $data['role'] = $this->User_Model->getRole();
             $this->load->view('templates/header', $data);
@@ -45,9 +47,9 @@ class User_List extends CI_Controller
     }
     public function edit($id)
     {
-        $data['user'] = $this->User_Model->getUserById($id);
+        $data['users'] = $this->User_Model->getUserById($id);
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-        if ($data['user']['email'] == $this->input->post('email', true)) {
+        if ($data['users']['email'] == $this->input->post('email', true)) {
             $this->form_validation->set_rules('email', 'Email', 'trim|required');
         } else {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.email]', [
@@ -63,6 +65,7 @@ class User_List extends CI_Controller
             $data['judul'] = 'User List';
             $data['button'] = "Simpan Edit";
             $data['subjudul'] = "Edit User";
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['role'] = $this->User_Model->getRole();
             $this->load->view('templates/header', $data);
             $this->load->view('user/user_form', $data);
