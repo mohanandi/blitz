@@ -80,8 +80,12 @@ class Data_Voucher extends CI_Controller
                 'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
             );
             $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['data_voucher'] = null;
+            $data['kategori_batas'] = null;
             $data['judul'] = 'Data Voucher';
+            $data['subjudul'] = 'Input Voucher';
             $data['button'] = 'Buat Voucher';
+            $data['dirubah'] = 'yes';
             $data['data_kategori'] = $this->Data_Voucher_Model->getKategori();
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/header', $data);
@@ -161,12 +165,12 @@ class Data_Voucher extends CI_Controller
         }
     }
 
-    public function tambahvouchervisa()
+    public function tambahtkavisa()
     {
         $this->form_validation->set_rules('total', 'Total Harga', 'trim|required');
         $this->form_validation->set_rules('harga[]', 'Harga', 'trim|required');
-
         $data['id_tka'] = $this->input->post('data_tka[]');
+
         $id_voucher = $this->input->post('id_voucher');
         $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
         $data['data_pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
@@ -207,11 +211,10 @@ class Data_Voucher extends CI_Controller
         }
     }
 
-    public function visa()
+    public function delete_entertaint($id_voucher)
     {
-        $this->load->view('templates/header');
-        $this->load->view('input_visa_211');
-        $this->load->view('templates/footer');
+        $data['id_pengguna'] = $this->Data_Voucher_Model->getTkaEntertaint($id_voucher);
+        var_dump($data['id_pengguna']);
     }
 
     public function other()
@@ -246,7 +249,7 @@ class Data_Voucher extends CI_Controller
         foreach ($data as $d) :
             $total_harga += $d['harga'];
         endforeach;
-        $jumlah_data = count($data);;
+        $jumlah_data = count($data);
         $this->Data_Voucher_Model->updateDataVisa($total_harga, $jumlah_data, $id_voucher);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect("Data_Voucher/detail/$id_voucher");
@@ -279,6 +282,133 @@ class Data_Voucher extends CI_Controller
             $this->Data_Voucher_Model->ubahDataEntertaint($total_harga, $jumlah_data, $id_voucher);
             $this->session->set_flashdata('flash', 'Dirubah');
             redirect("Data_Voucher/detail_entertaint/$id_voucher");
+        }
+    }
+
+    public function edit_kategori_visa($id_voucher)
+    {
+        $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
+        $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
+        $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
+        if ($this->input->post('kategori') == 1) {
+            $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
+            $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+        } else {
+            $this->form_validation->set_rules('lokasi_entertaint', 'Lokasi', 'trim|required');
+        }
+        $this->form_validation->set_rules('staff', 'Staff OP', 'trim|required');
+        $this->form_validation->set_rules('note', 'Note', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
+                'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
+            );
+            $data['pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherVisa($id_voucher);
+            if ($data['pengguna_voucher'] == null) {
+                $data['dirubah'] = 'yes';
+            } else {
+                $data['dirubah'] = 'no';
+            }
+            $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
+            $data['judul'] = 'Data Voucher';
+            $data['subjudul'] = 'Edit Voucher';
+            $data['button'] = 'Edit Voucher';
+            $data['kategori_batas'] = 'visa';
+            $data['data_kategori'] = $this->Data_Voucher_Model->getKategori();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_voucher/kategori_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            if ($this->input->post('dirubah') == 'yes') {
+                if ($this->input->post('kategori') == 1) {
+                    $this->Data_Voucher_Model->ubahVoucherVisa($id_voucher);
+                    $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                    redirect("Data_Voucher/detail/$id_voucher");
+                } else {
+                    $this->Data_Voucher_Model->hapusVoucherVisa($id_voucher);
+                    $kode = $this->Data_Voucher_Model->getKodeVoucherEntertaint();
+                    $this->Data_Voucher_Model->tambahVoucherEntertaint($kode);
+                    $data_voucher = $this->Data_Voucher_Model->getLastKodeEntertaint();
+                    $id_voucher = $data_voucher['id_voucher'];
+                    $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                    redirect("Data_Voucher/detail_entertaint/$id_voucher");
+                }
+            } else {
+                $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherVisaById($id_voucher);
+                if ($data['data_voucher']['id_jenis_proses'] == $this->input->post('jenis_proses')) {
+                    if ($data['data_voucher']['id_lokasi'] == $this->input->post('lokasi')) {
+                    } else {
+                    }
+                } else {
+                }
+                $this->Data_Voucher_Model->ubahVoucherVisa($id_voucher);
+                $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                redirect("Data_Voucher/detail/$id_voucher");
+            }
+        }
+    }
+
+    public function edit_kategori_entertaint($id_voucher)
+    {
+        $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
+        $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
+        $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
+        if ($this->input->post('kategori') == 1) {
+            $this->form_validation->set_rules('jenis_proses', 'Jenis Proses', 'trim|required');
+            $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+        } else {
+            $this->form_validation->set_rules('lokasi_entertaint', 'Lokasi', 'trim|required');
+        }
+        $this->form_validation->set_rules('staff', 'Staff OP', 'trim|required');
+        $this->form_validation->set_rules('note', 'Note', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'data_jenis_proses' => $this->Data_Voucher_Model->getJenisProses(),
+                'data_lokasi' => $this->Data_Voucher_Model->getLokasi()
+            );
+            $data['pengguna_voucher'] = $this->Data_Voucher_Model->getPenggunaVoucherEntertaint($id_voucher);
+            if ($data['pengguna_voucher'] == null) {
+                $data['dirubah'] = 'yes';
+            } else {
+                $data['dirubah'] = 'no';
+            }
+            $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+            $data['data_voucher'] = $this->Data_Voucher_Model->getVoucherEntertaintById($id_voucher);
+            $data['judul'] = 'Data Voucher';
+            $data['subjudul'] = 'Edit Voucher';
+            $data['button'] = 'Edit Voucher';
+            $data['kategori_batas'] = 'entertaint';
+            $data['data_kategori'] = $this->Data_Voucher_Model->getKategori();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_voucher/kategori_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            if ($this->input->post('dirubah') == 'yes') {
+                if ($this->input->post('kategori') == 1) {
+                    $this->Data_Voucher_Model->hapusVoucherEntertaint($id_voucher);
+                    $kode = $this->Data_Voucher_Model->getKodeVoucher();
+                    $this->Data_Voucher_Model->tambahVoucherVisa($kode);
+                    $data_voucher = $this->Data_Voucher_Model->getLastKode();
+                    $id_voucher = $data_voucher['id_voucher'];
+                    $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                    redirect("Data_Voucher/detail/$id_voucher");
+                } else {
+                    $this->Data_Voucher_Model->ubahVoucherEntertaint($id_voucher);
+                    $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                    redirect("Data_Voucher/detail_entertaint/$id_voucher");
+                }
+            } else {
+                $this->Data_Voucher_Model->ubahVoucherEntertaint($id_voucher);
+                $this->session->set_flashdata('flash', 'Voucher Berhasil Diubah');
+                redirect("Data_Voucher/detail_entertaint/$id_voucher");
+            }
         }
     }
 }

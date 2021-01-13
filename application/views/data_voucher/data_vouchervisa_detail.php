@@ -63,7 +63,7 @@
                             <td class="text-center">
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <a href="" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= base_url('Data_Voucher/edit_kategori_visa/'); ?><?= $id_voucher; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     </li>
                                 </ul>
                             </td>

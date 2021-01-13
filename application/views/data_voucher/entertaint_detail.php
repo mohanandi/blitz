@@ -52,10 +52,7 @@
                             <td class="text-center">
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <a href="" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+                                        <a href="<?= base_url('Data_Voucher/edit_kategori_entertaint/'); ?><?= $id_voucher; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     </li>
                                 </ul>
                             </td>

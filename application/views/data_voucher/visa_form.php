@@ -109,7 +109,7 @@
                                     </td>
                                     <td class="text-center"><?= $data_tka['nama_mandarin']; ?></td>
                                     <td class="text-center"><?= $data_tka['nama_latin']; ?></td>
-                                    <input type="hidden" name="id_tka[]" id="id_tka[]" value="<?= $id_tka[$i]; ?>">
+                                    <input type="hidden" name="data_tka[]" id="data_tka[]" value="<?= $id_tka[$i]; ?>">
                                     <td class="text-center">
                                         <input type="hidden" class="form-control text-center" name="harga[]" id="harga[]" value="<?= $harga; ?>" readonly>
                                         <input type="text" class="form-control text-center" name="satuan[]" id="satuan[]" value="<?= $satuan; ?>" readonly>

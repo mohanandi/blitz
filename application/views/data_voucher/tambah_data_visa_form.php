@@ -60,7 +60,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <form action="<?= base_url('Data_Voucher/tambahvouchervisa'); ?>" method="POST" onSubmit="return validate()">
+            <form action="<?= base_url('Data_Voucher/tambahtkavisa'); ?>" method="POST" onSubmit="return validate()">
                 <div class="card-header"> Pilih Data TKA untuk Voucher
                 </div>
                 <div class="table-responsive" style="padding: 10px;">

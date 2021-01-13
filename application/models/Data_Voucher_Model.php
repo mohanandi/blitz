@@ -33,8 +33,8 @@ class Data_Voucher_Model extends CI_Model
     public function getHargaVoucherVisa($id_voucher)
     {
         $this->db->select('harga');
-        $this->db->from('pengguna_voucher_entertaint');
-        $this->db->where('id_voucher_entertaint', $id_voucher);
+        $this->db->from('pengguna_voucher_visa');
+        $this->db->where('id_voucher_visa', $id_voucher);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -50,6 +50,14 @@ class Data_Voucher_Model extends CI_Model
     {
         $this->db->select('id_voucher');
         $this->db->from('voucher_entertaint');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getTkaEntertaint($id_voucher)
+    {
+        $this->db->select('id_pengguna_voucher_entertaint');
+        $this->db->from('pengguna_voucher_entertaint');
+        $query = $this->db->where('id_voucher_entertaint', $id_voucher);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -271,10 +279,10 @@ class Data_Voucher_Model extends CI_Model
 
     public function tambahPenggunaVoucherVisa($id_voucher)
     {
-        for ($i = 0; $i < count($this->input->post('id_tka[]')); $i++) {
+        for ($i = 0; $i < count($this->input->post('data_tka[]')); $i++) {
             $data = [
                 "id_voucher_visa" => $id_voucher,
-                "id_tka" => $this->input->post("id_tka[$i]", true),
+                "id_tka" => $this->input->post("data_tka[$i]", true),
                 "harga" => $this->input->post("harga[$i]", true)
             ];
             $this->db->insert('pengguna_voucher_visa', $data);
@@ -289,5 +297,46 @@ class Data_Voucher_Model extends CI_Model
     {
         // $this->db->where('id', $id);
         $this->db->delete('pengguna_voucher_visa', ['id_pengguna_voucher' => $id_voucher_pengguna]);
+    }
+
+    public function hapusVoucherVisa($id_voucher)
+    {
+        // $this->db->where('id', $id);
+        $this->db->delete('voucher_visa', ['id_voucher' => $id_voucher]);
+    }
+    public function hapusVoucherEntertaint($id_voucher)
+    {
+        // $this->db->where('id', $id);
+        $this->db->delete('voucher_entertaint', ['id_voucher' => $id_voucher]);
+    }
+
+    public function ubahVoucherVisa($id_voucher)
+    {
+        $data = [
+            "id_pt" => $this->input->post('nama_pt', true),
+            "nama_client" => $this->input->post('nama_client', true),
+            "mata_uang" => $this->input->post('mata_uang', true),
+            "id_jenis_proses" => $this->input->post('jenis_proses', true),
+            "id_lokasi" => $this->input->post('lokasi', true),
+            "staff" => $this->input->post('staff', true),
+            "note" => $this->input->post('note', true)
+        ];
+        $this->db->where('id_voucher', $id_voucher);
+        $this->db->update('voucher_visa', $data);
+    }
+
+    public function ubahVoucherEntertaint($id_voucher)
+    {
+        $data = [
+            "id_pt" => $this->input->post('nama_pt', true),
+            "nama_client" => $this->input->post('nama_client', true),
+            "mata_uang" => $this->input->post('mata_uang', true),
+            "kategori_id" => $this->input->post('kategori', true),
+            "lokasi" => $this->input->post('lokasi_entertaint', true),
+            "staff" => $this->input->post('staff', true),
+            "note" => $this->input->post('note', true)
+        ];
+        $this->db->where('id_voucher', $id_voucher);
+        $this->db->update('voucher_entertaint', $data);
     }
 }

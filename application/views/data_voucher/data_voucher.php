@@ -115,7 +115,12 @@
 								<td class="text-center"><?= $data_input_by['nama']; ?></td>
 								<td class="text-center"><?= date('d-m-Y', $data_voucher['tgl_input']); ?></td>
 								<td class="text-center">
-									<a href="<?= base_url('Data_Voucher/detail/') ?><?= $data_voucher['id_voucher'] ?>" class="badge badge-success">Detail</a>
+									<ul class="list-inline m-0">
+										<li class="list-inline-item">
+											<a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" href="<?= base_url('Data_Voucher/detail/') ?><?= $data_voucher['id_voucher'] ?>" title="Detail"><i class="fas fa-pencil-alt"></i></a>
+											<button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+										</li>
+									</ul>
 								</td>
 							</tr>
 						<?php $no++;
@@ -148,7 +153,12 @@
 								<td class="text-center"><?= $data_input_by['nama']; ?></td>
 								<td class="text-center"><?= date('d-m-Y', $data_voucher['tgl_input']); ?></td>
 								<td class="text-center">
-									<a href="<?= base_url('Data_Voucher/detail_entertaint/') ?><?= $data_voucher['id_voucher'] ?>" class="badge badge-success">Detail</a>
+									<ul class="list-inline m-0">
+										<li class="list-inline-item">
+											<a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" href="<?= base_url('Data_Voucher/detail_entertaint/'); ?><?= $data_voucher['id_voucher']; ?>" title="Detail"><i class="fas fa-pencil-alt"></i></a>
+											<button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Data_Voucher/delete_entertaint/'); ?><?= $data_voucher['id_voucher']; ?>" title="Delete"><i class="fa fa-trash"></i></button>
+										</li>
+									</ul>
 								</td>
 							</tr>
 						<?php $no++;
@@ -166,5 +176,23 @@
 	});
 	$('#filter').click(function() {
 		$("#filter_box").toggle();
+	});
+</script>
+
+<script>
+	$('.action-delete').click(function() {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You Will delete this data !",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes'
+		}).then((result) => {
+			if (result.value) {
+				window.location.href = $(this).data('href');
+			}
+		})
 	});
 </script>
