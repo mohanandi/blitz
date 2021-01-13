@@ -214,14 +214,23 @@ class Data_Voucher extends CI_Controller
     public function delete_entertaint($id_voucher)
     {
         $data['id_pengguna'] = $this->Data_Voucher_Model->getTkaEntertaint($id_voucher);
-        var_dump($data['id_pengguna']);
+        foreach ($data['id_pengguna'] as $pengguna) :
+            $this->Data_Voucher_Model->hapusDataPenggunaEntertaint($pengguna['id_pengguna_voucher_entertaint']);
+        endforeach;
+        $this->Data_Voucher_Model->hapusVoucherEntertaint($id_voucher);
+        $this->session->set_flashdata('flash', 'Voucher Berhasil Dihapus');
+        redirect("Data_Voucher");
     }
 
-    public function other()
+    public function delete_visa($id_voucher)
     {
-        $this->load->view('templates/header');
-        $this->load->view('input_visa_other');
-        $this->load->view('templates/footer');
+        $data['id_pengguna'] = $this->Data_Voucher_Model->getTkaVisa($id_voucher);
+        foreach ($data['id_pengguna'] as $pengguna) :
+            $this->Data_Voucher_Model->hapusDataPenggunaVisa($pengguna['id_pengguna_voucher']);
+        endforeach;
+        $this->Data_Voucher_Model->hapusVoucherVisa($id_voucher);
+        $this->session->set_flashdata('flash', 'Voucher Berhasil Dihapus');
+        redirect("Data_Voucher");
     }
 
     public function delete_data_entertaint($id_pengguna)

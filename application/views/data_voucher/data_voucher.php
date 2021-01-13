@@ -5,7 +5,7 @@
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
 			<div class="card-header">
-				<button id="filter" class="btn btn-primary btn-sm rounded-0 action-delete" type="button">Filter</button>
+				<button id="filter" class="btn btn-primary btn-sm rounded-0" type="button">Filter</button>
 
 				<?php if (set_value('sampai') && (set_value('nama_pt'))) : ?>
 					<form class="btn-actions-pane-right mb-2 mr-2" action="<?= base_url('Export/export_voucher'); ?>" method="POST">
@@ -118,7 +118,7 @@
 									<ul class="list-inline m-0">
 										<li class="list-inline-item">
 											<a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" href="<?= base_url('Data_Voucher/detail/') ?><?= $data_voucher['id_voucher'] ?>" title="Detail"><i class="fas fa-pencil-alt"></i></a>
-											<button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Data_Voucher/delete_visa/'); ?><?= $data_voucher['id_voucher']; ?>" title="Delete"><i class="fa fa-trash"></i></button>
 										</li>
 									</ul>
 								</td>

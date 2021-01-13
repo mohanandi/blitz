@@ -61,6 +61,14 @@ class Data_Voucher_Model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getTkaVisa($id_voucher)
+    {
+        $this->db->select('id_pengguna_voucher');
+        $this->db->from('pengguna_voucher_visa');
+        $query = $this->db->where('id_voucher_visa', $id_voucher);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getVoucherVisaFilter($id_pt, $dari, $sampai)
     {
         $this->db->select('id_voucher');
