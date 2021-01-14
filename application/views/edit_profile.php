@@ -22,10 +22,9 @@
                     <div class="col-sm-3">
                         <img src="<?= base_url('assets/images/avatars/') . $users['image']; ?>" class="img-thumbnail">
                     </div>
-                    <div class="col-sm-9">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image">
-                            <label class="custom-file-label" for="image">Choose file</label>
+                    <div class="col">
+                        <div class=" input-group">
+                            <input type="file" class="form-control" id="image">
                         </div>
                     </div>
                 </div>
