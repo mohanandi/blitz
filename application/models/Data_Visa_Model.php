@@ -60,6 +60,18 @@ class Data_Visa_Model extends CI_Model
     {
         return $this->db->get_where('penghubung_visa211', ['id_jenis_visa' => $id])->result_array();
     }
+    public function getTka($id)
+    {
+        return $this->db->get_where('tka', ['id' => $id])->row_array();
+    }
+    public function getvisa211($id_penghubung)
+    {
+        return $this->db->get_where('penghubung_visa211', ['id_penghubung_visa211' => $id_penghubung])->row_array();
+    }
+    public function getdatavisa211($id_penghubung)
+    {
+        return $this->db->get_where('visa_211', ['id_penghubung' => $id_penghubung])->row_array();
+    }
     public function getAllVisa312($id)
     {
         return $this->db->get_where('penghubung_visa312', ['id_jenis_visa' => $id])->result_array();

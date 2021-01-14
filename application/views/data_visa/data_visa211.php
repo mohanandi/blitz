@@ -78,7 +78,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Nama PT</th>
+                            <th class="text-center">Perusahaan</th>
                             <th class="text-center">No Passport</th>
                             <th class="text-center">Nama Latin</th>
                             <th class="text-center">Tanggal Awal Visa</th>
@@ -122,7 +122,7 @@
                                 <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_input']); ?></td>
                                 <td class="text-center"><?= $data_input['nama']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?><?= $data_tka['id']; ?>">Detail</a>
+                                    <a href="<?= base_url('Data_Visa/spesifik_visa211/'); ?><?= $visa['id_penghubung_visa211']; ?>" class="badge badge-success">Detail</a>
                                 </td>
                             </tr>
                         <?php $no++;

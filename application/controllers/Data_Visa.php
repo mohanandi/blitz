@@ -185,6 +185,17 @@ class Data_Visa extends CI_Controller
         $this->load->view('data_visa/data_visa211_form', $data);
         $this->load->view('templates/footer');
     }
+    public function spesifik_visa211($id_penghubung_visa)
+    {
+        $data['data_penghubung_visa'] = $this->Data_Visa_Model->getvisa211($id_penghubung_visa);
+        $data['data_tka'] = $this->Data_Visa_Model->getTka($data['data_penghubung_visa']['id_tka']);
+        $data['data_visa'] = $this->Data_Visa_Model->getdatavisa211($id_penghubung_visa);
+        $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('data_visa/spesifik_visa211', $data);
+        $this->load->view('templates/footer');
+    }
     public function tambah_visa211()
     {
         $this->form_validation->set_rules('tgl_awal', 'Nama Mandarin', 'required');
