@@ -81,7 +81,15 @@
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">Jabatan RPTKA</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="jabatan_rptka" id="jabatan_rptka">
-                                <option value="">Select Jabatan</option>
+                                <?php if (set_value('jabatan_rptka')) :
+                                    $pilihan_jabatan = $this->db->get_where('jabatan_rptka', ['id_jabatan_rptka' => set_value('jabatan_rptka')])->row_array(); ?>
+                                    <option value="<?= $pilihan_jabatan['id_jabatan_rptka']; ?>"><?= $pilihan_jabatan['jabatan']; ?></option>
+                                <?php elseif ($data_penghubung['id_jabatan']) :
+                                    $pilihan_jabatan = $this->db->get_where('jabatan_rptka', ['id_jabatan_rptka' => $data_penghubung['id_jabatan']])->row_array(); ?>
+                                    <option value="<?= $pilihan_jabatan['id_jabatan_rptka']; ?>"><?= $pilihan_jabatan['jabatan']; ?></option>
+                                <?php else : ?>
+                                    <option value="">Select Jabatan</option>
+                                <?php endif; ?>
                                 <?php foreach ($data_jabatan as $jabatan) :
                                     $sisa = $jabatan->jumlah - $jabatan->terpakai;
                                     if ($sisa == 0) :
@@ -96,37 +104,73 @@
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">Tanggal Awal Visa</label>
                         <div class="col-sm-10">
-                            <input name="tgl_awal" id="tgl_awal" type="date" class="form-control" required>
+                            <?php if (set_value('tgl_awal')) : ?>
+                                <input name="tgl_awal" id="tgl_awal" type="date" value="<?= set_value('tgl_awal'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['tgl_awal']) : ?>
+                                <input name="tgl_awal" id="tgl_awal" type="date" value="<?= date('Y-m-d', $data_visa['tgl_awal']); ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="tgl_awal" id="tgl_awal" type="date" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">Jangka Waktu Visa (Bulan)</label>
                         <div class="col-sm-10">
-                            <input name="waktu_visa" id="waktu_visa" type="number" placeholder="Jangka Waktu Visa" class="form-control" required>
+                            <?php if (set_value('waktu_visa')) : ?>
+                                <input name="waktu_visa" id="waktu_visa" type="number" placeholder="Jangka Waktu Visa" value="<?= set_value('waktu_visa'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['waktu_visa']) : ?>
+                                <input name="waktu_visa" id="waktu_visa" type="number" placeholder="Jangka Waktu Visa" value="<?= $data_visa['waktu_visa']; ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="waktu_visa" id="waktu_visa" type="number" placeholder="Jangka Waktu Visa" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">No KITAS</label>
                         <div class="col-sm-10">
-                            <input name="no_kitas" id="no_kitas" type="text" placeholder="No KITAS" class="form-control" required>
+                            <?php if (set_value('no_kitas')) : ?>
+                                <input name="no_kitas" id="no_kitas" type="text" placeholder="No KITAS" value="<?= set_value('no_kitas'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['no_kitas']) : ?>
+                                <input name="no_kitas" id="no_kitas" type="text" placeholder="No KITAS" value="<?= $data_visa['no_kitas']; ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="no_kitas" id="no_kitas" type="text" placeholder="No KITAS" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label">Tanggal Expired Visa</label>
                         <div class="col-sm-10">
-                            <input name="tgl_expired" id="tgl_expired" type="date" class="form-control" required>
+                            <?php if (set_value('tgl_expired')) : ?>
+                                <input name="tgl_expired" id="tgl_expired" type="date" value="<?= set_value('tgl_expired'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['tgl_expired']) : ?>
+                                <input name="tgl_expired" id="tgl_expired" type="date" value="<?= date('Y-m-d', $data_visa['tgl_expired']); ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="tgl_expired" id="tgl_expired" type="date" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="passport" class="col-sm-2 col-form-label">No Notifikasi</label>
                         <div class="col-sm-10">
-                            <input name="no_notifikasi" id="no_notifikasi" type="text" placeholder="No Notifikasi" class="form-control" required>
+                            <?php if (set_value('no_notifikasi')) : ?>
+                                <input name="no_notifikasi" id="no_notifikasi" type="text" placeholder="No Notifikasi" value="<?= set_value('no_notifikasi'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['no_notifikasi']) : ?>
+                                <input name="no_notifikasi" id="no_notifikasi" type="text" placeholder="No Notifikasi" value="<?= $data_visa['no_notifikasi']; ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="no_notifikasi" id="no_notifikasi" type="text" placeholder="No Notifikasi" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-group">
                         <label for="Keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                            <input name="ket" id="ket" type="text" placeholder="Keterangan" class="form-control" required>
+                            <?php if (set_value('ket')) : ?>
+                                <input name="ket" id="ket" type="text" placeholder="Keterangan" value="<?= set_value('ket'); ?>" class="form-control" required>
+                            <?php elseif ($data_visa['ket']) : ?>
+                                <input name="ket" id="ket" type="text" placeholder="Keterangan" value="<?= $data_visa['ket']; ?>" class="form-control" required>
+                            <?php else : ?>
+                                <input name="ket" id="ket" type="text" placeholder="Keterangan" class="form-control" required>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="position-relative row form-check">

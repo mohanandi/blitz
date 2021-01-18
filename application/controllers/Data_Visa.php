@@ -87,6 +87,7 @@ class Data_Visa extends CI_Controller
         $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
         $data['data_tka'] = $this->Tka_Model->getTkaById($id_tka);
         $data['ket_visa'] = 'tambah';
+        $data['data_visa'] = null;
         $id_tka = $this->input->post('id_tka');
         $id_visa = $this->input->post('id_visa');
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
