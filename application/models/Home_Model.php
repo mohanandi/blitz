@@ -64,6 +64,111 @@ class Home_Model extends CI_Model
         // $this->db->join('unit', 'anggota.id_unit = unit.id_unit', 'LEFT');
         // $query = $this->db->get();
     }
+    public function getSemingguData($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
+            ->from('penghubung_visa211')
+            ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+            ->where('penghubung_visa211.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa211.status', 'Aktif')
+            ->where('visa_211.tgl_expired >=', time())
+            ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 7)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getDuamingguData($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
+            ->from('penghubung_visa211')
+            ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+            ->where('penghubung_visa211.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa211.status', 'Aktif')
+            ->where('visa_211.tgl_expired >=', time())
+            ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getTigamingguData($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
+            ->from('penghubung_visa211')
+            ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+            ->where('penghubung_visa211.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa211.status', 'Aktif')
+            ->where('visa_211.tgl_expired >=', time())
+            ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 21)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getTSebulanData($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
+            ->from('penghubung_visa211')
+            ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+            ->where('penghubung_visa211.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa211.status', 'Aktif')
+            ->where('visa_211.tgl_expired >=', time())
+            ->where('visa_211.tgl_expired <=', (time() + (60 * 60 * 24 * 30)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+
+    public function getSemingguVisa312($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))
+            ->from('penghubung_visa312')
+            ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+            ->where('penghubung_visa312.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa312.status', 'Aktif')
+            ->where('visa_312.tgl_expired >=', time())
+            ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 7)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getDuamingguVisa312($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))
+            ->from('penghubung_visa312')
+            ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+            ->where('penghubung_visa312.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa312.status', 'Aktif')
+            ->where('visa_312.tgl_expired >=', time())
+            ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getTigamingguVisa312($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))
+            ->from('penghubung_visa312')
+            ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+            ->where('penghubung_visa312.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa312.status', 'Aktif')
+            ->where('visa_312.tgl_expired >=', time())
+            ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
+    public function getSebulanVisa312($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))
+            ->from('penghubung_visa312')
+            ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+            ->where('penghubung_visa312.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa312.status', 'Aktif')
+            ->where('visa_312.tgl_expired >=', time())
+            ->where('visa_312.tgl_expired <=', (time() + (60 * 60 * 24 * 14)))
+            ->get()
+            ->result_array();
+        return $query;
+    }
     public function jumlahTka()
     {
         $this->db->select('id');
@@ -95,6 +200,18 @@ class Home_Model extends CI_Model
     public function getJenisProses()
     {
         return $this->db->get('jenis_proses')->result();
+    }
+    public function getJenisVisa($id_visa)
+    {
+        return $this->db->get_where('jenis_visa', ['id' => $id_visa])->row_array();
+    }
+    public function getPenghubungVisa211($id_visa)
+    {
+        return $this->db->get_where('penghubung_visa211', ['id_jenis_visa' => $id_visa, 'status' => 'Aktif'])->result_array();
+    }
+    public function getPenghubungVisa312($id_visa)
+    {
+        return $this->db->get_where('penghubung_visa312', ['id_jenis_visa' => $id_visa, 'status' => 'Aktif'])->result_array();
     }
 
     // Untuk mendapatkan pilihan Jabatan

@@ -14,7 +14,6 @@
                             <th class="text-center">Dua Minggu</th>
                             <th class="text-center">Tiga Minggu</th>
                             <th class="text-center">Satu Bulan</th>
-                            <th class="text-center">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,12 +89,17 @@
                                         ->num_rows();
                                 }
                                 ?>
-                                <td class="text-center"><?= $seminggu; ?></td>
-                                <td class="text-center"><?= $duaminggu; ?></td>
-                                <td class="text-center"><?= $tigaminggu; ?></td>
-                                <td class="text-center"><?= $sebulan; ?></td>
                                 <td class="text-center">
-                                    <div class="badge badge-success">Detail</div>
+                                    <a href="<?= base_url('Home/seminggu/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $seminggu; ?></a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="<?= base_url('Home/duaminggu/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $duaminggu; ?></a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="<?= base_url('Home/tigaminggu/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $tigaminggu; ?></a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="<?= base_url('Home/sebulan/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $sebulan; ?></a>
                                 </td>
                             </tr>
                         <?php $no++;

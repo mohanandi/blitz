@@ -104,4 +104,82 @@ class Home extends CI_Controller
         $this->load->view('report/report', $data);
         $this->load->view('templates/footer');
     }
+
+    public function seminggu($id_visa)
+    {
+        $data['judul'] = "Reminder Schedule";
+        $data['data_jenis_visa'] = $this->Home_Model->getJenisVisa($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['batas'] = "Seminggu";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['data_jenis_visa']['kategori_id'] == 1) {
+            $data['data_penghubung_visa'] = $this->Home_Model->getSemingguVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            // $data['data_penghubung_visa'] = $this->Home_Model->getPenghubungVisa211($id_visa);
+            $data['data_penghubung_visa'] = $this->Home_Model->getSemingguData($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_211', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+    public function duaminggu($id_visa)
+    {
+        $data['judul'] = "Reminder Schedule";
+        $data['data_jenis_visa'] = $this->Home_Model->getJenisVisa($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['batas'] = "Dua Minggu";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['data_jenis_visa']['kategori_id'] == 1) {
+            $data['data_penghubung_visa'] = $this->Home_Model->getDuamingguVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data['data_penghubung_visa'] = $this->Home_Model->getDuamingguData($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_211', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+    public function tigaminggu($id_visa)
+    {
+        $data['judul'] = "Reminder Schedule";
+        $data['data_jenis_visa'] = $this->Home_Model->getJenisVisa($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['batas'] = "Tiga Minggu";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['data_jenis_visa']['kategori_id'] == 1) {
+            $data['data_penghubung_visa'] = $this->Home_Model->getTigamingguVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data['data_penghubung_visa'] = $this->Home_Model->getTigamingguData($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_211', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+    public function sebulan($id_visa)
+    {
+        $data['judul'] = "Reminder Schedule";
+        $data['data_jenis_visa'] = $this->Home_Model->getJenisVisa($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['batas'] = "Sebulan";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['data_jenis_visa']['kategori_id'] == 1) {
+            $data['data_penghubung_visa'] = $this->Home_Model->getSebulanVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data['data_penghubung_visa'] = $this->Home_Model->getTSebulanData($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_211', $data);
+            $this->load->view('templates/footer');
+        }
+    }
 }

@@ -94,7 +94,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-love-kiss">
+        <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Perusahaan</div>
@@ -120,7 +120,7 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3">
-        <div class="card mb-3 widget-content bg-love-kiss">
+        <div class="card mb-3 widget-content bg-arielle-smile">
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Voucher</div>
