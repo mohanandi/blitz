@@ -163,6 +163,15 @@ class Data_Visa_Model extends CI_Model
         ];
         $this->db->insert('penghubung_visa312', $data);
     }
+    public function editRptkaPenghubungVisa312($id_penghubung)
+    {
+        $data = [
+            "id_rptka" => $this->input->post('no_rptka', true),
+            "id_jabatan" => $this->input->post('jabatan_rptka', true)
+        ];
+        $this->db->where('id_penghubung_visa312', $id_penghubung);
+        $this->db->update('penghubung_visa312', $data);
+    }
 
     public function tambahVisa312($id_penghubung)
     {
@@ -178,5 +187,18 @@ class Data_Visa_Model extends CI_Model
             "tgl_input" => time()
         ];
         $this->db->insert('visa_312', $data);
+    }
+    public function editVisa312($id_penghubung)
+    {
+        $data = [
+            "tgl_awal" => strtotime($this->input->post('tgl_awal', true)),
+            "waktu_visa" => $this->input->post('waktu_visa', true),
+            "tgl_expired" => strtotime($this->input->post('tgl_expired', true)),
+            "no_kitas" => $this->input->post('no_kitas', true),
+            "no_notifikasi" => $this->input->post('no_notifikasi', true),
+            "ket" => $this->input->post('ket', true)
+        ];
+        $this->db->where('id_penghubung_visa', $id_penghubung);
+        $this->db->update('visa_312', $data);
     }
 }

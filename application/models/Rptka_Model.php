@@ -82,6 +82,14 @@ class Rptka_Model extends CI_Model
         $this->db->where('id_jabatan_rptka', $this->input->post('jabatan_rptka'));
         $this->db->update('jabatan_rptka', $data);
     }
+    public function editJabatanRptkaVisa($id_jabatan, $jumlah)
+    {
+        $data = [
+            "terpakai" => $jumlah
+        ];
+        $this->db->where('id_jabatan_rptka', $id_jabatan);
+        $this->db->update('jabatan_rptka', $data);
+    }
     public function EditUser()
     {
         $data = [
@@ -123,6 +131,14 @@ class Rptka_Model extends CI_Model
             "jumlah_terpakai" => $terpakai
         ];
         $this->db->where('id', $this->input->post('no_rptka'));
+        $this->db->update('rptka', $data);
+    }
+    public function editTrpakaiRptka($id_rptka, $terpakai)
+    {
+        $data = [
+            "jumlah_terpakai" => $terpakai
+        ];
+        $this->db->where('id', $id_rptka);
         $this->db->update('rptka', $data);
     }
     public function EditJabatanRptka($jumlah_jabatan, $id_rptka)
