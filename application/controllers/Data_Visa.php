@@ -22,17 +22,6 @@ class Data_Visa extends CI_Controller
         $this->load->view('data_visa/data_visa', $data);
         $this->load->view('templates/footer');
     }
-    public function visa312($id_visa)
-    {
-        $data['judul'] = 'Data Visa';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllVisa312($id_visa);
-        $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
-        $data['subjudul'] = $data['data_jenis_visa']['visa'];
-        $this->load->view('templates/header', $data);
-        $this->load->view('data_visa/data_visa312', $data);
-        $this->load->view('templates/footer');
-    }
     public function filter_tka_visa312($id_visa)
     {
 
@@ -162,6 +151,33 @@ class Data_Visa extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+
+    public function visa312($id_visa)
+    {
+        $this->form_validation->set_rules('dari', 'Dari', 'trim|required');
+        $this->form_validation->set_rules('sampai', 'Sampai', 'trim|required');
+        $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
+        $data['judul'] = 'Data Visa';
+        $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->form_validation->run() == FALSE) {
+            $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/data_visa312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data['dari'] = strtotime($this->input->post('dari'));
+            $data['sampai'] = strtotime($this->input->post('sampai')) + (60 * 60 * 24);
+            $id_pt = $this->input->post('nama_pt');
+            $data['data_pengguna_visa'] = $this->Data_Visa_Model->getAllVisa312Filter($id_visa, $id_pt);
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/data_visa312', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
     public function filter_tka_visa211($id_visa)
     {
 

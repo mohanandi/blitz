@@ -95,6 +95,18 @@ class Data_Visa_Model extends CI_Model
     {
         return $this->db->get_where('penghubung_visa312', ['id_jenis_visa' => $id])->result_array();
     }
+    public function getAllVisa312Filter($id, $id_pt)
+    {
+        $this->db->select('*');
+        $this->db->from('penghubung_visa312');
+        $this->db->where('id_jenis_visa', $id);
+        if ($id_pt == 'Semua Perusahaan') {
+        } else {
+            $this->db->where('id_pt', $id_pt);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getvisa312($id_penghubung)
     {
         return $this->db->get_where('penghubung_visa312', ['id_penghubung_visa312' => $id_penghubung])->row_array();
