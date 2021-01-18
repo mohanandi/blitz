@@ -331,10 +331,10 @@ class Data_Visa extends CI_Controller
             $this->Rptka_Model->editJabatanRptkaVisa($data['data_penghubung']['id_jabatan'], $jabatan_dikurang);
             $rptka_kurang = $this->Rptka_Model->getRptkaById($data['data_penghubung']['id_rptka']);
             $dikurang = $rptka_kurang['jumlah_terpakai'] - 1;
-            $this->Rptka_Model->editTrpakaiRptka($data['data_penghubung']['id_rptka'], $dikurang);
+            $this->Rptka_Model->editTerpakaiRptka($data['data_penghubung']['id_rptka'], $dikurang);
             $rptka = $this->Rptka_Model->getRptkaById($this->input->post('no_rptka'));
             $terpakai = $rptka['jumlah_terpakai'] + 1;
-            $this->Rptka_Model->editTrpakaiRptka($this->input->post('no_rptka'), $terpakai);
+            $this->Rptka_Model->editTerpakaiRptka($this->input->post('no_rptka'), $terpakai);
             $this->Data_Visa_Model->editRptkaPenghubungVisa312($id_penghubung);
             $this->Data_Visa_Model->editVisa312($id_penghubung);
             $this->session->set_flashdata('flash', 'Visa Berhasil Diubah');

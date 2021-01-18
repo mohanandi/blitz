@@ -206,7 +206,7 @@
                                 <td class="text-center"><?= $jumlah_visa211; ?></td>
                                 <td class="text-center"><?= $jumlah_visa312; ?></td>
                                 <td class="text-center">
-                                    <div class="badge badge-success">Detail</div>
+                                    <a href="<?= base_url('Data_Pt/detail/') . $pt['id']; ?>" class="badge badge-success">Detail</a>
                                 </td>
                             </tr>
                         <?php $no++;

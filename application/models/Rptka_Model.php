@@ -133,7 +133,7 @@ class Rptka_Model extends CI_Model
         $this->db->where('id', $this->input->post('no_rptka'));
         $this->db->update('rptka', $data);
     }
-    public function editTrpakaiRptka($id_rptka, $terpakai)
+    public function editTerpakaiRptka($id_rptka, $terpakai)
     {
         $data = [
             "jumlah_terpakai" => $terpakai
