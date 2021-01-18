@@ -67,6 +67,18 @@ class Data_Visa_Model extends CI_Model
     {
         return $this->db->get_where('penghubung_visa211', ['id_jenis_visa' => $id])->result_array();
     }
+    public function getAllVisa211Filter($id, $id_pt)
+    {
+        $this->db->select('*');
+        $this->db->from('penghubung_visa211');
+        $this->db->where('id_jenis_visa', $id);
+        if ($id_pt == 'Semua Perusahaan') {
+        } else {
+            $this->db->where('id_pt', $id_pt);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getTka($id)
     {
         return $this->db->get_where('tka', ['id' => $id])->row_array();
