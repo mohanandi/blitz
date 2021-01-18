@@ -112,18 +112,57 @@
                             <tr>
                                 <td class="text-center text-muted"><?= $no; ?></td>
                                 <td class="text-center"><?= $jenis_visa['visa']; ?></td>
-                                <td class="text-center"><?= $jenis_visa['visa']; ?></td>
-                                <td class="text-center"><?= $jenis_visa['visa']; ?></td>
-                                <td class="text-center">
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <a href="<?= base_url('Data_Tka/edit_jabatan/' . $jenis_visa['visa']); ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>
-                                        </li>
-                                    </ul>
-                                </td>
+                                <?php if ($jenis_visa['kategori_id'] == 1) :
+                                    $this->db->select('id_penghubung_visa312');
+                                    $this->db->from('penghubung_visa312');
+                                    $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                    $this->db->where('id_pt', $data_pt['id']);
+                                    $this->db->where('status', 'Aktif');
+                                    $query = $this->db->get();
+                                    $data = $query->result_array();
+                                    $jumlah_aktif = count($data);
+                                ?>
+                                    <td class="text-center"><?= $jumlah_aktif; ?></td>
+                                    <?php
+                                    $this->db->select('id_penghubung_visa312');
+                                    $this->db->from('penghubung_visa312');
+                                    $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                    $this->db->where('id_pt', $data_pt['id']);
+                                    $this->db->where('status !=', 'Aktif');
+                                    $query = $this->db->get();
+                                    $data = $query->result_array();
+                                    $jumlah_non = count($data);
+                                    ?>
+                                    <td class="text-center"><?= $jumlah_non; ?></td>
+                                    <td class="text-center">
+                                        <a href="<?= base_url('Data_Visa/visa312/') ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Detail</a>
+                                    </td>
+                                <?php elseif ($jenis_visa['kategori_id'] == 2) :
+                                    $this->db->select('id_penghubung_visa211');
+                                    $this->db->from('penghubung_visa211');
+                                    $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                    $this->db->where('id_pt', $data_pt['id']);
+                                    $this->db->where('status', 'Aktif');
+                                    $query = $this->db->get();
+                                    $data = $query->result_array();
+                                    $jumlah_aktif = count($data);
+                                ?>
+                                    <td class="text-center"><?= $jumlah_aktif; ?></td>
+                                    <?php
+                                    $this->db->select('id_penghubung_visa211');
+                                    $this->db->from('penghubung_visa211');
+                                    $this->db->where('id_jenis_visa', $jenis_visa['id']);
+                                    $this->db->where('id_pt', $data_pt['id']);
+                                    $this->db->where('status !=', 'Aktif');
+                                    $query = $this->db->get();
+                                    $data = $query->result_array();
+                                    $jumlah_non = count($data);
+                                    ?>
+                                    <td class="text-center"><?= $jumlah_non; ?></td>
+                                    <td class="text-center">
+                                        <a href="<?= base_url('Data_Visa/visa211/') ?><?= $jenis_visa['id']; ?>" class="badge badge-success">Detail</a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php $no++;
                         endforeach; ?>

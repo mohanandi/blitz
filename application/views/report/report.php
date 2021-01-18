@@ -98,7 +98,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Perusahaan</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
+                    <div class="widget-subheading"><a href="<?= base_url('Data_Pt'); ?>">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_pt; ?></span></div>
@@ -111,7 +111,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah TKA</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
+                    <div class="widget-subheading"><a href="<?= base_url('Data_Tka'); ?>">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_tka; ?></span></div>
@@ -124,7 +124,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah Voucher</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
+                    <div class="widget-subheading"><a href="<?= base_url('Data_Voucher'); ?>">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_voucher; ?></span></div>
@@ -137,7 +137,7 @@
             <div class="widget-content-wrapper text-white">
                 <div class="widget-content-left">
                     <div class="widget-heading">Jumlah RPTKA</div>
-                    <div class="widget-subheading"><a href="">see detail</a></div>
+                    <div class="widget-subheading"><a href="<?= base_url('Data_Rptka'); ?>">see detail</a></div>
                 </div>
                 <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span><?= $jumlah_rptka; ?></span></div>
