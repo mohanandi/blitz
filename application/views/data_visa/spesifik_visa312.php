@@ -72,9 +72,19 @@
         $jenis_visa = $query->row_array();
         $this->db->select('nama');
         $this->db->from('user');
-        $this->db->where('id', $data_tka['input_by_id']);
+        $this->db->where('id', $data_visa['input_by_id']);
         $query = $this->db->get();
         $data_input = $query->row_array();
+        $this->db->select(array('id', 'no_rptka'));
+        $this->db->from('rptka');
+        $this->db->where('id', $data_penghubung_visa['id_rptka']);
+        $query = $this->db->get();
+        $data_rptka = $query->row_array();
+        $this->db->select('jabatan');
+        $this->db->from('jabatan_rptka');
+        $this->db->where('id_jabatan_rptka', $data_penghubung_visa['id_jabatan']);
+        $query = $this->db->get();
+        $data_jabatan = $query->row_array();
         ?>
         <div class="main-card mb-3 card">
             <div class="card-header">Data visa <?= $jenis_visa['visa']; ?>
@@ -84,10 +94,15 @@
                     <thead>
                         <tr>
                             <th class="text-center">Visa</th>
+                            <th class="text-center">No RPTKA</th>
+                            <th class="text-center">Jabatan RPTKA</th>
                             <th class="text-center">Tanggal Awal Visa</th>
+                            <th class="text-center">Month</th>
+                            <th class="text-center">No KITAS</th>
                             <th class="text-center">Tanggal Expired Visa</th>
-                            <th class="text-center">Status</th>
+                            <th class="text-center">No Notifikasi</th>
                             <th class="text-center">Keterangan</th>
+                            <th class="text-center">Status</th>
                             <th class="text-center">Input By</th>
                             <th class="text-center">Tanggal Input</th>
                             <th class="text-center">Action</th>
@@ -96,16 +111,23 @@
                     <tbody>
                         <tr>
                             <td class="text-center"><?= $jenis_visa['visa']; ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('Data_Rptka/detail/') . $data_rptka['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail RPTKA"><?= $data_rptka['no_rptka']; ?></a>
+                            </td>
+                            <td class="text-center"><?= $data_jabatan['jabatan']; ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_awal']); ?></td>
+                            <td class="text-center"><?= $data_visa['waktu_visa']; ?></td>
+                            <td class="text-center"><?= $data_visa['no_kitas']; ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_expired']); ?></td>
-                            <td class="text-center"><?= $data_penghubung_visa['status']; ?></td>
+                            <td class="text-center"><?= $data_visa['no_notifikasi']; ?></td>
                             <td class="text-center"><?= $data_visa['ket']; ?></td>
+                            <td class="text-center"><?= $data_penghubung_visa['status']; ?></td>
                             <td class="text-center"><?= $data_input['nama']; ?></td>
                             <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_input']); ?></td>
                             <td class="text-center">
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <a href="<?= base_url('Data_Visa/edit_data_visa211/') . $data_penghubung_visa['id_penghubung_visa211']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= base_url('Data_Visa/edit_data_visa312/') . $data_penghubung_visa['id_penghubung_visa312']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="" title="Delete"><i class="fa fa-trash"></i></button>

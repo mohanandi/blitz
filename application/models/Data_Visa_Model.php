@@ -3,7 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Data_Visa_Model extends CI_Model
 {
-
+    public function getDataPenghubungvisa211($id)
+    {
+        return $this->db->get_where('penghubung_visa211', ['id_penghubung_visa211' => $id])->row_array();
+    }
+    public function getDataPenghubungvisa312($id)
+    {
+        return $this->db->get_where('penghubung_visa312', ['id_penghubung_visa312' => $id])->row_array();
+    }
     public function getPenghubungVisa211()
     {
         $this->db->select('id_penghubung_visa211');
@@ -76,6 +83,14 @@ class Data_Visa_Model extends CI_Model
     {
         return $this->db->get_where('penghubung_visa312', ['id_jenis_visa' => $id])->result_array();
     }
+    public function getvisa312($id_penghubung)
+    {
+        return $this->db->get_where('penghubung_visa312', ['id_penghubung_visa312' => $id_penghubung])->row_array();
+    }
+    public function getdatavisa312($id_penghubung)
+    {
+        return $this->db->get_where('visa_312', ['id_penghubung_visa' => $id_penghubung])->row_array();
+    }
     public function tambahVisa211($id_penghubung)
     {
         $data = [
@@ -105,6 +120,16 @@ class Data_Visa_Model extends CI_Model
         ];
         $this->db->where('id_penghubung_visa211', $id);
         $this->db->update('penghubung_visa211', $data);
+    }
+    public function editVisa211($id)
+    {
+        $data = [
+            "tgl_awal" => strtotime($this->input->post('tgl_awal', true)),
+            "tgl_expired" => strtotime($this->input->post('tgl_expired', true)),
+            "ket" => $this->input->post('ket', true)
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('visa_211', $data);
     }
     public function updatePenghubungVisa312($id)
     {

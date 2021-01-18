@@ -86,10 +86,11 @@ class Data_Visa extends CI_Controller
         $this->form_validation->set_rules('no_notifikasi', 'No Notifikasi', 'trim|required');
         $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
         $data['data_tka'] = $this->Tka_Model->getTkaById($id_tka);
+        $data['ket_visa'] = 'tambah';
         $id_tka = $this->input->post('id_tka');
         $id_visa = $this->input->post('id_visa');
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
-        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['subjudul'] = "Tambah Data " . $data['data_jenis_visa']['visa'];
         $data['judul'] = 'Data Visa';
         $data['button'] = 'Tambahkan Data Visa';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -196,6 +197,17 @@ class Data_Visa extends CI_Controller
         $this->load->view('data_visa/spesifik_visa211', $data);
         $this->load->view('templates/footer');
     }
+    public function spesifik_visa312($id_penghubung_visa)
+    {
+        $data['data_penghubung_visa'] = $this->Data_Visa_Model->getvisa312($id_penghubung_visa);
+        $data['data_tka'] = $this->Data_Visa_Model->getTka($data['data_penghubung_visa']['id_tka']);
+        $data['data_visa'] = $this->Data_Visa_Model->getdatavisa312($id_penghubung_visa);
+        $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('data_visa/spesifik_visa312', $data);
+        $this->load->view('templates/footer');
+    }
     public function tambah_visa211()
     {
         $this->form_validation->set_rules('tgl_awal', 'Nama Mandarin', 'required');
@@ -203,9 +215,11 @@ class Data_Visa extends CI_Controller
         $this->form_validation->set_rules('ket', 'Kewarganegaraan', 'trim|required');
         $id_tka = $this->input->post('id_tka');
         $id_visa = $this->input->post('id_visa');
+        $data['ket_visa'] = 'tambah';
+        $data['data_visa'] = null;
         $data['data_tka'] = $this->Tka_Model->getTkaById($id_tka);
         $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
-        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['subjudul'] = "Tambah Data " . $data['data_jenis_visa']['visa'];
         $data['judul'] = 'Data Visa';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['button'] = 'Tambahkan Data Visa';
@@ -228,6 +242,93 @@ class Data_Visa extends CI_Controller
                 $this->Data_Visa_Model->tambahVisa211($id_penghubung['id_penghubung_visa211']);
                 $this->session->set_flashdata('flash', 'Visa Berhasil Ditambahkan');
                 redirect("Data_Visa/visa211/$id_visa");
+            }
+        }
+    }
+    public function edit_data_visa211($id_penghubung)
+    {
+        $data['ket_visa'] = 'edit';
+        $data['data_visa'] = $this->Data_Visa_Model->getdatavisa211($id_penghubung);
+        $data['data_penghubung'] = $this->Data_Visa_Model->getDataPenghubungvisa211($id_penghubung);
+        $data['data_tka'] = $this->Tka_Model->getTkaById($data['data_penghubung']['id_tka']);
+        $id_visa = $data['data_penghubung']['id_jenis_visa'];
+        $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($id_visa);
+        $data['subjudul'] = "Edit Data " . $data['data_jenis_visa']['visa'];
+        $data['judul'] = 'Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['button'] = 'Simpan Edit Data Visa';
+        $this->form_validation->set_rules('tgl_awal', 'Tanggal Awal', 'required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/data_visa211_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $id_data_visa = $data['data_visa']['id'];
+            $this->Data_Visa_Model->editVisa211($id_data_visa);
+            $this->session->set_flashdata('flash', 'Visa Berhasil Diubah');
+            redirect("Data_Visa/spesifik_visa211/$id_penghubung");
+        }
+    }
+
+    public function edit_data_visa312($id_penghubung)
+    {
+        $data['data_penghubung'] = $this->Data_Visa_Model->getDataPenghubungvisa312($id_penghubung);
+        $id_pt = $data['data_penghubung']['id_pt'];
+        $data = array(
+            'data_rptka' => $this->Rptka_Model->getRptkaByPt($id_pt),
+            'data_jabatan' => $this->Rptka_Model->getJabtanPilihan(),
+        );
+        $this->form_validation->set_rules('no_rptka', 'No RPTKA', 'trim|required');
+        $this->form_validation->set_rules('jabatan_rptka', 'Jabatan RPTKA', 'trim|required');
+        $this->form_validation->set_rules('tgl_awal', 'Tanggal Awal Visa', 'trim|required');
+        $this->form_validation->set_rules('waktu_visa', 'Jangka Waktu visa (Bulan)', 'trim|required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'trim|required');
+        $this->form_validation->set_rules('no_kitas', 'No KITAS', 'trim|required');
+        $this->form_validation->set_rules('no_notifikasi', 'No Notifikasi', 'trim|required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
+        $data['ket_visa'] = 'edit';
+        $data['data_penghubung'] = $this->Data_Visa_Model->getDataPenghubungvisa312($id_penghubung);
+        $data['data_visa'] = $this->Data_Visa_Model->getdatavisa312($id_penghubung);
+        $data['data_tka'] = $this->Tka_Model->getTkaById($data['data_penghubung']['id_tka']);
+        $data['data_jenis_visa'] = $this->Jenis_Visa_Model->getJenisVisaById($data['data_penghubung']['id_jenis_visa']);
+        $data['subjudul'] = "Edit Data " . $data['data_jenis_visa']['visa'];
+        $data['judul'] = 'Data Visa';
+        $data['button'] = 'Simpan Edit Data Visa';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/data_visa312_form', $data);
+            $this->load->view('templates/footer');
+        } else {
+            if (($data['data_jenis_visa']['id_visa_sebelumnya'] == 1) or ($data['data_jenis_visa']['id_visa_sebelumnya'] == 2)) {
+                $id_visa = $this->input->post('id_visa');
+                $this->Data_Visa_Model->tambahPenghubungVisa312();
+                $id_penghubung = $this->Data_Visa_Model->getPenghubungVisa312();
+                $this->Data_Visa_Model->tambahVisa312($id_penghubung['id_penghubung_visa312']);
+                $jabatan = $this->Rptka_Model->getJabatanById($this->input->post('jabatan_rptka'));
+                $jabatan_terpakai = $jabatan['terpakai'] + 1;
+                $this->Rptka_Model->TambahTerpakaiJabatan($jabatan_terpakai);
+                $rptka = $this->Rptka_Model->getRptkaById($this->input->post('no_rptka'));
+                $terpakai = $rptka['jumlah_terpakai'] + 1;
+                $this->Rptka_Model->TambahTerpakaiRptka($terpakai);
+                $this->session->set_flashdata('flash', 'Visa Berhasil Ditambahkan');
+                redirect("Data_Visa/visa312/$id_visa");
+            } else {
+                $this->Data_Visa_Model->tambahPenghubungVisa312();
+                $id_penghubung_sebelumnya = $this->Data_Visa_Model->getPenghubungVisa312sebelumnya($data['data_jenis_visa']['id_visa_sebelumnya'], $id_tka);
+                $this->Data_Visa_Model->updatePenghubungVisa312($id_penghubung_sebelumnya['id_penghubung_visa312']);
+                $id_penghubung = $this->Data_Visa_Model->getPenghubungVisa312();
+                $this->Data_Visa_Model->tambahVisa312($id_penghubung['id_penghubung_visa312']);
+                $jabatan = $this->Rptka_Model->getJabatanById($this->input->post('jabatan_rptka'));
+                $jabatan_terpakai = $jabatan['terpakai'] + 1;
+                $this->Rptka_Model->TambahTerpakaiJabatan($jabatan_terpakai);
+                $rptka = $this->Rptka_Model->getRptkaById($this->input->post('no_rptka'));
+                $terpakai = $rptka['jumlah_terpakai'] + 1;
+                $this->Rptka_Model->TambahTerpakaiRptka($terpakai);
+                $this->session->set_flashdata('flash', 'Visa Berhasil Ditambahkan');
+                redirect("Data_Visa/visa312/$id_visa");
             }
         }
     }
