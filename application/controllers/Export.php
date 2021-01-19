@@ -1020,4 +1020,377 @@ class Export extends CI_Controller
 
         $writer->save('php://output');
     }
+
+    public function export_visa211()
+    {
+        $dari = strtotime($this->input->post('dari'));
+        $id_visa = $this->input->post('id_visa');
+        $sampai = strtotime($this->input->post('sampai')) + (60 * 60 * 24);
+        $id_pt = $this->input->post('id_pt');
+
+        $this->db->select('*');
+        $this->db->from('jenis_visa');
+        $this->db->where('id', $id_visa);
+        $query = $this->db->get();
+        $jenis_visa = $query->row_array();
+
+        $nama_visa = $jenis_visa['visa'];
+
+        $this->db->select('*');
+        $this->db->from('penghubung_visa211');
+        if ($id_pt == 'Semua Perusahaan') {
+        } else {
+            $this->db->where('id_pt', $id_pt);
+        }
+        $this->db->where('id_jenis_visa', $id_visa);
+        $query_penghubung = $this->db->get();
+        $data_penghubung_visa = $query_penghubung->result_array();
+
+        $judul = "Report Visa " . $nama_visa;
+
+        $spreadsheet = new Spreadsheet;
+
+        // Settingan awal fil excel
+        $spreadsheet->getProperties()->setCreator('')
+            ->setLastModifiedBy('')
+            ->setTitle("Visa")
+            ->setSubject("Visa")
+            ->setDescription("Visa")
+            ->setKeywords("Visa");
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+        $style_col = array(
+            'font' => array('bold' => true), // Set font nya jadi bold
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+        $style_row = array(
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', "REPORT VISA $nama_visa"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A1:M1'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
+
+        // Buat header tabel nya pada baris ke 3
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A3', "NO"); // Set kolom A3 dengan tulisan "NO"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B3', "NAMA PERUSAHAAN"); // Set kolom C3 dengan tulisan "NAMA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C3', "NAMA"); // Set kolom B3 dengan tulisan "NIS"
+        $spreadsheet->getActiveSheet()->mergeCells('C3:D3');
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E3', "PASSPORT"); // Set kolom C3 dengan tulisan "NAMA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F3', "TANGGAL LAHIR"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('G3', "VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('H3', "TANGGAL AWAL VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('I3', "TANGGAL EXPIRED VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('J3', "STATUS"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('K3', "KETERANGAN"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('L3', "TANGGAL INPUT"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('M3', "INPUT BY"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+
+        // Apply style header yang telah kita buat tadi ke masing-masing kolom header
+        $spreadsheet->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
+
+        // Set height baris ke 1, 2 dan 3
+        $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(20);
+
+        $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
+        $no = 1;
+        foreach ($data_penghubung_visa as $penghubung_visa) :
+            $this->db->select('*');
+            $this->db->from('tka');
+            $this->db->where('id', $penghubung_visa['id_tka']);
+            $query = $this->db->get();
+            $data_tka = $query->row_array();
+            $data_pt = $this->db->get_where('pt', ['id' => $penghubung_visa['id_pt']])->row_array();
+            $data_visa = $this->db->get_where('visa_211', ['id_penghubung' => $penghubung_visa['id_penghubung_visa211']])->row_array();
+            $data_input_by = $this->db->get_where('user', ['id' => $data_visa['input_by_id']])->row_array();
+            if (($data_visa['tgl_input'] >= $dari) and ($data_visa['tgl_input'] <= $sampai)) {
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data_pt['nama_pt']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data_tka['nama_mandarin']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data_tka['nama_latin']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data_tka['passport']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $numrow, date('d-m-Y', $data_tka['tgl_lahir']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $nama_visa);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('H' . $numrow, date('d-m-Y', $data_visa['tgl_awal']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('I' . $numrow, date('d-m-Y', $data_visa['tgl_expired']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $penghubung_visa['status']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data_visa['ket']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('L' . $numrow, date('d-m-Y', $data_visa['tgl_input']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('M' . $numrow, $data_input_by['nama']);
+                $no++;
+                $numrow++;
+            } else {
+            }
+
+        endforeach;
+
+        // Set width kolom
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20); // Set width kolom B
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Set width kolom C
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(25); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(24); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(20); // Set width kolom D
+
+        // Set orientasi kertas jadi LANDSCAPE
+        $spreadsheet->getActiveSheet()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+        // Set judul file excel nya
+        $spreadsheet->getActiveSheet(0)->setTitle("Data Visa");
+        $spreadsheet->setActiveSheetIndex(0);
+
+        $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename=' . $judul . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
+
+        $writer->save('php://output');
+    }
+    public function export_visa312()
+    {
+        $dari = strtotime($this->input->post('dari'));
+        $id_visa = $this->input->post('id_visa');
+        $sampai = strtotime($this->input->post('sampai')) + (60 * 60 * 24);
+        $id_pt = $this->input->post('id_pt');
+
+        $this->db->select('*');
+        $this->db->from('jenis_visa');
+        $this->db->where('id', $id_visa);
+        $query = $this->db->get();
+        $jenis_visa = $query->row_array();
+
+        $nama_visa = $jenis_visa['visa'];
+
+        $this->db->select('*');
+        $this->db->from('penghubung_visa312');
+        if ($id_pt == 'Semua Perusahaan') {
+        } else {
+            $this->db->where('id_pt', $id_pt);
+        }
+        $this->db->where('id_jenis_visa', $id_visa);
+        $query_penghubung = $this->db->get();
+        $data_penghubung_visa = $query_penghubung->result_array();
+
+        $judul = "Report Visa " . $nama_visa;
+
+        $spreadsheet = new Spreadsheet;
+
+        // Settingan awal fil excel
+        $spreadsheet->getProperties()->setCreator('')
+            ->setLastModifiedBy('')
+            ->setTitle("Visa")
+            ->setSubject("Visa")
+            ->setDescription("Visa")
+            ->setKeywords("Visa");
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+        $style_col = array(
+            'font' => array('bold' => true), // Set font nya jadi bold
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+
+        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+        $style_row = array(
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ),
+            'borders' => array(
+                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+            )
+        );
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', "REPORT VISA $nama_visa"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->mergeCells('A1:R1'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
+        $spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
+
+        // Buat header tabel nya pada baris ke 3
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('A3', "NO"); // Set kolom A3 dengan tulisan "NO"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('B3', "NAMA PERUSAHAAN"); // Set kolom C3 dengan tulisan "NAMA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('C3', "NAMA"); // Set kolom B3 dengan tulisan "NIS"
+        $spreadsheet->getActiveSheet()->mergeCells('C3:D3');
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E3', "PASSPORT"); // Set kolom C3 dengan tulisan "NAMA"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F3', "TANGGAL LAHIR"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('G3', "VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('H3', "NO RPTKA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('I3', "JABATAN"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('J3', "TANGGAL AWAL VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('K3', "MONTH"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('L3', "NO KITAS"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('M3', "TANGGAL EXPIRED VISA"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('N3', "NO NOTIFIKASI"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('O3', "STATUS"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('P3', "KETERANGAN"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('Q3', "TANGGAL INPUT"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('R3', "INPUT BY"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+
+        // Apply style header yang telah kita buat tadi ke masing-masing kolom header
+        $spreadsheet->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('Q3')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->getStyle('R3')->applyFromArray($style_col);
+
+        // Set height baris ke 1, 2 dan 3
+        $spreadsheet->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(20);
+
+        $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
+        $no = 1;
+        foreach ($data_penghubung_visa as $penghubung_visa) :
+            $this->db->select('*');
+            $this->db->from('tka');
+            $this->db->where('id', $penghubung_visa['id_tka']);
+            $query = $this->db->get();
+            $data_tka = $query->row_array();
+            $this->db->select('no_rptka');
+            $this->db->from('rptka');
+            $this->db->where('id', $penghubung_visa['id_rptka']);
+            $query_rptka = $this->db->get();
+            $data_rptka = $query_rptka->row_array();
+            $this->db->select('jabatan');
+            $this->db->from('jabatan_rptka');
+            $this->db->where('id_jabatan_rptka', $penghubung_visa['id_jabatan']);
+            $query_jabatan = $this->db->get();
+            $data_jabatan = $query_jabatan->row_array();
+            $data_pt = $this->db->get_where('pt', ['id' => $penghubung_visa['id_pt']])->row_array();
+            $data_visa = $this->db->get_where('visa_312', ['id_penghubung_visa' => $penghubung_visa['id_penghubung_visa312']])->row_array();
+            $data_input_by = $this->db->get_where('user', ['id' => $data_visa['input_by_id']])->row_array();
+            if (($data_visa['tgl_input'] >= $dari) and ($data_visa['tgl_input'] <= $sampai)) {
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data_pt['nama_pt']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data_tka['nama_mandarin']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data_tka['nama_latin']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data_tka['passport']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $numrow, date('d-m-Y', $data_tka['tgl_lahir']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $nama_visa);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data_rptka['no_rptka']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $data_jabatan['jabatan']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('J' . $numrow, date('d-m-Y', $data_visa['tgl_awal']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data_visa['waktu_visa']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data_visa['no_kitas']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('M' . $numrow, date('d-m-Y', $data_visa['tgl_expired']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('N' . $numrow, $data_visa['no_notifikasi']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $penghubung_visa['status']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('P' . $numrow, $data_visa['ket']);
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('Q' . $numrow, date('d-m-Y', $data_visa['tgl_input']));
+                $spreadsheet->setActiveSheetIndex(0)->setCellValue('R' . $numrow, $data_input_by['nama']);
+                $no++;
+                $numrow++;
+            } else {
+            }
+
+        endforeach;
+
+        // Set width kolom
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20); // Set width kolom B
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Set width kolom C
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(25); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(24); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('O')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('P')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('Q')->setWidth(20); // Set width kolom D
+        $spreadsheet->getActiveSheet()->getColumnDimension('R')->setWidth(20); // Set width kolom D
+
+        // Set orientasi kertas jadi LANDSCAPE
+        $spreadsheet->getActiveSheet()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+        // Set judul file excel nya
+        $spreadsheet->getActiveSheet(0)->setTitle("Data Visa");
+        $spreadsheet->setActiveSheetIndex(0);
+
+        $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename=' . $judul . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
+
+        $writer->save('php://output');
+    }
 }
