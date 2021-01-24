@@ -64,6 +64,18 @@ class Home_Model extends CI_Model
         // $this->db->join('unit', 'anggota.id_unit = unit.id_unit', 'LEFT');
         // $query = $this->db->get();
     }
+    public function getExpiredData($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
+            ->from('penghubung_visa211')
+            ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+            ->where('penghubung_visa211.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa211.status', 'Aktif')
+            ->where('visa_211.tgl_expired <', time())
+            ->get()
+            ->result_array();
+        return $query;
+    }
     public function getSemingguData($id_visa)
     {
         $query = $this->db->select(array('id_penghubung_visa211', 'id_tka', 'id_pt'))
@@ -117,6 +129,18 @@ class Home_Model extends CI_Model
         return $query;
     }
 
+    public function getExpiredVisa312($id_visa)
+    {
+        $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))
+            ->from('penghubung_visa312')
+            ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+            ->where('penghubung_visa312.id_jenis_visa', $id_visa)
+            ->where('penghubung_visa312.status', 'Aktif')
+            ->where('visa_312.tgl_expired <', time())
+            ->get()
+            ->result_array();
+        return $query;
+    }
     public function getSemingguVisa312($id_visa)
     {
         $query = $this->db->select(array('id_penghubung_visa312', 'id_tka', 'id_pt', 'id_rptka', 'id_jabatan', 'status'))

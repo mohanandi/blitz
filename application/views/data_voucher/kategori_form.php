@@ -51,6 +51,19 @@
                         </div>
                     </div>
                     <div class="position-relative row form-group">
+                        <label for="NamaTKA" class="col-sm-2 col-form-label"><b>Bill To</b></label>
+                        <div class="col-sm-10">
+                            <?php if (set_value('bill_to')) : ?>
+                                <input type="text" name="bill_to" id="bill_to" placeholder="Bill To" class="form-control" value="<?= set_value('bill_to'); ?>">
+                            <?php elseif ($data_voucher['bill_to']) : ?>
+                                <input type="text" name="bill_to" id="bill_to" placeholder="Bill To" class="form-control" value="<?= $data_voucher['bill_to']; ?>">
+                            <?php else : ?>
+                                <input type="text" name="bill_to" id="bill_to" placeholder="Bill To" class="form-control">
+                            <?php endif; ?>
+                            <?= form_error('bill_to'); ?>
+                        </div>
+                    </div>
+                    <div class="position-relative row form-group">
                         <label for="Kewarganegaraan" class="col-sm-2 col-form-label"><b>Kategori</b></label>
                         <div class="col-sm-10">
                             <select name="kategori" id="kategori" class="form-control" <?= $require; ?>>

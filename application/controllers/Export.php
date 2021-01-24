@@ -55,12 +55,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
         );
 
         // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
@@ -69,12 +68,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
         );
 
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', "REPORT VOUCHER"); // Set kolom A1 dengan tulisan "DATA SISWA"
@@ -324,12 +322,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
         );
         $style_cols = array(
             'font' => array('bold' => true), // Set font nya jadi bold
@@ -337,12 +334,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
         );
 
         // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
@@ -350,12 +346,11 @@ class Export extends CI_Controller
             'alignment' => array(
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
         );
 
         $spreadsheet = new Spreadsheet;
@@ -403,8 +398,14 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('A8:B8')->applyFromArray($style_cols);
 
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('C8', $data_pt['nama_pt']); // Set kolom A1 dengan tulisan "DATA SISWA"
-        $spreadsheet->getActiveSheet()->mergeCells('C8:F8'); // Set Merge Cell pada kolom A1 sampai F1
-        $spreadsheet->getActiveSheet()->getStyle('C8:F8')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->mergeCells('C8:D8'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C8:D8')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E8', "BILL TO"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('E8')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F8', $data_voucher['bill_to']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('F8')->applyFromArray($style_cols);
 
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('A9', "NAMA CLIENT"); // Set kolom A1 dengan tulisan "DATA SISWA"
         $spreadsheet->getActiveSheet()->mergeCells('A9:B9'); // Set Merge Cell pada kolom A1 sampai F1
@@ -547,7 +548,7 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('A41:F45')->applyFromArray($style_col);
 
         $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
-        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(10); // Set width kolom B
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(15); // Set width kolom B
         $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(15); // Set width kolom C
         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom D
         $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
@@ -583,12 +584,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ]
         );
         $style_cols = array(
             'font' => array('bold' => true), // Set font nya jadi bold
@@ -596,12 +596,11 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ]
         );
 
         // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
@@ -609,12 +608,11 @@ class Export extends CI_Controller
             'alignment' => array(
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ]
         );
 
         $spreadsheet = new Spreadsheet;
@@ -662,8 +660,14 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('A8:B8')->applyFromArray($style_cols);
 
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('C8', $data_pt['nama_pt']); // Set kolom A1 dengan tulisan "DATA SISWA"
-        $spreadsheet->getActiveSheet()->mergeCells('C8:F8'); // Set Merge Cell pada kolom A1 sampai F1
-        $spreadsheet->getActiveSheet()->getStyle('C8:F8')->applyFromArray($style_col);
+        $spreadsheet->getActiveSheet()->mergeCells('C8:D8'); // Set Merge Cell pada kolom A1 sampai F1
+        $spreadsheet->getActiveSheet()->getStyle('C8:D8')->applyFromArray($style_col);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('E8', "BILL TO"); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('E8')->applyFromArray($style_cols);
+
+        $spreadsheet->setActiveSheetIndex(0)->setCellValue('F8', $data_voucher['bill_to']); // Set kolom A1 dengan tulisan "DATA SISWA"
+        $spreadsheet->getActiveSheet()->getStyle('F8')->applyFromArray($style_col);
 
         $spreadsheet->setActiveSheetIndex(0)->setCellValue('A9', "NAMA CLIENT"); // Set kolom A1 dengan tulisan "DATA SISWA"
         $spreadsheet->getActiveSheet()->mergeCells('A9:B9'); // Set Merge Cell pada kolom A1 sampai F1
@@ -806,7 +810,7 @@ class Export extends CI_Controller
         $spreadsheet->getActiveSheet()->getStyle('A41:F45')->applyFromArray($style_col);
 
         $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
-        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(10); // Set width kolom B
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(15); // Set width kolom B
         $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(15); // Set width kolom C
         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom D
         $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
@@ -843,24 +847,22 @@ class Export extends CI_Controller
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ]
         );
 
         $style_row = array(
             'alignment' => array(
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ),
-            'borders' => array(
-                'top' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ]
         );
 
         $spreadsheet = new Spreadsheet;

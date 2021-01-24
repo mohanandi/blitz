@@ -10,6 +10,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">Nama Visa</th>
+                            <th class="text-center">Expired</th>
                             <th class="text-center">Satu Minggu</th>
                             <th class="text-center">Dua Minggu</th>
                             <th class="text-center">Tiga Minggu</th>
@@ -22,6 +23,13 @@
                             <tr>
                                 <td class="text-center text-muted"><?= $visa['visa']; ?></td>
                                 <?php if ($visa['kategori_id'] == 1) {
+                                    $expired = $this->db->from('penghubung_visa312')
+                                        ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
+                                        ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa312.status', 'Aktif')
+                                        ->where('visa_312.tgl_expired <', time())
+                                        ->get()
+                                        ->num_rows();
                                     $seminggu = $this->db->from('penghubung_visa312')
                                         ->join('visa_312', 'visa_312.id_penghubung_visa=penghubung_visa312.id_penghubung_visa312')
                                         ->where('penghubung_visa312.id_jenis_visa', $visa['id'])
@@ -55,6 +63,13 @@
                                         ->get()
                                         ->num_rows();
                                 } else {
+                                    $expired = $this->db->from('penghubung_visa211')
+                                        ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
+                                        ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
+                                        ->where('penghubung_visa211.status', 'Aktif')
+                                        ->where('visa_211.tgl_expired <', time())
+                                        ->get()
+                                        ->num_rows();
                                     $seminggu = $this->db->from('penghubung_visa211')
                                         ->join('visa_211', 'visa_211.id_penghubung=penghubung_visa211.id_penghubung_visa211')
                                         ->where('penghubung_visa211.id_jenis_visa', $visa['id'])
@@ -89,6 +104,9 @@
                                         ->num_rows();
                                 }
                                 ?>
+                                <td class="text-center">
+                                    <a href="<?= base_url('Home/expired/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $expired; ?></a>
+                                </td>
                                 <td class="text-center">
                                     <a href="<?= base_url('Home/seminggu/') . $visa['id']; ?>" class="btn btn-light btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Detail"><?= $seminggu; ?></a>
                                 </td>

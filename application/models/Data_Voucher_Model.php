@@ -143,6 +143,7 @@ class Data_Voucher_Model extends CI_Model
             "id_pt" => $this->input->post('nama_pt', true),
             "jumlah_data" => 0,
             "nama_client" => $this->input->post('nama_client', true),
+            "bill_to" => $this->input->post('bill_to', true),
             "mata_uang" => $this->input->post('mata_uang', true),
             "total_harga" => 0,
             "kategori_id" => $this->input->post('kategori', true),
@@ -212,6 +213,7 @@ class Data_Voucher_Model extends CI_Model
             "id_pt" => $this->input->post('nama_pt', true),
             "jumlah_data" => 0,
             "nama_client" => $this->input->post('nama_client', true),
+            "bill_to" => $this->input->post('bill_to', true),
             "mata_uang" => $this->input->post('mata_uang', true),
             "total_harga" => 0,
             "kategori_id" => $this->input->post('kategori', true),
@@ -323,6 +325,7 @@ class Data_Voucher_Model extends CI_Model
         $data = [
             "id_pt" => $this->input->post('nama_pt', true),
             "nama_client" => $this->input->post('nama_client', true),
+            "bill_to" => $this->input->post('bill_to', true),
             "mata_uang" => $this->input->post('mata_uang', true),
             "id_jenis_proses" => $this->input->post('jenis_proses', true),
             "id_lokasi" => $this->input->post('lokasi', true),
@@ -338,6 +341,7 @@ class Data_Voucher_Model extends CI_Model
         $data = [
             "id_pt" => $this->input->post('nama_pt', true),
             "nama_client" => $this->input->post('nama_client', true),
+            "bill_to" => $this->input->post('bill_to', true),
             "mata_uang" => $this->input->post('mata_uang', true),
             "kategori_id" => $this->input->post('kategori', true),
             "lokasi" => $this->input->post('lokasi_entertaint', true),

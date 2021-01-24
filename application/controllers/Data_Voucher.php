@@ -63,6 +63,7 @@ class Data_Voucher extends CI_Controller
     {
         $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
         $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
+        $this->form_validation->set_rules('bill_to', 'Bill To', 'trim|required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
         $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
         if ($this->input->post('kategori') == 1) {
@@ -298,6 +299,7 @@ class Data_Voucher extends CI_Controller
     {
         $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
         $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
+        $this->form_validation->set_rules('bill_to', 'Bill To', 'trim|required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
         $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
         if ($this->input->post('kategori') == 1) {
@@ -365,6 +367,7 @@ class Data_Voucher extends CI_Controller
     {
         $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
         $this->form_validation->set_rules('nama_client', 'Nama Client', 'trim|required');
+        $this->form_validation->set_rules('bill_to', 'Bill To', 'trim|required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
         $this->form_validation->set_rules('mata_uang', 'Mata Uang', 'trim|required');
         if ($this->input->post('kategori') == 1) {

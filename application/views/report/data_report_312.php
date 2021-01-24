@@ -57,7 +57,7 @@
                                 <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_input']); ?></td>
                                 <td class="text-center"><?= $data_visa['input_by_id']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('Data_Visa/spesifik_visa312/') . $data_pengguna['id_penghubung_visa312']; ?>" class="badge badge-success">Detail</a>
+                                    <a href="<?= base_url('Data_Visa/spesifik_visa312/') . $penghubung_visa['id_penghubung_visa312']; ?>" class="badge badge-success">Detail</a>
                                 </td>
                             </tr>
                         <?php $no++;

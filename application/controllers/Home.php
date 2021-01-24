@@ -105,6 +105,26 @@ class Home extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function expired($id_visa)
+    {
+        $data['judul'] = "Reminder Schedule";
+        $data['data_jenis_visa'] = $this->Home_Model->getJenisVisa($id_visa);
+        $data['subjudul'] = $data['data_jenis_visa']['visa'];
+        $data['batas'] = "Expired";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['data_jenis_visa']['kategori_id'] == 1) {
+            $data['data_penghubung_visa'] = $this->Home_Model->getExpiredVisa312($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_312', $data);
+            $this->load->view('templates/footer');
+        } else {
+            // $data['data_penghubung_visa'] = $this->Home_Model->getPenghubungVisa211($id_visa);
+            $data['data_penghubung_visa'] = $this->Home_Model->getExpiredData($id_visa);
+            $this->load->view('templates/header', $data);
+            $this->load->view('report/data_report_211', $data);
+            $this->load->view('templates/footer');
+        }
+    }
     public function seminggu($id_visa)
     {
         $data['judul'] = "Reminder Schedule";

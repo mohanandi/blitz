@@ -14,6 +14,7 @@
                         <tr>
                             <th class="text-center">Nama Perusahaan</th>
                             <th class="text-center">Nama Client</th>
+                            <th class="text-center">Bill To</th>
                             <th class="text-center">Kategori Voucher</th>
                             <th class="text-center">Mata Uang</th>
                             <th class="text-center">Lokasi</th>
@@ -44,6 +45,7 @@
                             ?>
                             <td class="text-center"><?= $data_pt['nama_pt']; ?></td>
                             <td class="text-center"><?= $data_voucher['nama_client']; ?></td>
+                            <td class="text-center"><?= $data_voucher['bill_to']; ?></td>
                             <td class="text-center"><?= $data_kategori['kategori']; ?></td>
                             <td class="text-center"><?= $data_voucher['mata_uang']; ?></td>
                             <td class="text-center"><?= $data_voucher['lokasi']; ?></td>
