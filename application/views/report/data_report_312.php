@@ -1,3 +1,7 @@
+<?php if ($this->session->flashdata('flash')) : ?>
+    <div class="alert alert-success fade show" role="alert">Data <?= $this->session->flashdata('flash'); ?> .</div>
+<?php endif; ?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
@@ -57,7 +61,12 @@
                                 <td class="text-center"><?= date('d-m-Y', $data_visa['tgl_input']); ?></td>
                                 <td class="text-center"><?= $data_visa['input_by_id']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('Data_Visa/spesifik_visa312/') . $penghubung_visa['id_penghubung_visa312']; ?>" class="badge badge-success">Detail</a>
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" href="<?= base_url('Data_Visa/spesifik_visa312/') . $penghubung_visa['id_penghubung_visa312']; ?>" title="Detail"><i class="fas fa-pencil-alt"></i></a>
+                                            <button class="btn btn-danger btn-sm rounded-0 action-delete" type="button" data-toggle="tooltip" data-placement="top" data-href="<?= base_url('Home/nonaktifkan312/') . $penghubung_visa['id_penghubung_visa312'] . '/' . $batas; ?>" title="Nonaktifkan"><i class="fa fa-ban"></i></button>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         <?php $no++;
@@ -68,3 +77,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.action-delete').click(function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You Will deactivate this data !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = $(this).data('href');
+            }
+        })
+    });
+</script>

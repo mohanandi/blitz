@@ -202,4 +202,41 @@ class Home extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+
+    public function nonaktifkan211($id_penghubung, $batas)
+    {
+        $data_penghubung = $this->Home_Model->getPenghubungVisa211ById($id_penghubung);
+        $id_visa = $data_penghubung['id_jenis_visa'];
+        $this->Home_Model->nonaktif211($id_penghubung);
+        $this->session->set_flashdata('flash', 'Visa Telah Dinonaktifkan');
+        if ($batas == 'Expired') {
+            redirect("Home/expired/$id_visa");
+        } elseif ($batas == 'Seminggu') {
+            redirect("Home/seminggu/$id_visa");
+        } elseif ($batas == 'Dua Minggu') {
+            redirect("Home/duaminggu/$id_visa");
+        } elseif ($batas == 'Tiga Minggu') {
+            redirect("Home/tigaminggu/$id_visa");
+        } elseif ($batas == 'Sebulan') {
+            redirect("Home/sebulan/$id_visa");
+        }
+    }
+    public function nonaktifkan312($id_penghubung, $batas)
+    {
+        $data_penghubung = $this->Home_Model->getPenghubungVisa312ById($id_penghubung);
+        $id_visa = $data_penghubung['id_jenis_visa'];
+        $this->Home_Model->nonaktif312($id_penghubung);
+        $this->session->set_flashdata('flash', 'Visa Telah Dinonaktifkan');
+        if ($batas == 'Expired') {
+            redirect("Home/expired/$id_visa");
+        } elseif ($batas == 'Seminggu') {
+            redirect("Home/seminggu/$id_visa");
+        } elseif ($batas == 'Dua Minggu') {
+            redirect("Home/duaminggu/$id_visa");
+        } elseif ($batas == 'Tiga Minggu') {
+            redirect("Home/tigaminggu/$id_visa");
+        } elseif ($batas == 'Sebulan') {
+            redirect("Home/sebulan/$id_visa");
+        }
+    }
 }

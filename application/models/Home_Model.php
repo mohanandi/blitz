@@ -244,4 +244,29 @@ class Home_Model extends CI_Model
         $this->db->join('jenis_proses', 'harga.id_proses = jenis_proses.id_proses');
         return $this->db->get('harga')->result();
     }
+    public function getPenghubungVisa211ById($id_penghubung)
+    {
+        return $this->db->get_where('penghubung_visa211', ['id_penghubung_visa211' => $id_penghubung])->row_array();
+    }
+    public function getPenghubungVisa312ById($id_penghubung)
+    {
+        return $this->db->get_where('penghubung_visa312', ['id_penghubung_visa312' => $id_penghubung])->row_array();
+    }
+
+    public function nonaktif211($id_penghubung)
+    {
+        $data = [
+            "status" => 'Non-Aktif'
+        ];
+        $this->db->where('id_penghubung_visa211', $id_penghubung);
+        $this->db->update('penghubung_visa211', $data);
+    }
+    public function nonaktif312($id_penghubung)
+    {
+        $data = [
+            "status" => 'Non-Aktif'
+        ];
+        $this->db->where('id_penghubung_visa312', $id_penghubung);
+        $this->db->update('penghubung_visa312', $data);
+    }
 }
