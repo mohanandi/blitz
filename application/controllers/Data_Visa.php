@@ -151,6 +151,77 @@ class Data_Visa extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+    public function visa_all()
+    {
+        $this->form_validation->set_rules('dari', 'Dari', 'trim|required');
+        $this->form_validation->set_rules('sampai', 'Sampai', 'trim|required');
+        $this->form_validation->set_rules('nama_pt', 'Nama Perusahaan', 'trim|required');
+        $this->form_validation->set_rules('jenis_visa', 'Jenis Visa', 'trim|required');
+        $data['data_jenis_visa'] = $this->Data_Visa_Model->getAllJenisVisa();
+        $data['data_pt'] = $this->DataPt_Model->getAllDataPt();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->form_validation->run() == FALSE) {
+            $data['judul'] = 'Data Visa';
+            $data['data_pengguna_visa211'] = $this->Data_Visa_Model->getAllPenghubungVisa211();
+            $data['data_pengguna_visa312'] = $this->Data_Visa_Model->getAllPenghubungVisa312();
+            $data['subjudul_211'] = 'Visa Non-RPTKA';
+            $data['subjudul_312'] = 'Visa (RPTKA)';
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/visa_all', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data['dari'] = strtotime($this->input->post('dari'));
+            $data['sampai'] = strtotime($this->input->post('sampai')) + (60 * 60 * 24);
+            $id_visa = $this->input->post('jenis_visa');
+            $id_pt = $this->input->post('nama_pt');
+            $data['judul'] = 'Data Visa';
+            if ($id_visa == 'All Visa') {
+                $data['data_pengguna_visa211'] = $this->Data_Visa_Model->getAllPenghubungVisa211();
+                $data['data_pengguna_visa312'] = $this->Data_Visa_Model->getAllPenghubungVisa312();
+                $data['subjudul_211'] = 'Visa Non-RPTKA';
+                $data['subjudul_312'] = 'Visa (RPTKA)';
+            } else {
+                $data['jenis_visa'] = $this->Data_Visa_Model->getJenisVisaById($id_visa);
+                if ($data['jenis_visa']['kategori_id'] == 1) {
+                    $data['subjudul_211'] = 'Visa Non-RPTKA';
+                    $data['subjudul_312'] = $data['jenis_visa']['visa'];
+                    $data['data_pengguna_visa211'] = null;
+                    $data['data_pengguna_visa312'] = $this->Data_Visa_Model->getAllVisa312Filter($id_visa, $id_pt);
+                } else {
+                    $data['subjudul_211'] = $data['jenis_visa']['visa'];
+                    $data['subjudul_312'] = 'Visa (RPTKA)';
+                    $data['data_pengguna_visa211'] = $this->Data_Visa_Model->getAllVisa211Filter($id_visa, $id_pt);
+                    $data['data_pengguna_visa312'] = null;
+                }
+            }
+            $this->load->view('templates/header', $data);
+            $this->load->view('data_visa/visa_all', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function delete_visa211($id_penghubung)
+    {
+        $data_visa = $this->Data_Visa_Model->getDataPenghubungvisa211($id_penghubung);
+        $id_visa = $data_visa['id_jenis_visa'];
+        $this->Data_Visa_Model->DeleteVisa211($id_penghubung);
+        $this->session->set_flashdata('flash', 'Visa Berhasil Dihapus');
+        redirect("Data_Visa/visa211/$id_visa");
+    }
+    public function delete_visa312($id_penghubung)
+    {
+        $data_visa = $this->Data_Visa_Model->getDataPenghubungvisa312($id_penghubung);
+        $id_visa = $data_visa['id_jenis_visa'];
+        $jabatan = $this->Rptka_Model->getJabatanById($data_visa['id_jabatan']);
+        $jabatan_terpakai = $jabatan['terpakai'] - 1;
+        $this->Rptka_Model->editJabatanRptkaVisa($data_visa['id_jabatan'], $jabatan_terpakai);
+        $rptka = $this->Rptka_Model->getRptkaById($data_visa['id_rptka']);
+        $terpakai = $rptka['jumlah_terpakai'] - 1;
+        $this->Rptka_Model->editTerpakaiRptka($data_visa['id_rptka'], $terpakai);
+        $this->Data_Visa_Model->DeleteVisa312($id_penghubung);
+        $this->session->set_flashdata('flash', 'Visa Berhasil Dihapus');
+        redirect("Data_Visa/visa312/$id_visa");
+    }
 
     public function visa312($id_visa)
     {

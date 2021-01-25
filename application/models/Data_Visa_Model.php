@@ -213,4 +213,38 @@ class Data_Visa_Model extends CI_Model
         $this->db->where('id_penghubung_visa', $id_penghubung);
         $this->db->update('visa_312', $data);
     }
+
+    public function DeleteVisa211($id_penghubung)
+    {
+        $this->db->delete('penghubung_visa211', ['id_penghubung_visa211' => $id_penghubung]);
+        $this->db->delete('visa_211', ['id_penghubung' => $id_penghubung]);
+    }
+    public function DeleteVisa312($id_penghubung)
+    {
+        $this->db->delete('penghubung_visa312', ['id_penghubung_visa312' => $id_penghubung]);
+        $this->db->delete('visa_312', ['id_penghubung_visa' => $id_penghubung]);
+    }
+
+    public function getAllJenisVisa()
+    {
+        $data = $this->db->from('jenis_visa')
+            ->where('id !=', 1)
+            ->where('id !=', 2)
+            ->get()
+            ->result_array();
+        return $data;
+    }
+
+    public function getAllPenghubungVisa211()
+    {
+        return $this->db->get('penghubung_visa211')->result_array();
+    }
+    public function getAllPenghubungVisa312()
+    {
+        return $this->db->get('penghubung_visa312')->result_array();
+    }
+    public function getJenisVisaById($jenis_visa)
+    {
+        return $this->db->get_where('jenis_visa', ['id' => $jenis_visa])->row_array();
+    }
 }

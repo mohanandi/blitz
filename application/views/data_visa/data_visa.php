@@ -15,7 +15,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;
+                        <tr>
+                            <?php
+                            $this->db->select('id_penghubung_visa312');
+                            $this->db->from('penghubung_visa312');
+                            $this->db->where('status', 'Aktif');
+                            $query = $this->db->get();
+                            $data = $query->result_array();
+                            $jumlah_aktif_312 = count($data);
+                            $this->db->select('id_penghubung_visa211');
+                            $this->db->from('penghubung_visa211');
+                            $this->db->where('status', 'Aktif');
+                            $query = $this->db->get();
+                            $data = $query->result_array();
+                            $jumlah_aktif_211 = count($data);
+                            $jumlah_visa_aktif = $jumlah_aktif_211 + $jumlah_aktif_312;
+                            $this->db->select('id_penghubung_visa312');
+                            $this->db->from('penghubung_visa312');
+                            $this->db->where('status !=', 'Aktif');
+                            $query = $this->db->get();
+                            $data = $query->result_array();
+                            $jumlah_non_312 = count($data);
+                            $this->db->select('id_penghubung_visa211');
+                            $this->db->from('penghubung_visa211');
+                            $this->db->where('status !=', 'Aktif');
+                            $query = $this->db->get();
+                            $data = $query->result_array();
+                            $jumlah_non_211 = count($data);
+                            $jumlah_visa_non = $jumlah_non_211 + $jumlah_non_312;
+
+                            $no = 1;
+                            ?>
+                            <td class="text-center"><?= $no; ?></td>
+                            <td class="text-center">All</td>
+                            <td class="text-center"><?= $jumlah_visa_aktif; ?></td>
+                            <td class="text-center"><?= $jumlah_visa_non; ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('Data_Visa/visa_all/'); ?>" class="badge badge-success">Detail</a>
+                            </td>
+                        </tr>
+                        <?php $no = 2;
                         foreach ($data_jenis_visa as $jenis_visa) :
                             if (($jenis_visa['id'] == 1) or ($jenis_visa['id'] == 2)) :
                             else : ?>
